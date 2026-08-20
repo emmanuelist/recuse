@@ -1,0 +1,90 @@
+# Milestones
+
+Phase-gated. Finish one, pass its gate, then start the next. No parallel
+half-finished systems — see `AGENTS.md` § 3.3.
+
+**Green gate** (required to close any milestone): lint zero warnings, typecheck
+clean, build succeeds. Plus that milestone's own gate below.
+
+Submission deadline is **2026-09-03 10:00 PDT**. We submit **2026-09-02** — a
+full day of buffer, because the wifi will fail and something will break.
+
+---
+
+## M0 · Foundation — Aug 20–21
+
+Repo, keys, scaffold, deploy pipeline. All of it before product code, so that
+nothing later stalls on setup.
+
+- [x] Repo, build rules, milestone/decision/issue/evidence structure
+- [ ] Three API keys provisioned, one live call captured each
+- [ ] Next.js + TypeScript + Tailwind scaffolded, versions pinned
+- [ ] Neon database created, schema migrated
+- [ ] Deployed to Vercel, public URL live, POST endpoint reachable
+
+**Gate:** a deployed URL that responds, and three captured real API responses in
+`evidence/api/`.
+
+## M1 · The signing boundary — Aug 22–25
+
+The thesis, and the only milestone that is genuinely non-negotiable. If nothing
+else ships, this alone is a coherent submission.
+
+- [ ] Agent loop via `toolRunner`, Opus 5, adaptive thinking
+- [ ] Foxit Document Generation tool — drafts a real document from structured data
+- [ ] Foxit eSign tool whose `run()` **refuses** and returns that refusal to the model
+- [ ] Human authorization route — a real person signs a real envelope
+- [ ] eSign webhook received, verified, and persisted
+- [ ] Agent transcript persisted, including the refusal
+
+**Gate:** an agent run that drafts a document, attempts to sign, is structurally
+refused, and a human completes the signature — with the webhook proving it. Show
+that there is no code path where the agent completes a signature.
+
+## M2 · The authorization record — Aug 26–28
+
+The signature component that *is* the thesis. This is what the judge looks at in
+second 40.
+
+- [ ] Authorization record: what was drafted, established, corroborated, who authorized
+- [ ] The refusal rendered as a first-class event, not an error state
+- [ ] Live webhook update — the record changes on screen when the human signs
+- [ ] All states designed: empty, loading, pending signature, expired, error
+- [ ] Responsive: judges will open this on a phone
+
+**Gate:** rendered and inspected at desktop and mobile widths, every state, not
+just the happy path. Screenshots in `evidence/screens/`.
+
+## M3 · Establish — Aug 29–30
+
+Nutrient Data Extraction. Unlocks the second track.
+
+- [ ] Extraction tool reads back what the generated document actually says
+- [ ] Divergence between intended and actual terms is surfaced, not smoothed over
+- [ ] Extraction result becomes part of the authorization record
+
+**Gate:** a document whose extracted terms are shown to the human before signing,
+from a real Nutrient response.
+
+## M4 · Corroborate — Aug 31–Sep 1
+
+SerpApi. Unlocks the third track. **Cut this without hesitation if M1–M3 are not
+solid** — a diluted claim costs more than a third track is worth.
+
+- [ ] Corroboration tool checks the document's external claims against live search
+- [ ] Corroborations and contradictions both surface in the record
+- [ ] Built as verification, never as "the agent can also search"
+
+**Gate:** a contract claim contradicted by live web data, surfaced to the human
+before they authorize.
+
+## M5 · Proof and demo — Sep 1–2
+
+- [ ] README as a proof surface: thesis, live link, video, evidence, honest limits
+- [ ] Demo scripted and timed to three minutes
+- [ ] Rehearsed out loud twice, end to end
+- [ ] Video recorded and uploaded — assume you never present live
+- [ ] Devpost submission, same thesis sentence verbatim, all three tracks
+- [ ] Cold-browser check from a phone on cellular data
+
+**Gate:** submitted 2026-09-02, a day early.
