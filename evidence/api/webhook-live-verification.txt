@@ -1,0 +1,23 @@
+Live webhook verification — https://recuse.vercel.app/api/webhooks/foxit
+2026-08-21, against the deployed production endpoint.
+
+  GET  (portal probe)              200  {"ok":true,"endpoint":"foxit-webhook"}
+  POST no signature                401  {"error":"unauthorized"}
+  POST wrong signature             401  {"error":"unauthorized"}
+  POST correct HMAC-SHA-256        200  {"ok":true,"unmatched":"TEST-NOT-REAL"}
+
+The final case proves signature verification passes and the handler then
+correctly declines to act on a folder id that does not exist, rather than
+inventing a record.
+
+Local unit verification of lib/foxit/webhook.ts:
+  no secret configured   -> rejected (not_configured)   FAILS CLOSED
+  correct signature      -> ACCEPTED
+  wrong key              -> rejected (mismatch)
+  tampered body          -> rejected (mismatch)
+  missing signature      -> rejected (missing_signature)
+  garbage / truncated    -> rejected (mismatch)
+
+Event mapping: only folder_executed sets "signed". folder_completed stays
+"pending" — parties having signed is not the same as the signature being
+applied and the audit trail locked.

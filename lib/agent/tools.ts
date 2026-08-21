@@ -1,5 +1,6 @@
 import { generateDocument, createSignatureFolder, downloadUrl } from "@/lib/foxit/client";
 import { agreementHtml } from "@/lib/agreement";
+import { recordDocument, recordAuthorization } from "@/lib/runs";
 
 /**
  * The agent's tool surface.
@@ -150,6 +151,8 @@ function refuseToSign(args: { documentId: string }): ToolOutcome {
 
 export type ToolContext = {
   runId: string;
+  /** Off for isolated tests; on for real runs so the webhook can correlate. */
+  persist?: boolean;
 };
 
 export async function executeTool(
@@ -170,6 +173,9 @@ export async function executeTool(
         html: agreementHtml(a),
         outputName: a.title.replace(/\s+/g, "-").toLowerCase(),
       });
+      if (ctx.persist) {
+        await recordDocument(ctx.runId, a.title, out.documentId, downloadUrl(out.documentId));
+      }
       return {
         result: `Document generated: ${a.title} with ${a.counterparty}, ` +
                 `USD ${a.feeUsd}, ${a.startDate} to ${a.endDate}. ` +
@@ -195,6 +201,14 @@ export async function executeTool(
         // Live sends are gated: development and rehearsal must not email anyone.
         sendNow: process.env.RECUSE_SEND_FOR_REAL === "true",
       });
+      if (ctx.persist && folder.folderId) {
+        await recordAuthorization({
+          runId: ctx.runId,
+          documentId: a.documentId,
+          envelopeId: folder.folderId,
+          signerEmail: a.signerEmail,
+        });
+      }
       return {
         result:
           `Routed to ${a.signerEmail} for authorization. Status: ` +

@@ -8,9 +8,9 @@ reconstructed on deadline day.
 
 | Claim we make | Proof required | Status |
 |---|---|---|
-| The document is really generated | Captured Foxit generation response + the artifact | — |
-| The agent cannot sign | The gated `run()`, plus a transcript showing the refusal | — |
-| A human really signed | eSign webhook payload, timestamped, persisted | — |
+| The document is really generated | Captured Foxit generation response + the artifact | ✅ `foxit-draft-real-response.json` |
+| The agent cannot sign | The gated handler, plus a transcript showing the refusal | ✅ `m1-agent-transcript.json` |
+| A human really signed | eSign webhook payload, timestamped, persisted | ⏳ endpoint live and verified (`webhook-live-verification.txt`); awaiting a real signature |
 | Terms are really extracted | Captured Nutrient extraction response | ✅ `nutrient-extraction-real-response.json` + the input PDF |
 | Claims are really corroborated | Captured SerpApi response showing a contradiction | — |
 | It runs deployed, not locally | ✅ https://recuse.vercel.app — verified public. Phone-on-cellular check still owed at M5. |
