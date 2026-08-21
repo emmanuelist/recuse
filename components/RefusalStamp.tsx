@@ -26,7 +26,7 @@ export function RefusalStamp({ reason, attemptedOn }: { reason: string; attempte
           </span>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="max-w-[42ch] font-doc text-[17px] leading-[1.55] text-ink sm:text-[18px]">{reason}</p>
+          <p className="max-w-[42ch] font-sans text-[17px] leading-[1.55] text-ink sm:text-[18px]">{reason}</p>
           {attemptedOn && (
             <p className="provenance mt-2.5">attempted on document {attemptedOn}</p>
           )}

@@ -3,7 +3,7 @@ import { RefusalSeal } from "./RefusalSeal";
 /** The refusal, given the weight of the moment it represents. */
 export function RefusalBlock({ reason, attemptedOn }: { reason: string; attemptedOn?: string }) {
   return (
-    <div className="relative overflow-hidden border border-seal/25 bg-surface shadow-[var(--shadow-seal)]">
+    <div className="relative overflow-hidden rounded-lg border border-seal/25 bg-surface shadow-[var(--shadow-seal)]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -16,7 +16,7 @@ export function RefusalBlock({ reason, attemptedOn }: { reason: string; attempte
         <RefusalSeal />
         <div className="min-w-0">
           <p className="label mb-3 text-seal">The agent reached for the signature</p>
-          <p className="max-w-[46ch] font-doc text-[19px] leading-[1.5] text-ink sm:text-[22px]">
+          <p className="max-w-[48ch] text-[17px] leading-[1.55] tracking-[-0.015em] text-ink sm:text-[19px]">
             {reason}
           </p>
           {attemptedOn && (

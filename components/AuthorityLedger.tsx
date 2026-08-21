@@ -66,9 +66,9 @@ export function AuthorityLedger({ entries }: { entries: LedgerEntry[] }) {
                 aria-hidden
                 className="absolute -left-[4px] top-8 h-2.5 w-2.5 rounded-full border-2 border-ground bg-granted shadow-[0_0_12px_var(--granted)] sm:left-[-3px]"
               />
-              <div className="border border-rule-soft bg-surface p-6 shadow-[var(--shadow-raised)] sm:p-7">
+              <div className="rounded-lg border border-rule-soft bg-surface p-6 shadow-[var(--shadow-raised)] sm:p-7">
                 <p className="label mb-3">{label}</p>
-                <p className="max-w-[62ch] font-doc text-[16px] leading-relaxed text-ink sm:text-[17px]">
+                <p className="max-w-[64ch] text-[14.5px] leading-relaxed text-ink">
                   {row.outcome?.result ?? "—"}
                 </p>
                 {row.outcome?.detail ? <Provenance detail={row.outcome.detail} /> : null}

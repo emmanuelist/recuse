@@ -1,25 +1,20 @@
 import type { Metadata } from "next";
-import { Spectral, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
 
-const doc = Spectral({
-  variable: "--font-doc-src",
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-});
-
-const ui = IBM_Plex_Sans({
-  variable: "--font-ui-src",
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-});
-
-const data = IBM_Plex_Mono({
-  variable: "--font-data-src",
-  weight: ["400", "500"],
-  subsets: ["latin"],
-});
+/**
+ * Geist Sans + Geist Mono. Measured against the register this product needs to
+ * sit in: Linear runs Inter Variable at 64px/510/-0.022em, Vercel runs Geist at
+ * 64px/400/-0.06em. Both are large, light and very tightly tracked. The earlier
+ * Spectral serif read editorial rather than product-grade.
+ *
+ * The mono is a matched pair, not a costume - it carries document ids, envelope
+ * numbers and timestamps, which are data.
+ */
+const sans = Geist({ subsets: ["latin"], variable: "--font-sans-src", display: "swap" });
+const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono-src", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Recuse",
@@ -31,9 +26,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${doc.variable} ${ui.variable} ${data.variable} h-full`}
+      className={`${sans.variable} ${mono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <Nav />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }

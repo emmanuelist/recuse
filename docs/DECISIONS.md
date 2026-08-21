@@ -228,3 +228,40 @@ hedged ones.
 
 **Kept from D009:** the two signatures, Spectral as the document voice, and seal
 red reserved for the refusal alone.
+
+## D012 · Geist, shadcn primitives, and a real landing page
+**2026-08-21**
+
+The dark rebuild was still rejected on two counts: the typeface read editorial
+rather than product-grade, and there was no landing page — only an app index.
+
+**Researched rather than guessed.** Land-book returns 403 behind Cloudflare and
+Mobbin gates browsing behind login, so both were abandoned in favour of
+inspecting shipping products directly and reading their computed styles:
+
+| | Linear | Vercel |
+|---|---|---|
+| Face | Inter Variable | Geist |
+| Display | 64px / 510 / -0.022em / 1.0 | 64px / 400 / -0.06em |
+| Body | 15px / 24px | — |
+| Nav | — | 64px |
+
+Both converge: large, light, very tightly tracked display over a small dense
+body. Spectral could not sit in that register.
+
+**Decided:** Geist Sans + Geist Mono. A matched pair, so the mono that carries
+document ids and envelope numbers belongs to the same family rather than being
+a second borrowed voice. Display set at 68/500/-0.042em/1.02.
+
+**shadcn/ui adopted, overriding the earlier no-component-library rule.** That
+rule came from hackathon advice that a default component-library look is
+recognisable at a glance — which remains true. The reconciliation is that
+shadcn is copy-paste Radix: we own the files, take the behaviour and
+accessibility, and restyle everything visible against our tokens. Stock shadcn
+appearance is still a defect.
+
+**Landing page added** on the pattern both references share — slim 64px nav,
+tight display hero with a single-line lede, then *product proof*. Ours shows the
+real ledger from the most recent run rather than a mockup of it, which suits a
+product whose claim is that nothing here is fabricated. Records moved to
+`/records`.

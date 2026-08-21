@@ -1,37 +1,45 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-/* ── Recuse ─────────────────────────────────────────────────────────────
-   One committed world: dark. Chosen from the use scene — this is shown on a
-   projector in a dim hall and read by people auditing what an agent did, not
-   from a category default. Seal red is spent on the refusal and nowhere else.
+@custom-variant dark (&:is(.dark *));
+
+/* ── Recuse design system ───────────────────────────────────────────────
+   One committed world: dark, chosen from the use scene — shown on a projector
+   in a dim hall, read by people auditing what an agent did.
+
+   Type scale measured against the register this product must sit in (Linear,
+   Vercel): large display at light weight with very tight tracking, small dense
+   body, mono reserved for data.
+
+   Seal red is spent on the refusal and nowhere else.
    ─────────────────────────────────────────────────────────────────────── */
 
 :root {
-  --ground:     #090B10;
-  --surface:    #11151D;
-  --raised:     #171C26;
-  --rule:       #232B38;
-  --rule-soft:  #1A202B;
+  --ground:     #08090B;
+  --surface:    #0F1114;
+  --raised:     #16191E;
+  --rule:       #21252C;
+  --rule-soft:  #191C21;
 
-  --ink:        #EEF1F6;
-  --ink-muted:  #99A4B6;
-  --ink-faint:  #6C7789;
+  --ink:        #F4F5F7;
+  --ink-muted:  #8A8F98;
+  --ink-faint:  #62676F;
 
-  --seal:       #FF5A48;
-  --seal-deep:  #7A1F17;
-  --seal-glow:  #FF5A4826;
+  --seal:       #FF5A45;
+  --seal-deep:  #3A100B;
+  --seal-glow:  #FF5A4526;
 
-  --granted:    #3ED9A4;
-  --granted-deep:#0E4534;
-  --pending:    #E9B44C;
-  --pending-deep:#4A3712;
+  --granted:    #43D6A0;
+  --granted-deep:#0B3327;
+  --pending:    #E5AC46;
+  --pending-deep:#3A2A0E;
 
-  --font-doc:  var(--font-doc-src), Georgia, serif;
-  --font-ui:   var(--font-ui-src), system-ui, sans-serif;
-  --font-data: var(--font-data-src), ui-monospace, Menlo, monospace;
+  --font-sans: var(--font-sans-src), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-src), ui-monospace, Menlo, monospace;
 
-  --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -8px rgb(0 0 0 / 0.6);
-  --shadow-seal:   0 12px 48px -12px var(--seal-glow), 0 2px 8px rgb(0 0 0 / 0.5);
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.5), 0 12px 32px -12px rgb(0 0 0 / 0.7);
+  --shadow-seal:   0 16px 56px -16px var(--seal-glow), 0 2px 10px rgb(0 0 0 / 0.6);
 }
 
 @theme inline {
@@ -49,9 +57,8 @@
   --color-granted-deep: var(--granted-deep);
   --color-pending: var(--pending);
   --color-pending-deep: var(--pending-deep);
-  --font-doc: var(--font-doc);
-  --font-ui: var(--font-ui);
-  --font-data: var(--font-data);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 html { -webkit-text-size-adjust: 100%; background: var(--ground); }
@@ -59,49 +66,47 @@ html { -webkit-text-size-adjust: 100%; background: var(--ground); }
 body {
   background: var(--ground);
   color: var(--ink);
-  font-family: var(--font-ui);
+  font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Ambient light from above-left, so the raised surfaces read as lit rather
-   than merely lighter. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(70rem 45rem at 12% -10%, #1B2534 0%, transparent 62%),
-    radial-gradient(50rem 40rem at 100% 0%, #14202B 0%, transparent 55%);
-  z-index: 0;
-}
-body > * { position: relative; z-index: 1; }
+/* Display scale — light weight, very tight tracking, near-solid leading. */
+.display-xl { font-size: clamp(2.75rem, 6vw, 4.25rem); font-weight: 500; letter-spacing: -0.042em; line-height: 1.02; }
+.display-l  { font-size: clamp(2.1rem, 4.4vw, 3.25rem); font-weight: 500; letter-spacing: -0.038em; line-height: 1.06; }
+.display-m  { font-size: clamp(1.6rem, 2.8vw, 2.15rem); font-weight: 500; letter-spacing: -0.032em; line-height: 1.14; }
+.lede       { font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.62; color: var(--ink-muted); letter-spacing: -0.014em; }
 
-.provenance {
-  font-family: var(--font-data);
-  font-size: 11.5px;
-  letter-spacing: 0.02em;
+.mono, .provenance {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: -0.01em;
   color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
-  word-break: break-all;
 }
+.provenance { word-break: break-all; }
 
 .label {
-  font-family: var(--font-data);
-  font-size: 10.5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
 
-*:focus-visible {
-  outline: 2px solid var(--seal);
-  outline-offset: 3px;
-  border-radius: 2px;
+.rule-grid {
+  background-image:
+    linear-gradient(to right, var(--rule-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule-soft) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(50rem 34rem at 50% 0%, #000 0%, transparent 72%);
 }
+
+*:focus-visible { outline: 2px solid var(--seal); outline-offset: 3px; border-radius: 3px; }
 
 /* The one authored moment: the seal is struck onto the record. */
 @keyframes strike {
@@ -109,12 +114,9 @@ body > * { position: relative; z-index: 1; }
   62%  { opacity: 1; transform: scale(0.97) rotate(-7deg); filter: blur(0); }
   100% { opacity: 1; transform: scale(1) rotate(-6deg);    filter: blur(0); }
 }
-.strike { animation: strike 620ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both; }
+.strike { animation: strike 640ms cubic-bezier(0.16, 1, 0.3, 1) 160ms both; }
 
 @media (prefers-reduced-motion: reduce) {
   .strike { animation: none; opacity: 1; transform: rotate(-6deg); }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

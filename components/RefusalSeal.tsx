@@ -49,7 +49,7 @@ export function RefusalSeal({ size = 190 }: { size?: number }) {
 
       <text
         fill="var(--seal)"
-        fontFamily="var(--font-data)"
+        fontFamily="var(--font-mono)"
         fontSize="10"
         fontWeight="500"
         letterSpacing="4.6"
@@ -62,14 +62,14 @@ export function RefusalSeal({ size = 190 }: { size?: number }) {
       <line x1="52" y1="82" x2="148" y2="82" stroke="var(--seal)" strokeWidth="1" opacity="0.45" />
       <text
         x="100" y="105" textAnchor="middle"
-        fill="var(--seal)" fontFamily="var(--font-doc)"
-        fontSize="27" fontWeight="600" letterSpacing="-0.4"
+        fill="var(--seal)" fontFamily="var(--font-sans)"
+        fontSize="23" fontWeight="600" letterSpacing="-0.3"
       >
         MAY NOT
       </text>
       <text
         x="100" y="126" textAnchor="middle"
-        fill="var(--seal)" fontFamily="var(--font-data)"
+        fill="var(--seal)" fontFamily="var(--font-mono)"
         fontSize="10" fontWeight="500" letterSpacing="3"
       >
         SIGN
@@ -77,7 +77,7 @@ export function RefusalSeal({ size = 190 }: { size?: number }) {
       <line x1="52" y1="140" x2="148" y2="140" stroke="var(--seal)" strokeWidth="1" opacity="0.45" />
       <text
         x="100" y="171" textAnchor="middle"
-        fill="var(--seal)" fontFamily="var(--font-data)"
+        fill="var(--seal)" fontFamily="var(--font-mono)"
         fontSize="9" fontWeight="500" letterSpacing="2.4" opacity="0.75"
       >
         RECUSE

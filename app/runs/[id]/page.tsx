@@ -31,13 +31,13 @@ export default async function RunRecord({ params }: PageProps<"/runs/[id]">) {
   const signed = status === "signed";
 
   return (
-    <main className="mx-auto max-w-4xl px-6 pb-32 pt-12 sm:px-10 sm:pt-16">
+    <main className="mx-auto max-w-4xl px-6 pb-28 pt-12 sm:px-8 sm:pt-16">
       <Link href="/" className="label transition-colors hover:text-ink">
         ← All records
       </Link>
 
       <header className="mt-10">
-        <h1 className="max-w-[26ch] text-balance font-doc text-[38px] leading-[1.08] tracking-[-0.02em] text-ink sm:text-[52px]">
+        <h1 className="display-l max-w-[24ch] text-balance text-ink">
           {signed ? (
             <>A person authorized this. <span className="text-granted">The agent did not.</span></>
           ) : (
@@ -53,7 +53,7 @@ export default async function RunRecord({ params }: PageProps<"/runs/[id]">) {
 
       <section className="mt-14">
         <h2 className="label mb-4">Instruction received</h2>
-        <blockquote className="max-w-[64ch] border-l border-rule pl-6 font-doc text-[18px] leading-relaxed text-muted sm:text-[20px]">
+        <blockquote className="lede max-w-[64ch] border-l border-rule pl-6">
           {run.brief}
         </blockquote>
       </section>
@@ -87,7 +87,7 @@ function Authorization({
   return (
     <section className="mt-20 border-t border-rule pt-10">
       <h2 className="label mb-5">Human authorization</h2>
-      <p className="max-w-[62ch] font-doc text-[18px] leading-relaxed text-ink sm:text-[20px]">
+      <p className="max-w-[62ch] text-[16px] leading-relaxed text-ink">
         {signed ? (
           <>
             Authorized by{" "}

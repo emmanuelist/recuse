@@ -153,8 +153,12 @@ surface changed, so recalled patterns are very likely wrong:
 The interface is the tiebreak. Most entrants leave it to a component library and
 land in the same visual bucket as thirty other submissions.
 
-- **No component library.** No shadcn, no MUI, no DaisyUI. Tailwind, an icon set,
-  `clsx`, and hand-built components. The winning repos carry almost no UI deps.
+- **shadcn/ui for primitives, our tokens for everything visible.** shadcn is
+  copy-paste Radix — we own the files, so we take its behaviour and
+  accessibility and restyle it completely against the design tokens. What must
+  never ship is the *default* shadcn look, which is recognisable at a glance and
+  puts us in the same bucket as every other entry. If a component still looks
+  like stock shadcn, it is not finished.
 - **One signature component that *is* the thesis** — the authorization record
   showing what was drafted, what was established, what was corroborated, and who
   authorized it. Not decoration: the claim rendered as an object on screen. It is
