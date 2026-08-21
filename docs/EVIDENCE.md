@@ -32,6 +32,19 @@ evidence/
   `response-3.json`.
 - **Log Foxit credit spend here.** 500 per year is the hard ceiling.
 
+## Webhook secret length
+
+Foxit's Configure Webhooks field **caps the secret at 40 characters** and
+silently truncates anything longer. A 43-character secret was generated, the
+portal stored 40, and every delivery would have failed HMAC verification with a
+401 — visible nowhere except as records that never update.
+
+Ours was shortened to match exactly. Verified against production: a signature
+made with the 40-character secret is accepted, and one made with the original
+43-character value is rejected 401.
+
+Anything generated for this field must be **40 characters or fewer**.
+
 ## Webhook payload shape
 
 Confirmed against the Foxit API reference 2026-08-21. The handler originally
