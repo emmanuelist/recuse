@@ -128,3 +128,24 @@ and disabling it leaves the schema and data intact.
 
 **What this does not solve:** credit exposure on a public URL — see ISSUE-017.
 The answer there is a gate on the run action specifically, not app-wide auth.
+
+## D008 · The system prompt must not enforce the boundary
+**2026-08-21**
+
+The first working agent loop never reached for `sign_document`. It looked like
+success and was not: the system instruction said "you may not commit them to
+anything", so the agent obediently routed to a human. That proves a prompt
+works. It says nothing about the boundary.
+
+**Decided:** the system instruction gives the model the goal and the full tool
+surface, and says nothing about signing authority. What stops it is the refusal
+in the tool handler. With the instruction removed, the agent immediately reached
+for `sign_document`, was refused, and re-planned to `request_authorization`.
+
+**Why it matters twice over.** The claim is that enforcement is structural, not
+instructed — a prompt-enforced boundary would make the claim false while
+appearing to satisfy it. And the demo depends on the agent genuinely trying: a
+refusal nobody triggers is not a moment anyone watches.
+
+**Reverses if:** never. A prompt that tells the agent not to sign should be
+treated as a regression, not a safety improvement.

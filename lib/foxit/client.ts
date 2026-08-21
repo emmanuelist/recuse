@@ -17,6 +17,39 @@ function credentials(): Record<string, string> {
   return { client_id: id, client_secret: secret };
 }
 
+/**
+ * The fusion host sits behind Cloudflare and returns intermittent 502s on
+ * requests that succeed when retried unchanged — observed 2026-08-21, where an
+ * identical upload failed and then succeeded seconds later. A transient 502
+ * during the live demo would be indistinguishable from a broken product, so
+ * every call goes through here.
+ *
+ * Only 5xx and network faults are retried. A 4xx is our mistake and repeating
+ * it just wastes time.
+ */
+async function fetchWithRetry(
+  url: string,
+  init: RequestInit,
+  attempts = 4,
+): Promise<Response> {
+  let lastError: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const res = await fetch(url, init);
+      if (res.status < 500) return res;
+      lastError = new FoxitError(res.status, (await res.text()).slice(0, 200));
+    } catch (err) {
+      lastError = err;
+    }
+    if (i < attempts - 1) {
+      await new Promise((r) => setTimeout(r, 400 * 2 ** i + Math.random() * 200));
+    }
+  }
+  throw lastError instanceof Error
+    ? lastError
+    : new Error(`Foxit request failed after ${attempts} attempts`);
+}
+
 export class FoxitError extends Error {
   constructor(readonly status: number, readonly body: string) {
     super(`Foxit responded ${status}: ${body.slice(0, 300)}`);
@@ -57,7 +90,7 @@ export async function uploadDocument(
 ): Promise<string> {
   const form = new FormData();
   form.append("file", new Blob([content as BlobPart], { type: contentType }), filename);
-  const res = await fetch(`${HOST}/pdf-services/api/documents/upload`, {
+  const res = await fetchWithRetry(`${HOST}/pdf-services/api/documents/upload`, {
     method: "POST",
     headers: credentials(),
     body: form,
@@ -74,7 +107,7 @@ async function pollTask(taskId: string, timeoutMs = 60_000): Promise<Record<stri
   const deadline = Date.now() + timeoutMs;
   let delay = 700;
   while (Date.now() < deadline) {
-    const res = await fetch(`${HOST}/pdf-services/api/tasks/${taskId}`, { headers: credentials() });
+    const res = await fetchWithRetry(`${HOST}/pdf-services/api/tasks/${taskId}`, { headers: credentials() });
     const body = (await res.json()) as Record<string, unknown>;
     const status = String(body.status ?? "").toUpperCase();
     if (status === "COMPLETED") return body;
@@ -92,7 +125,7 @@ export async function generateDocument(input: {
 }): Promise<{ documentId: string; taskId: string; raw: unknown }> {
   const sourceId = await uploadDocument(input.html, `${input.outputName}.html`, "text/html");
 
-  const res = await fetch(`${HOST}/pdf-services/api/documents/create/pdf-from-html`, {
+  const res = await fetchWithRetry(`${HOST}/pdf-services/api/documents/create/pdf-from-html`, {
     method: "POST",
     headers: { ...credentials(), "Content-Type": "application/json" },
     body: JSON.stringify({ documentId: sourceId }),
@@ -130,7 +163,7 @@ export async function createSignatureFolder(input: {
   signer: { firstName: string; lastName: string; email: string };
   sendNow: boolean;
 }): Promise<{ folderId?: string; folderStatus?: string; raw: unknown }> {
-  const res = await fetch(`${HOST}/esign/api/v1/folders/createfolder`, {
+  const res = await fetchWithRetry(`${HOST}/esign/api/v1/folders/createfolder`, {
     method: "POST",
     headers: { ...credentials(), "Content-Type": "application/json" },
     body: JSON.stringify({

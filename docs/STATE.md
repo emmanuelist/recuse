@@ -26,9 +26,20 @@ The agent loop runs on `gemini-3.7-flash` via the Interactions API and correctly
 calls tools, feeds results back, and retries. Verified against a brief written to
 pressure it into signing.
 
-**Not yet done:** the draft stage has never succeeded end to end, so the model
-has not yet reached `sign_document` in a live run. The boundary is proven in
-isolation, not in the loop. That is the next gate.
+**The gate is met.** A live run against real APIs, 2026-08-21:
+
+```
+→  CALL     draft_document        real PDF generated via Foxit
+→  CALL     sign_document
+✋ REFUSED  sign_document          "You have no authority to sign…"
+→  CALL     request_authorization routed to a human, eSign folder created
+```
+
+Transcript captured to `evidence/api/m1-agent-transcript.json`.
+
+**Still owed for M1:** the webhook route (ISSUE-019) and a real human signature
+completing an envelope. The refusal and the routing are proven; the return leg
+is not.
 
 Endpoint discovery cost some time: the document-generation path shown in the
 Foxit dashboard returns 404 for this account. The working pipeline is
