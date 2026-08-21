@@ -265,3 +265,24 @@ tight display hero with a single-line lede, then *product proof*. Ours shows the
 real ledger from the most recent run rather than a mockup of it, which suits a
 product whose claim is that nothing here is fabricated. Records moved to
 `/records`.
+
+## D013 · A failed run beats a false record
+**2026-08-21**
+
+The model fallback chain (D010) restarted the run from the brief when it fell
+through to the next model. That is correct for a quota error on the first turn
+and wrong afterwards: `previous_interaction_id` does not carry across models, so
+a fallback is a restart, and a restart re-executes every tool that already ran.
+
+Observed on a live run: two documents generated, two extractions, three
+corroborations, one envelope sent — against a transcript holding only the second
+pass. The envelope came from a pass the record does not show.
+
+**Decided:** fallback is permitted only while nothing irreversible has happened.
+Once any tool has executed, a quota error raises rather than restarts.
+
+**Why the harsher behaviour is right.** This product's entire claim is that the
+record is a true account of what the agent did. A record that omits a pass which
+sent a real envelope is not a degraded record, it is a false one — and it fails
+in exactly the direction that matters, hiding an action rather than inventing
+one. Losing a run costs an envelope. Publishing a false record costs the thesis.

@@ -68,7 +68,16 @@ export async function runAgent(brief: string, ctx: ToolContext): Promise<AgentRu
 
   // Once a model is chosen, stay on it: previous_interaction_id is scoped to
   // the model that created it, so switching mid-run would drop the history.
+  //
+  // Falling back is therefore a RESTART, not a resume — and a restart after a
+  // tool has run duplicates its side effects. A real run once generated two
+  // documents and sent an envelope while the transcript kept only the second
+  // pass, so the record disagreed with what actually happened. For a product
+  // whose whole claim is that the record is true, that is worse than failing.
+  //
+  // So: fall back only while nothing irreversible has happened.
   let modelIndex = 0;
+  let sideEffects = false;
 
   for (let turn = 0; turn < MAX_TURNS; turn++) {
     let interaction: unknown;
@@ -83,8 +92,19 @@ export async function runAgent(brief: string, ctx: ToolContext): Promise<AgentRu
         } as never);
         break;
       } catch (err) {
-        const canFallBack = isQuotaError(err) && modelIndex < MODEL_CHAIN.length - 1;
-        if (!canFallBack) throw err;
+        const canFallBack =
+          isQuotaError(err) && modelIndex < MODEL_CHAIN.length - 1 && !sideEffects;
+        if (!canFallBack) {
+          if (isQuotaError(err) && sideEffects) {
+            throw new Error(
+              "Model quota was exhausted after tools had already run. Refusing to " +
+                "restart, because re-running would duplicate documents and envelopes " +
+                "and leave a record that disagrees with what happened.",
+              { cause: err },
+            );
+          }
+          throw err;
+        }
         modelIndex++;
         previousInteractionId = undefined; // history does not carry across models
         input = brief;
@@ -113,6 +133,8 @@ export async function runAgent(brief: string, ctx: ToolContext): Promise<AgentRu
     const results = [];
     for (const call of calls) {
       steps.push({ kind: "tool_call", toolName: call.name, args: call.arguments });
+      // From here the run has touched the outside world and can never be restarted.
+      sideEffects = true;
       let outcome: ToolOutcome;
       try {
         outcome = await executeTool(call.name, call.arguments, ctx);
