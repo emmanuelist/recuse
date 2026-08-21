@@ -1,0 +1,24 @@
+name: gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # The build only needs these present, not reachable: every page that
+      # touches the database is force-dynamic and is never prerendered.
+      - run: npm run gate
+        env:
+          DATABASE_URL: postgresql://ci:ci@localhost:5432/ci?sslmode=disable
+          DATABASE_URL_UNPOOLED: postgresql://ci:ci@localhost:5432/ci?sslmode=disable
+          NEXT_PUBLIC_APP_URL: https://recuse.vercel.app
