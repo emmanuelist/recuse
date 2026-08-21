@@ -97,8 +97,21 @@ are comfortable but not unlimited. Same habit, less anxiety.
 - **Hosting:** Vercel Hobby (free, public HTTPS — required for the eSign webhook)
 - **Agent:** `@google/genai` — Gemini free tier, no card. See D006.
 
-Pin exact versions in `package.json` at install time from what npm actually
-resolves, and record them here. Do not invent version numbers.
+Resolved at install on 2026-08-20 — these are what npm actually picked, not
+guesses. Do not invent version numbers; read them from `node_modules`.
+
+| Package | Version |
+|---|---|
+| `next` | 16.3.1 |
+| `react` | 19.2.8 |
+| `typescript` | 5.9.3 |
+| `tailwindcss` | 4.3.3 |
+| `@google/genai` | 2.18.0 |
+| `drizzle-orm` | 0.45.2 |
+| `drizzle-kit` | 0.31.10 |
+| `@neondatabase/serverless` | 1.1.0 |
+
+Node 26.0.0, npm 11.12.1.
 
 ### Gemini SDK rules
 

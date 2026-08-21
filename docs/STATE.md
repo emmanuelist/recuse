@@ -15,6 +15,17 @@ repository carries build rules, milestones, decisions, and an evidence structure
 **No product code exists yet.** No dependencies installed, no API keys
 provisioned, no deployment. That is M0's remaining work.
 
+## M0 progress
+
+Scaffold, database, and green gate are done. Remaining M0 item is the Vercel
+deploy, which needs no further credentials.
+
+- Next.js 16.3.1 + React 19.2.8 + Tailwind 4 + TypeScript strict
+- Drizzle schema migrated to Neon: `runs`, `documents`, `agent_events`,
+  `extractions`, `corroborations`, `authorizations`
+- `npm run gate` green — lint, build, typecheck
+- Tables are empty, which is correct: no fabricated seed data
+
 ## Working right now
 
 Four credentials provisioned and verified against live APIs on 2026-08-20.
@@ -27,7 +38,7 @@ Responses captured to `evidence/api/`.
 | Foxit PDF Services + Doc Gen | Valid. Verified with negative controls; 0 credits spent. |
 | Nutrient | **403 Forbidden** — see ISSUE-014 |
 | Foxit eSign | **Separate credentials required** — see ISSUE-015 |
-| Neon | Not created yet |
+| Neon | Valid. PostgreSQL 18.6, us-east-1, 6 tables migrated. |
 
 Foxit host is `https://na1.fusion.foxit.com/pdf-services`, authenticating with
 `client_id` and `client_secret` request headers (not OAuth token exchange).
