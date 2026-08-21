@@ -15,6 +15,8 @@ outcome.
 | ISSUE-001 | P0 | M0 | Provision Foxit developer key. Free, no card, ~5 min. Capture first real response to `evidence/api/foxit-*.json`. Note the credit cost. |
 | ISSUE-002 | P0 | M0 | Provision Nutrient DWS key. Free plan, no card. Use **Data Extraction** (5,000 credits/mo, unwatermarked), not Processor (50/mo, watermarked). |
 | ISSUE-003 | P0 | M0 | Provision SerpApi key. Free tier 250 searches/mo, 50/hr. Respect the hourly cap during rehearsal. |
+| ISSUE-012 | P0 | M0 | Provision Gemini key at aistudio.google.com/apikey. Free, no card. Confirm `gemini-3.7-flash` responds and supports the tool surface we need. |
+| ISSUE-013 | P1 | M4 | Read actual free-tier rate limits at aistudio.google.com/rate-limit — they are account-specific and unpublished. Make the agent survive a 429 mid-run rather than assuming headroom. |
 | ISSUE-004 | P0 | M0 | Scaffold Next.js + TS strict + Tailwind. Pin resolved versions into `AGENTS.md` § 5. No component library. |
 | ISSUE-005 | P0 | M0 | Deploy to Vercel, confirm public HTTPS POST endpoint reachable. The eSign webhook depends on this existing before M1. |
 | ISSUE-006 | P1 | M0 | Email Foxit and Nutrient for hackathon keys — clears TEST-mode watermark, may lift the 500-credit ceiling. Sponsors usually have them and almost nobody asks. |

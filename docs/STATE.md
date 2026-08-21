@@ -21,13 +21,13 @@ Nothing yet — the repo is documentation and scaffolding only.
 
 ## Blocked
 
-Nothing blocked. Every dependency was verified free, self-serve, and
-card-free during research. See `docs/RESEARCH.md` § Cost and blockers.
+Nothing blocked. Every dependency is free, self-serve, and card-free — including
+the agent model, which the first research pass missed and D006 corrected.
 
 ## Next three actions
 
-1. Provision three API keys — Foxit, Nutrient, SerpApi. Confirm one live call
-   each and capture the response to `evidence/api/`. (ISSUE-001…003)
+1. Provision four API keys — Foxit, Nutrient, SerpApi, Gemini. Confirm one live
+   call each and capture the response to `evidence/api/`. (ISSUE-001…003, 012)
 2. Scaffold Next.js + TypeScript + Tailwind, pin resolved versions into
    `AGENTS.md` § 5. (ISSUE-004)
 3. Deploy the empty shell to Vercel and confirm a public HTTPS endpoint can

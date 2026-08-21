@@ -69,12 +69,12 @@ lift for a Next.js app in a 14-day window).
 **Note:** Vercel Hobby is restricted to non-commercial personal use. A hackathon
 entry satisfies this; taking revenue later would not.
 
-## D005 · The signing gate lives inside the tool's `run()`
-**2026-08-20**
+## D005 · The signing gate lives inside the tool handler
+**2026-08-20** · mechanism superseded by D006; the principle stands
 
-The Anthropic SDK documents this as the human-in-the-loop pattern: *"gate inside
-the tool's `run()` function (return a 'user declined' result)"* — no manual loop
-needed.
+Every major tool-calling SDK documents the same human-in-the-loop pattern: gate
+inside the tool's own handler and return a refusal as the tool result, rather
+than intercepting the loop from outside.
 
 **Why:** it makes the product's central claim structural rather than instructed.
 The model cannot sign because the capability does not complete, not because a
@@ -82,3 +82,33 @@ system prompt asked it not to. A judge can be shown the function.
 
 **Considered:** a manual agentic loop with an approval interrupt — more code, more
 failure modes, and no stronger a guarantee.
+
+## D006 · Gemini 3.7 Flash powers the agent, not a paid API
+**2026-08-20**
+
+The research phase verified Foxit, Nutrient, SerpApi, Vercel, and Neon as free —
+and missed the agent's own model. A deployed app calling a paid LLM API needs
+purchased credits, which an editor or chat subscription does not provide — those
+cover interactive use only. That would have broken the zero-spend constraint, and
+it surfaced only because Emmanuel asked.
+
+**Decided:** `@google/genai` with `gemini-3.7-flash`, on Google AI Studio's free
+tier. No card, does not expire, and Google positions 3.7 Flash for "agentic
+workflows and reliable multi-step execution" — this pipeline's exact shape.
+
+**Considered:** buying ~$10-25 of API credits (best multi-step tool use, but not
+zero); Groq (also free and much faster, but a 6,000 tokens/minute ceiling that a
+document-passing agent can hit inside one minute — throttling mid-demo is the
+worst possible failure).
+
+**Cost of the switch:** weaker long-chain tool reasoning than a frontier model.
+Mitigated by keeping each pipeline stage a discrete call with a narrow tool
+surface rather than one long open-ended agent loop.
+
+**Two things corrected while implementing this:** the package `@google/generative-ai`
+is deprecated — current is `@google/genai`; and `gemini-2.5-flash`, which was the
+original recommendation, is several generations behind. Both were caught by
+reading the docs instead of trusting recall.
+
+**Reverses if:** free-tier rate limits prove too tight in rehearsal *and* a small
+spend becomes acceptable. Decide before Sept 1, not on demo day.

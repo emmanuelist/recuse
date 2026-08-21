@@ -61,8 +61,12 @@ document, whose contents can be verified, that a human — not the agent — aut
 | SerpApi | 250 searches/month, 50/hr | No |
 | Vercel Hobby | 1M invocations/month | No |
 | Neon Postgres | 0.5 GB, 100 CU-hrs/month | No |
+| Gemini (agent model) | AI Studio free tier | No |
 
 Foxit's 500/year is the binding constraint on the whole project. See `AGENTS.md` § 4.
+
+The agent's own model was missing from the first version of this table — a paid
+LLM API would have broken the zero-spend constraint. See D006.
 
 ## Honest expectations
 

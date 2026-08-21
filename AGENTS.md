@@ -95,35 +95,43 @@ are comfortable but not unlimited. Same habit, less anxiety.
 - **Styling:** Tailwind. **Hand-build every component.**
 - **Database:** Neon Postgres (free tier, no card) via Drizzle
 - **Hosting:** Vercel Hobby (free, public HTTPS — required for the eSign webhook)
-- **Agent:** `@anthropic-ai/sdk`
+- **Agent:** `@google/genai` — Gemini free tier, no card. See D006.
 
 Pin exact versions in `package.json` at install time from what npm actually
 resolves, and record them here. Do not invent version numbers.
 
-### Anthropic SDK rules
+### Gemini SDK rules
 
-Verified against the official Anthropic TypeScript SDK documentation. Do not
-write these from memory — several are recent changes that contradict older
-patterns:
+Verified against Google's official function-calling and models documentation on
+2026-08-20. Do not write these from memory — this SDK was renamed and the API
+surface changed, so recalled patterns are very likely wrong:
 
-- **Model: `claude-opus-5`.** Do not substitute a smaller model for cost. That is
-  the user's call, not yours.
-- **Thinking:** `thinking: { type: "adaptive" }`. `budget_tokens` is **removed** on
-  Opus 5 and returns a 400. Do not carry it over from older code.
-- **Effort:** `output_config: { effort: "xhigh" }` for the agent loop — it is the
-  best setting for agentic work. Note `effort` nests inside `output_config`.
-- **Refusal fallbacks:** include `betas: ["server-side-fallback-2026-07-01"]` plus
-  `fallbacks: "default"`. Always check `stop_reason` before reading `content`;
-  `"refusal"` returns HTTP 200, not an exception.
-- **Tool loop:** use the tool runner — `betaZodTool` from
-  `@anthropic-ai/sdk/helpers/beta/zod` + `client.beta.messages.toolRunner(...)`.
-- **The signing gate lives inside the tool's `run()` function**, returning a
-  refusal result to the model. This is the documented human-in-the-loop pattern
-  and it is also §2. Do not reach for a manual loop to implement it.
-- **No assistant prefill** — returns 400 on Opus 5.
-- **Use SDK types** (`Anthropic.MessageParam`, `Anthropic.Tool`, …). Do not
-  redefine equivalent interfaces.
-- **Parse tool inputs with `JSON.parse`**, never string-match the serialized input.
+- **Package: `@google/genai`.** The older `@google/generative-ai` is
+  **deprecated and out of support**. If you find yourself importing it, or
+  reaching for `GoogleGenerativeAI`, stop — that is stale training data.
+- **Import and client:**
+  `import { GoogleGenAI } from "@google/genai";` then `new GoogleGenAI({})`,
+  which reads the key from the environment.
+- **Model: `gemini-3.7-flash`.** Google describes it as built for "agentic
+  workflows and reliable multi-step execution", which is exactly this pipeline.
+  Do not use `gemini-2.5-flash` — still available, but several generations old.
+- **Use the Interactions API**, now GA and the route to current models:
+  `await client.interactions.create({ model, input, tools })`.
+- **Tool declarations** are plain objects with `type: "function"`, `name`,
+  `description`, and a JSON-Schema `parameters` object. Not Zod, not a helper.
+- **Read tool calls** by walking `interaction.steps` and matching
+  `step.type === "function_call"` — then `step.name`, `step.arguments`, `step.id`.
+- **Return results** as an input block of `type: "function_result"` carrying
+  `name`, `call_id` (the step's `id`), and `result`, together with
+  `previous_interaction_id` to continue the same interaction. Conversation state
+  is held server-side by that id — do not rebuild history by hand.
+- **The signing gate lives in the handler for the signature tool**, which returns
+  a refusal as its `function_result` instead of performing the act. The model
+  receives a refusal and cannot proceed. This is §2, and it is the whole product.
+- **Parse tool arguments** rather than string-matching the serialized form.
+- **Free-tier limits are account-specific** and are not published in the docs.
+  Read yours at https://aistudio.google.com/rate-limit before demo day, and
+  design the agent to survive a 429 mid-run rather than assuming headroom.
 
 ## 6. Interface
 
