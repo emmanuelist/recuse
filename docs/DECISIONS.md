@@ -150,7 +150,7 @@ refusal nobody triggers is not a moment anyone watches.
 **Reverses if:** never. A prompt that tells the agent not to sign should be
 treated as a regression, not a safety improvement.
 
-## D009 · Legal-institutional, not SaaS
+## D009 · Legal-institutional, not SaaS — superseded in execution by D011
 **2026-08-21**
 
 The product's claim is about authority — who may commit whom. Rendered as a
@@ -195,3 +195,36 @@ the run on the new model rather than resuming mid-conversation.
 
 Also confirmed: `gemini-2.5-flash` is **shut down**. It was the original
 recommendation before the docs were read.
+
+## D011 · Dark and dimensional
+**2026-08-21** · supersedes the execution of D009, keeps its concept
+
+The first build of the record was rejected on sight: flat, text-heavy, and
+low-contrast. Independently, the design tooling's own "avoid" line for this
+product category read *"flat design without depth + text-heavy pages"* — the
+exact failure. The concept in D009 was sound; the execution had no visual
+ambition.
+
+**Committed to one world: dark.** Chosen from the use scene rather than category
+habit — this is shown on a projector in a dim hall and read by people auditing
+what an agent did. No light mode; a single committed world is stronger than two
+hedged ones.
+
+**What changed:**
+
+- Near-black ground with a fixed ambient wash, so raised surfaces read as lit
+  rather than merely lighter. Real shadows with offset *and* blur.
+- **The refusal became a drawn seal** — concentric rings, a perforation ring,
+  the legend on a circular path, "MAY NOT / SIGN" struck between two rules. It
+  is an object now, not a tinted box, and it carries the page.
+- **The ledger became a rail.** Permitted actions hang off a continuous track;
+  the refusal breaks it and spans full width. The boundary is structural on the
+  page, and unlike the previous two-column spine it survives mobile intact.
+- **One authored moment:** the seal strikes in — scale, rotation and blur
+  settling over 620ms — and nothing else animates. Disabled under
+  `prefers-reduced-motion`.
+- Removed the eyebrow label above the heading, and the hard offset shadow that
+  was a neobrutalist costume in a world that never chose it.
+
+**Kept from D009:** the two signatures, Spectral as the document voice, and seal
+red reserved for the refusal alone.

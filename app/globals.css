@@ -1,79 +1,63 @@
 @import "tailwindcss";
 
-/* ── Recuse design system ───────────────────────────────────────────────
-   Legal-institutional. The product is about who may commit whom, so the
-   interface carries the weight of a record rather than a dashboard.
-
-   Seal red is spent on exactly one thing: the refusal. Nothing else in the
-   product may use it, or it stops meaning anything.
+/* ── Recuse ─────────────────────────────────────────────────────────────
+   One committed world: dark. Chosen from the use scene — this is shown on a
+   projector in a dim hall and read by people auditing what an agent did, not
+   from a category default. Seal red is spent on the refusal and nowhere else.
    ─────────────────────────────────────────────────────────────────────── */
 
 :root {
-  --paper:        #F1F3F5;
-  --surface:      #FFFFFF;
-  --surface-sunk: #E8EBEF;
-  --ink:          #0E1116;
-  --ink-muted:    #576070;
-  --ink-faint:    #838D9C;
-  --rule:         #D2D8E0;
-  --rule-soft:    #E3E7EC;
+  --ground:     #090B10;
+  --surface:    #11151D;
+  --raised:     #171C26;
+  --rule:       #232B38;
+  --rule-soft:  #1A202B;
 
-  --seal:         #A02B23;   /* refusal — reserved */
-  --seal-wash:    #F6E4E2;
-  --granted:      #17513F;   /* authorized */
-  --granted-wash: #DDEBE5;
-  --pending:      #7A5A12;   /* awaiting a human */
-  --pending-wash: #F4EAD5;
+  --ink:        #EEF1F6;
+  --ink-muted:  #99A4B6;
+  --ink-faint:  #6C7789;
 
-  --font-doc:  var(--font-doc-src), Georgia, "Times New Roman", serif;
+  --seal:       #FF5A48;
+  --seal-deep:  #7A1F17;
+  --seal-glow:  #FF5A4826;
+
+  --granted:    #3ED9A4;
+  --granted-deep:#0E4534;
+  --pending:    #E9B44C;
+  --pending-deep:#4A3712;
+
+  --font-doc:  var(--font-doc-src), Georgia, serif;
   --font-ui:   var(--font-ui-src), system-ui, sans-serif;
   --font-data: var(--font-data-src), ui-monospace, Menlo, monospace;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper:        #0B0E13;
-    --surface:      #131820;
-    --surface-sunk: #1A212B;
-    --ink:          #E6EAF0;
-    --ink-muted:    #96A1B2;
-    --ink-faint:    #6B7688;
-    --rule:         #262E3A;
-    --rule-soft:    #1E2530;
-
-    --seal:         #E0705F;
-    --seal-wash:    #2E1614;
-    --granted:      #4FBF97;
-    --granted-wash: #0F2A22;
-    --pending:      #D2A544;
-    --pending-wash: #2A2011;
-  }
+  --shadow-raised: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px -8px rgb(0 0 0 / 0.6);
+  --shadow-seal:   0 12px 48px -12px var(--seal-glow), 0 2px 8px rgb(0 0 0 / 0.5);
 }
 
 @theme inline {
-  --color-paper: var(--paper);
+  --color-ground: var(--ground);
   --color-surface: var(--surface);
-  --color-sunk: var(--surface-sunk);
+  --color-raised: var(--raised);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
   --color-ink: var(--ink);
   --color-muted: var(--ink-muted);
   --color-faint: var(--ink-faint);
-  --color-rule: var(--rule);
-  --color-rule-soft: var(--rule-soft);
   --color-seal: var(--seal);
-  --color-seal-wash: var(--seal-wash);
+  --color-seal-deep: var(--seal-deep);
   --color-granted: var(--granted);
-  --color-granted-wash: var(--granted-wash);
+  --color-granted-deep: var(--granted-deep);
   --color-pending: var(--pending);
-  --color-pending-wash: var(--pending-wash);
+  --color-pending-deep: var(--pending-deep);
   --font-doc: var(--font-doc);
   --font-ui: var(--font-ui);
   --font-data: var(--font-data);
 }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; background: var(--ground); }
 
 body {
-  background: var(--paper);
+  background: var(--ground);
   color: var(--ink);
   font-family: var(--font-ui);
   font-size: 15px;
@@ -81,32 +65,54 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Provenance: every id, hash and timestamp is shown, never hidden in a
-   tooltip. The product claims nothing is a mockup, so it shows receipts. */
+/* Ambient light from above-left, so the raised surfaces read as lit rather
+   than merely lighter. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(70rem 45rem at 12% -10%, #1B2534 0%, transparent 62%),
+    radial-gradient(50rem 40rem at 100% 0%, #14202B 0%, transparent 55%);
+  z-index: 0;
+}
+body > * { position: relative; z-index: 1; }
+
 .provenance {
   font-family: var(--font-data);
-  font-size: 11px;
+  font-size: 11.5px;
   letter-spacing: 0.02em;
   color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
   word-break: break-all;
 }
 
-.caption {
+.label {
   font-family: var(--font-data);
   font-size: 10.5px;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
 }
 
 *:focus-visible {
   outline: 2px solid var(--seal);
-  outline-offset: 2px;
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
+/* The one authored moment: the seal is struck onto the record. */
+@keyframes strike {
+  0%   { opacity: 0; transform: scale(1.5) rotate(-14deg); filter: blur(7px); }
+  62%  { opacity: 1; transform: scale(0.97) rotate(-7deg); filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) rotate(-6deg);    filter: blur(0); }
+}
+.strike { animation: strike 620ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both; }
+
 @media (prefers-reduced-motion: reduce) {
+  .strike { animation: none; opacity: 1; transform: rotate(-6deg); }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;

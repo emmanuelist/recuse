@@ -1,14 +1,14 @@
-import { RefusalStamp } from "./RefusalStamp";
+import { RefusalBlock } from "./RefusalBlock";
 
 /**
- * Signature component #2 — the authority ledger.
+ * Signature component #2 — the ledger of authority.
  *
- * Every action the agent took sits on one side of a spine: PERMITTED to the
- * left, ATTEMPTED to the right. The boundary is therefore spatial. You watch
- * the agent work down the permitted side, cross to the right, and stop.
+ * Permitted actions hang off a continuous rail: an unbroken track of things
+ * the agent was allowed to do. The refusal breaks the rail and spans the full
+ * width. The boundary is therefore structural on the page as well as in the
+ * code — you can see exactly where the track stops.
  *
- * A dashboard would render this as a flat activity feed and the central claim
- * would be invisible. The whole point is that some of these are not alike.
+ * A flat activity feed would carry the same data and show none of this.
  */
 export type LedgerEntry = {
   kind: "tool_call" | "tool_result" | "refusal" | "message";
@@ -26,80 +26,53 @@ const LABELS: Record<string, string> = {
 };
 
 export function AuthorityLedger({ entries }: { entries: LedgerEntry[] }) {
-  // Pair each call with whatever came back from it.
   const rows: Array<{ call: LedgerEntry; outcome?: LedgerEntry }> = [];
   for (let i = 0; i < entries.length; i++) {
     const e = entries[i];
-    if (e.kind === "tool_call") {
-      const next = entries[i + 1];
-      const outcome =
-        next && (next.kind === "tool_result" || next.kind === "refusal") ? next : undefined;
-      rows.push({ call: e, outcome });
-      if (outcome) i++;
-    }
+    if (e.kind !== "tool_call") continue;
+    const next = entries[i + 1];
+    const outcome = next && (next.kind === "tool_result" || next.kind === "refusal") ? next : undefined;
+    rows.push({ call: e, outcome });
+    if (outcome) i++;
   }
 
   return (
-    <section aria-label="Authority ledger">
-      {/* The two-column framing only exists above sm. On a phone the columns
-          collapse, so naming them there would describe a structure that is not
-          on screen; the per-entry labels carry it instead, seal-coloured when
-          the action was attempted rather than permitted. */}
-      <header className="border-b border-rule pb-3">
-        <div className="hidden grid-cols-[1fr_auto_1fr] items-end gap-4 sm:grid">
-          <h2 className="caption">Permitted</h2>
-          <span aria-hidden className="caption text-faint">│</span>
-          <h2 className="caption text-right text-seal">Attempted</h2>
-        </div>
-        <h2 className="caption sm:hidden">Ledger of authority</h2>
-      </header>
-
-      <ol className="relative">
-        <span
-          aria-hidden
-          className="absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-rule sm:block"
-        />
+    <section aria-label="Ledger of authority" className="mt-20">
+      <h2 className="label mb-8">Ledger of authority</h2>
+      <ol className="flex flex-col gap-5">
         {rows.map((row, i) => {
           const refused = row.outcome?.kind === "refusal";
           const label = LABELS[row.call.toolName ?? ""] ?? row.call.toolName ?? "Action";
+
+          if (refused) {
+            return (
+              <li key={i} className="relative py-2">
+                <RefusalBlock
+                  reason={row.outcome?.result ?? ""}
+                  attemptedOn={(row.outcome?.detail?.attemptedOn as string | undefined) ?? undefined}
+                />
+              </li>
+            );
+          }
+
           return (
-            <li
-              key={i}
-              className={`relative grid gap-3 py-7 last:pb-0 sm:gap-10 [&:not(:last-child)]:border-b [&:not(:last-child)]:border-rule-soft ${refused ? "sm:grid-cols-[1fr_2fr]" : "sm:grid-cols-2 sm:gap-12"}`}
-            >
-              {refused ? (
-                <>
-                  {/* Marginalia: the consequence of the refusal, set as a note
-                      in the margin the way a clerk annotates a filing. Fills
-                      what would otherwise be dead space with the point. */}
-                  <aside className="hidden sm:flex sm:items-center sm:justify-end sm:pr-2">
-                    <p className="max-w-[14rem] text-right font-doc text-[14px] italic leading-relaxed text-faint">
-                      Nothing crossed this line. The document exists, but it binds no one
-                      until a person says so.
-                    </p>
-                  </aside>
-                  <div>
-                    <p className="caption mb-2.5 text-seal">{label}</p>
-                    <RefusalStamp
-                      reason={row.outcome?.result ?? ""}
-                      attemptedOn={
-                        (row.outcome?.detail?.attemptedOn as string | undefined) ?? undefined
-                      }
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="sm:pr-2">
-                    <p className="caption mb-2">{label}</p>
-                    <p className="font-doc text-[15px] leading-relaxed text-ink">
-                      {row.outcome?.result ?? "—"}
-                    </p>
-                    {row.outcome?.detail ? <Provenance detail={row.outcome.detail} /> : null}
-                  </div>
-                  <div className="hidden sm:block" />
-                </>
-              )}
+            <li key={i} className="relative pl-6 sm:pl-10">
+              {/* the rail: the track of permitted action */}
+              <span
+                aria-hidden
+                className="absolute left-0 top-0 h-full w-[2px] bg-granted/30 sm:left-1"
+              />
+              <span
+                aria-hidden
+                className="absolute -left-[4px] top-8 h-2.5 w-2.5 rounded-full border-2 border-ground bg-granted shadow-[0_0_12px_var(--granted)] sm:left-[-3px]"
+              />
+              <div className="border border-rule-soft bg-surface p-6 shadow-[var(--shadow-raised)] sm:p-7">
+                <p className="label mb-3">{label}</p>
+                <p className="max-w-[62ch] font-doc text-[16px] leading-relaxed text-ink sm:text-[17px]">
+                  {row.outcome?.result ?? "—"}
+                </p>
+                {row.outcome?.detail ? <Provenance detail={row.outcome.detail} /> : null}
+              </div>
             </li>
           );
         })}
@@ -114,7 +87,7 @@ function Provenance({ detail }: { detail: Record<string, unknown> }) {
   );
   if (shown.length === 0) return null;
   return (
-    <dl className="mt-3 flex flex-wrap gap-x-6 gap-y-1">
+    <dl className="mt-5 flex flex-wrap gap-x-8 gap-y-1.5 border-t border-rule-soft pt-4">
       {shown.map(([k, v]) => (
         <div key={k} className="flex gap-2">
           <dt className="provenance">{k}</dt>
