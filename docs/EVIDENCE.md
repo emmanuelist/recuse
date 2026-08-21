@@ -13,7 +13,7 @@ reconstructed on deadline day.
 | A human really signed | eSign webhook payload, timestamped, persisted | — |
 | Terms are really extracted | Captured Nutrient extraction response | ✅ `nutrient-extraction-real-response.json` + the input PDF |
 | Claims are really corroborated | Captured SerpApi response showing a contradiction | — |
-| It runs deployed, not locally | Live URL, reachable from a phone on cellular | — |
+| It runs deployed, not locally | ✅ https://recuse.vercel.app — verified public. Phone-on-cellular check still owed at M5. |
 
 ## Layout
 

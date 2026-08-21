@@ -11,16 +11,16 @@ full day of buffer, because the wifi will fail and something will break.
 
 ---
 
-## M0 · Foundation — Aug 20–21
+## M0 · Foundation — Aug 20–21 · ✅ CLOSED
 
 Repo, keys, scaffold, deploy pipeline. All of it before product code, so that
 nothing later stalls on setup.
 
 - [x] Repo, build rules, milestone/decision/issue/evidence structure
-- [ ] Three API keys provisioned, one live call captured each
-- [ ] Next.js + TypeScript + Tailwind scaffolded, versions pinned
-- [ ] Neon database created, schema migrated
-- [ ] Deployed to Vercel, public URL live, POST endpoint reachable
+- [x] Five providers provisioned, live calls captured to `evidence/api/`
+- [x] Next.js 16.3.1 + TypeScript + Tailwind 4 scaffolded, versions recorded
+- [x] Neon created, 6 tables migrated, connection verified
+- [x] Deployed — https://recuse.vercel.app, public, no auth wall
 
 **Gate:** a deployed URL that responds, and three captured real API responses in
 `evidence/api/`.

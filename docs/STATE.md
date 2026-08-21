@@ -1,6 +1,6 @@
 # Current state
 
-**Updated:** 2026-08-20 · **Milestone:** M0 Foundation · **Days to deadline:** 14
+**Updated:** 2026-08-21 · **Milestone:** M0 closed → M1 next · **Days to deadline:** 13
 
 **Read `AGENTS.md` first, then this file.** Update this before you stop.
 If it is stale, fix it before doing anything else.
@@ -15,10 +15,10 @@ repository carries build rules, milestones, decisions, and an evidence structure
 **No product code exists yet.** No dependencies installed, no API keys
 provisioned, no deployment. That is M0's remaining work.
 
-## M0 progress
+## M0 — closed
 
-Scaffold, database, and green gate are done. Remaining M0 item is the Vercel
-deploy, which needs no further credentials.
+Live at **https://recuse.vercel.app** (public, no auth wall — verified from a
+cold request). Repo public at github.com/emmanuelist/recuse.
 
 - Next.js 16.3.1 + React 19.2.8 + Tailwind 4 + TypeScript strict
 - Drizzle schema migrated to Neon: `runs`, `documents`, `agent_events`,
@@ -39,6 +39,7 @@ Responses captured to `evidence/api/`.
 | Nutrient | Valid. 5,000/5,000 credits. Extraction verified on a real PDF. |
 | Foxit eSign | Activated. Account #2905053, US Region. Same credentials, `/esign/api/v1` on the fusion host. |
 | Neon | Valid. PostgreSQL 18.6, us-east-1, 6 tables migrated. |
+| Vercel | Deployed. `recuse.vercel.app`, 8 production env vars set. |
 
 Foxit host is `https://na1.fusion.foxit.com/pdf-services`, authenticating with
 `client_id` and `client_secret` request headers (not OAuth token exchange).
@@ -54,6 +55,7 @@ table in `AGENTS.md` now carries only paths confirmed against this account.
 ## Next three actions
 
 1. Begin M1 — the signing boundary. Everything it needs is provisioned.
+   First task: establish what an eSign envelope costs against the 500/year pool.
 2. Scaffold Next.js + TypeScript + Tailwind, pin resolved versions into
    `AGENTS.md` § 5. (ISSUE-004)
 3. Deploy the empty shell to Vercel and confirm a public HTTPS endpoint can
