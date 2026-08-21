@@ -98,7 +98,13 @@ run several products on adjacent paths and the wrong one returns 403, not 404.
 | Draft | `POST https://na1.fusion.foxit.com/document-generation/api/generate` | `client_id` + `client_secret` headers |
 | Auth probe (0 credits) | `GET https://na1.fusion.foxit.com/pdf-services/api/tasks/{id}` | same |
 | Establish | `POST https://api.nutrient.io/extraction/parse` | `Authorization: Bearer pdf_live_…` |
-| Authorize | eSign — separate host and credentials, see ISSUE-015 | — |
+| Authorize | `POST https://na1.fusion.foxit.com/esign/api/v1/…` (e.g. `folders/createfolder`) | **same** `client_id` + `client_secret` |
+
+eSign runs on the **same fusion host and the same credentials** as PDF Services —
+it only needs one-time activation in the dashboard (eSign API → Activation, with
+a company name set on the Foxit account profile). Published guides claiming eSign
+needs separate keys on `foxitesign.foxit.com` describe an older product; verified
+false on 2026-08-20 against this account.
 
 Nutrient's `/build` and `/tokens` belong to the **Processor** API and return 403
 with a Data Extraction key. Extraction is multipart: `file` plus an
