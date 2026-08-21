@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ── Recuse design system ───────────────────────────────────────────────
+   Legal-institutional. The product is about who may commit whom, so the
+   interface carries the weight of a record rather than a dashboard.
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+   Seal red is spent on exactly one thing: the refusal. Nothing else in the
+   product may use it, or it stops meaning anything.
+   ─────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --paper:        #F1F3F5;
+  --surface:      #FFFFFF;
+  --surface-sunk: #E8EBEF;
+  --ink:          #0E1116;
+  --ink-muted:    #576070;
+  --ink-faint:    #838D9C;
+  --rule:         #D2D8E0;
+  --rule-soft:    #E3E7EC;
+
+  --seal:         #A02B23;   /* refusal — reserved */
+  --seal-wash:    #F6E4E2;
+  --granted:      #17513F;   /* authorized */
+  --granted-wash: #DDEBE5;
+  --pending:      #7A5A12;   /* awaiting a human */
+  --pending-wash: #F4EAD5;
+
+  --font-doc:  var(--font-doc-src), Georgia, "Times New Roman", serif;
+  --font-ui:   var(--font-ui-src), system-ui, sans-serif;
+  --font-data: var(--font-data-src), ui-monospace, Menlo, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  :root:not([data-theme="light"]) {
+    --paper:        #0B0E13;
+    --surface:      #131820;
+    --surface-sunk: #1A212B;
+    --ink:          #E6EAF0;
+    --ink-muted:    #96A1B2;
+    --ink-faint:    #6B7688;
+    --rule:         #262E3A;
+    --rule-soft:    #1E2530;
+
+    --seal:         #E0705F;
+    --seal-wash:    #2E1614;
+    --granted:      #4FBF97;
+    --granted-wash: #0F2A22;
+    --pending:      #D2A544;
+    --pending-wash: #2A2011;
   }
 }
 
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sunk: var(--surface-sunk);
+  --color-ink: var(--ink);
+  --color-muted: var(--ink-muted);
+  --color-faint: var(--ink-faint);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
+  --color-seal: var(--seal);
+  --color-seal-wash: var(--seal-wash);
+  --color-granted: var(--granted);
+  --color-granted-wash: var(--granted-wash);
+  --color-pending: var(--pending);
+  --color-pending-wash: var(--pending-wash);
+  --font-doc: var(--font-doc);
+  --font-ui: var(--font-ui);
+  --font-data: var(--font-data);
+}
+
+html { -webkit-text-size-adjust: 100%; }
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Provenance: every id, hash and timestamp is shown, never hidden in a
+   tooltip. The product claims nothing is a mockup, so it shows receipts. */
+.provenance {
+  font-family: var(--font-data);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+  word-break: break-all;
+}
+
+.caption {
+  font-family: var(--font-data);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--seal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

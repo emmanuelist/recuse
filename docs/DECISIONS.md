@@ -149,3 +149,49 @@ refusal nobody triggers is not a moment anyone watches.
 
 **Reverses if:** never. A prompt that tells the agent not to sign should be
 treated as a regression, not a safety improvement.
+
+## D009 · Legal-institutional, not SaaS
+**2026-08-21**
+
+The product's claim is about authority — who may commit whom. Rendered as a
+startup dashboard the claim reads as a toy, so the interface carries the weight
+of an instrument of record: Spectral for document type, IBM Plex Sans and Mono
+for interface and provenance, cool bond paper rather than the warm cream that
+has become an AI-design tell.
+
+**Two signatures, declared before implementation and present in the build:**
+
+1. **The refusal stamp.** The agent's reach for the signature rendered as an
+   institutional act — authority withheld — not an error state. Seal red appears
+   here and nowhere else in the product; if it spreads it stops meaning
+   anything.
+2. **The authority ledger.** Permitted actions sit left of a spine, attempted
+   ones right, so the boundary is spatial. You watch the agent work down the
+   permitted side, cross, and stop. A flat activity feed would render the same
+   data and make the central claim invisible.
+
+The refusal straddles the spine rather than sitting beside it: the refusal
+happens *at* the boundary, and it was also the most cramped element on the page
+when confined to one column.
+
+**Marginalia over dead space.** The column opposite a refusal would otherwise be
+empty for ~300px. It carries a note in the margin instead — the way a clerk
+annotates a filing — stating the consequence.
+
+## D010 · Model fallback chain
+**2026-08-21**
+
+Measured: the Gemini free tier allows **20 requests/day** for `gemini-3.7-flash`,
+not the 1,500 that published summaries claim. At roughly four interactions per
+run that is five runs a day.
+
+The agent now falls through `3.7-flash → 3.6-flash → 3.5-flash →
+3.5-flash-lite` on quota errors. All four verified to call tools. This is demo
+resilience, not optimisation: a quota error during judging would be
+indistinguishable from a broken product.
+
+`previous_interaction_id` does not carry across models, so a fallback restarts
+the run on the new model rather than resuming mid-conversation.
+
+Also confirmed: `gemini-2.5-flash` is **shut down**. It was the original
+recommendation before the docs were read.

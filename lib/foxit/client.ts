@@ -144,9 +144,25 @@ export async function generateDocument(input: {
   return { documentId, taskId: started.taskId, raw: done };
 }
 
-/** Download URL an eSign folder can fetch the generated PDF from. */
-export function downloadUrl(documentId: string): string {
-  return `${HOST}/pdf-services/api/documents/${documentId}/download`;
+/** Authenticated download. Only we can call this; eSign cannot. */
+export async function fetchDocumentPdf(documentId: string): Promise<ArrayBuffer> {
+  const res = await fetchWithRetry(
+    `${HOST}/pdf-services/api/documents/${documentId}/download`,
+    { headers: credentials() },
+  );
+  if (!res.ok) throw new FoxitError(res.status, (await res.text()).slice(0, 200));
+  return res.arrayBuffer();
+}
+
+/**
+ * The URL we hand to eSign. Must be publicly fetchable — see
+ * app/api/documents/[foxitId]/pdf/route.ts for why Foxit\'s own download URL
+ * cannot be used here.
+ */
+export function publicDocumentUrl(documentId: string): string {
+  const base = process.env.NEXT_PUBLIC_APP_URL ?? "";
+  if (!base) throw new Error("NEXT_PUBLIC_APP_URL is not set; eSign cannot fetch the document.");
+  return `${base}/api/documents/${documentId}/pdf`;
 }
 
 /**
@@ -187,5 +203,11 @@ export async function createSignatureFolder(input: {
   const text = await res.text();
   if (!res.ok) throw new FoxitError(res.status, text);
   const raw = JSON.parse(text);
-  return { folderId: raw?.folder?.folderId, folderStatus: raw?.folder?.folderStatus, raw };
+  // folderId arrives as an integer; normalise so callers and the DB agree.
+  const fid = raw?.folder?.folderId;
+  return {
+    folderId: fid === undefined || fid === null ? undefined : String(fid),
+    folderStatus: raw?.folder?.folderStatus,
+    raw,
+  };
 }

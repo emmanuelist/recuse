@@ -1,7 +1,27 @@
 import { GoogleGenAI } from "@google/genai";
 import { declarations, executeTool, type ToolContext, type ToolOutcome } from "./tools";
 
-const MODEL = "gemini-3.7-flash";
+/**
+ * Measured 2026-08-21: the free tier allows 20 requests/day for
+ * gemini-3.7-flash — not the 1,500 that published summaries claim. Limits are
+ * per-model, so an exhausted quota on the preferred model is survivable if we
+ * fall through to the next one.
+ *
+ * A quota error during the live demo would be indistinguishable from a broken
+ * product, so this chain is a demo-resilience measure, not an optimisation.
+ * Ordered best-for-agentic-work first. All four verified to call tools.
+ */
+const MODEL_CHAIN = [
+  "gemini-3.7-flash",
+  "gemini-3.6-flash",
+  "gemini-3.5-flash",
+  "gemini-3.5-flash-lite",
+] as const;
+
+function isQuotaError(err: unknown): boolean {
+  const m = err instanceof Error ? err.message : String(err);
+  return /too_many_requests|RESOURCE_EXHAUSTED|exceeded your current quota|429/i.test(m);
+}
 
 /**
  * Deliberately does NOT tell the model it cannot sign.
@@ -26,7 +46,7 @@ export type AgentStep =
   | { kind: "refusal"; toolName: string; result: string; detail?: Record<string, unknown> }
   | { kind: "message"; result: string };
 
-export type AgentRun = { steps: AgentStep[]; finalText: string };
+export type AgentRun = { steps: AgentStep[]; finalText: string; model?: string };
 
 /** Guards against a model that will not stop reaching for the boundary. */
 const MAX_TURNS = 8;
@@ -40,14 +60,31 @@ export async function runAgent(brief: string, ctx: ToolContext): Promise<AgentRu
   let previousInteractionId: string | undefined;
   let finalText = "";
 
+  // Once a model is chosen, stay on it: previous_interaction_id is scoped to
+  // the model that created it, so switching mid-run would drop the history.
+  let modelIndex = 0;
+
   for (let turn = 0; turn < MAX_TURNS; turn++) {
-    const interaction = await client.interactions.create({
-      model: MODEL,
-      input,
-      tools: declarations,
-      system_instruction: SYSTEM_INSTRUCTION,
-      ...(previousInteractionId ? { previous_interaction_id: previousInteractionId } : {}),
-    } as never);
+    let interaction: unknown;
+    for (;;) {
+      try {
+        interaction = await client.interactions.create({
+          model: MODEL_CHAIN[modelIndex],
+          input,
+          tools: declarations,
+          system_instruction: SYSTEM_INSTRUCTION,
+          ...(previousInteractionId ? { previous_interaction_id: previousInteractionId } : {}),
+        } as never);
+        break;
+      } catch (err) {
+        const canFallBack = isQuotaError(err) && modelIndex < MODEL_CHAIN.length - 1;
+        if (!canFallBack) throw err;
+        modelIndex++;
+        previousInteractionId = undefined; // history does not carry across models
+        input = brief;
+        steps.length = 0;
+      }
+    }
 
     const i = interaction as unknown as {
       id: string;
@@ -65,7 +102,7 @@ export async function runAgent(brief: string, ctx: ToolContext): Promise<AgentRu
       }
     }
 
-    if (calls.length === 0) return { steps, finalText };
+    if (calls.length === 0) return { steps, finalText, model: MODEL_CHAIN[modelIndex] };
 
     const results = [];
     for (const call of calls) {
@@ -93,7 +130,7 @@ export async function runAgent(brief: string, ctx: ToolContext): Promise<AgentRu
     input = results;
   }
 
-  return { steps, finalText };
+  return { steps, finalText, model: MODEL_CHAIN[modelIndex] };
 }
 
 function extractText(step: Record<string, unknown>): string {

@@ -1,6 +1,6 @@
-import { generateDocument, createSignatureFolder, downloadUrl } from "@/lib/foxit/client";
+import { generateDocument, createSignatureFolder, publicDocumentUrl } from "@/lib/foxit/client";
 import { agreementHtml } from "@/lib/agreement";
-import { recordDocument, recordAuthorization } from "@/lib/runs";
+import { recordDocument, recordAuthorization, findDocumentByFoxitId } from "@/lib/runs";
 
 /**
  * The agent's tool surface.
@@ -174,7 +174,7 @@ export async function executeTool(
         outputName: a.title.replace(/\s+/g, "-").toLowerCase(),
       });
       if (ctx.persist) {
-        await recordDocument(ctx.runId, a.title, out.documentId, downloadUrl(out.documentId));
+        await recordDocument(ctx.runId, a.title, out.documentId, publicDocumentUrl(out.documentId));
       }
       return {
         result: `Document generated: ${a.title} with ${a.counterparty}, ` +
@@ -191,7 +191,7 @@ export async function executeTool(
       };
       const folder = await createSignatureFolder({
         folderName: `Recuse ${ctx.runId.slice(0, 8)}`,
-        fileUrls: [downloadUrl(a.documentId)],
+        fileUrls: [publicDocumentUrl(a.documentId)],
         fileNames: ["agreement.pdf"],
         signer: {
           firstName: a.signerFirstName,
@@ -202,12 +202,18 @@ export async function executeTool(
         sendNow: process.env.RECUSE_SEND_FOR_REAL === "true",
       });
       if (ctx.persist && folder.folderId) {
-        await recordAuthorization({
-          runId: ctx.runId,
-          documentId: a.documentId,
-          envelopeId: folder.folderId,
-          signerEmail: a.signerEmail,
-        });
+        // a.documentId is Foxit's handle; the authorizations FK wants our own
+        // row id. Passing the Foxit id straight through violates the constraint
+        // and the insert fails silently behind the tool's error handling.
+        const ours = await findDocumentByFoxitId(a.documentId);
+        if (ours) {
+          await recordAuthorization({
+            runId: ctx.runId,
+            documentId: ours,
+            envelopeId: folder.folderId,
+            signerEmail: a.signerEmail,
+          });
+        }
       }
       return {
         result:

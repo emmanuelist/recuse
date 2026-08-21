@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { runs, documents, agentEvents, authorizations } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import type { AgentStep } from "@/lib/agent/run";
 
 export async function createRun(brief: string): Promise<string> {
@@ -31,6 +32,13 @@ export async function recordAuthorization(input: {
     status: "pending",
     sentAt: new Date(),
   });
+}
+
+/** Foxit document handle -> our documents.id, for the authorizations FK. */
+export async function findDocumentByFoxitId(foxitId: string): Promise<string | null> {
+  const [row] = await db.select({ id: documents.id }).from(documents)
+    .where(eq(documents.foxitTaskId, foxitId)).limit(1);
+  return row?.id ?? null;
 }
 
 export async function recordSteps(runId: string, steps: AgentStep[]): Promise<void> {
