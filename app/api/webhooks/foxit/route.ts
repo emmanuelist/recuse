@@ -25,10 +25,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid json" }, { status: 400 });
   }
 
-  const event = String(payload.event ?? payload.eventType ?? "");
-  const folderId = String(
-    payload.folderId ?? (payload.folder as Record<string, unknown>)?.folderId ?? "",
-  );
+  // Real Foxit payload shape, confirmed against the API reference 2026-08-21:
+  //   { event_name, event_date, data: { folder: { folderId, ... }, signing_party } }
+  // An earlier version read `event` and `folder.folderId` at the top level and
+  // would have silently matched nothing on the first genuine signature.
+  const data = (payload.data ?? {}) as Record<string, unknown>;
+  const folder = (data.folder ?? payload.folder ?? {}) as Record<string, unknown>;
+
+  const event = String(payload.event_name ?? payload.event ?? payload.eventType ?? "");
+  const folderId = String(folder.folderId ?? payload.folderId ?? "");
   if (!folderId) return NextResponse.json({ error: "no folderId" }, { status: 400 });
 
   const status = statusForEvent(event);
@@ -43,7 +48,13 @@ export async function POST(request: Request) {
     .set({
       status,
       webhookPayload: payload,
-      ...(event === EXECUTED ? { signedAt: new Date() } : {}),
+      ...(event === EXECUTED
+        ? {
+            signedAt: payload.event_date
+              ? new Date(Number(payload.event_date))
+              : new Date(),
+          }
+        : {}),
     })
     .where(eq(authorizations.envelopeId, folderId))
     .returning();

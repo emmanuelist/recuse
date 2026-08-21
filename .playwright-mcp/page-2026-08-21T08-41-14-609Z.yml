@@ -1,0 +1,930 @@
+- generic [active] [ref=f11e1]:
+  - banner [ref=f11e2]:
+    - generic [ref=f11e4]:
+      - link [ref=f11e6] [cursor=pointer]:
+        - /url: /
+        - img "Foxit APIs Logo" [ref=f11e7]
+      - navigation [ref=f11e9]:
+        - button "APIs" [ref=f11e11]
+        - button "Guides" [ref=f11e15]
+        - button "Documentation" [ref=f11e19]
+        - button "Resources" [ref=f11e23]
+        - button "Community" [ref=f11e27]
+        - link "Partners" [ref=f11e30] [cursor=pointer]:
+          - /url: https://developer-api.foxit.com/partner-program
+      - generic [ref=f11e31]:
+        - link "Contact Us" [ref=f11e33] [cursor=pointer]:
+          - /url: https://www.foxit.com/api/contact-sales/
+        - button "Sign Up / Login" [ref=f11e38]
+  - main [ref=f11e43]:
+    - generic [ref=f11e46]:
+      - generic [ref=f11e47]:
+        - navigation "Sidebar for Foxit APIs Reference" [ref=f11e48]:
+          - search [ref=f11e50] [cursor=pointer]:
+            - generic [ref=f11e54]:
+              - generic [ref=f11e55]: Open Search
+              - text: Search
+            - generic [ref=f11e56]:
+              - generic [ref=f11e57]: "Keyboard Shortcut:"
+              - generic [ref=f11e58]:
+                - generic [ref=f11e59]: Command
+                - text: ⌘ k
+          - list [ref=f11e60]:
+            - listitem [ref=f11e61]:
+              - button "Introduction" [ref=f11e62] [cursor=pointer]
+            - listitem [ref=f11e64]:
+              - generic [ref=f11e65]: Usage & Billing
+              - list [ref=f11e67]:
+                - listitem [ref=f11e68]:
+                  - button "Credits Explained" [ref=f11e69] [cursor=pointer]
+                - listitem [ref=f11e71]:
+                  - button "Limits" [ref=f11e72] [cursor=pointer]
+            - listitem [ref=f11e74]:
+              - generic [ref=f11e75]: eSign API
+              - list [ref=f11e77]:
+                - listitem [ref=f11e78]:
+                  - button "eSign API Overview" [ref=f11e79] [cursor=pointer]
+                - listitem [ref=f11e81]:
+                  - button "Quick Start - Send a Document for Signature" [ref=f11e82] [cursor=pointer]
+                - listitem [ref=f11e84]:
+                  - button "Preparing PDF Documents with Text Tags" [ref=f11e85] [cursor=pointer]
+                - listitem [ref=f11e87]:
+                  - button "Adding Fields with the API" [ref=f11e88] [cursor=pointer]
+                - listitem [ref=f11e90]:
+                  - button "Envelopes Open Group" [ref=f11e92] [cursor=pointer]:
+                    - generic [ref=f11e93]: Envelopes
+                    - generic [ref=f11e94]: Open Group
+                - listitem [ref=f11e99]:
+                  - button "Templates Open Group" [ref=f11e101] [cursor=pointer]:
+                    - generic [ref=f11e102]: Templates
+                    - generic [ref=f11e103]: Open Group
+                - listitem [ref=f11e108]:
+                  - button "Parties Open Group" [ref=f11e110] [cursor=pointer]:
+                    - generic [ref=f11e111]: Parties
+                    - generic [ref=f11e112]: Open Group
+                - listitem [ref=f11e117]:
+                  - button "Webhooks" [ref=f11e118]
+                - listitem [ref=f11e120]:
+                  - button "Webhook Channels Open Group" [ref=f11e122] [cursor=pointer]:
+                    - generic [ref=f11e123]: Webhook Channels
+                    - generic [ref=f11e124]: Open Group
+                - listitem [ref=f11e129]:
+                  - button "Reports Open Group" [ref=f11e131] [cursor=pointer]:
+                    - generic [ref=f11e132]: Reports
+                    - generic [ref=f11e133]: Open Group
+            - listitem [ref=f11e138]:
+              - generic [ref=f11e139]: PDF Embed API
+              - list [ref=f11e141]:
+                - listitem [ref=f11e142]:
+                  - button "PDF Embed API Overview" [ref=f11e143] [cursor=pointer]
+                - listitem [ref=f11e145]:
+                  - button "UI Customization" [ref=f11e146] [cursor=pointer]
+                - listitem [ref=f11e148]:
+                  - button "PDF Embed API Features" [ref=f11e149] [cursor=pointer]
+            - listitem [ref=f11e151]:
+              - generic [ref=f11e152]: PDF Services API
+              - list [ref=f11e154]:
+                - listitem [ref=f11e155]:
+                  - button "PDF Services Overview" [ref=f11e156] [cursor=pointer]
+                - listitem [ref=f11e158]:
+                  - button "Quick Start - Merge Two PDFs" [ref=f11e159] [cursor=pointer]
+                - listitem [ref=f11e161]:
+                  - button "Quick Start - Automatically Fill Form Data in a PDF" [ref=f11e162] [cursor=pointer]
+                - listitem [ref=f11e164]:
+                  - button "Quick Start - Convert HTML to PDF" [ref=f11e165] [cursor=pointer]
+                - listitem [ref=f11e167]:
+                  - button "Document Upload Open Group" [ref=f11e169] [cursor=pointer]:
+                    - generic [ref=f11e170]: Document Upload
+                    - generic [ref=f11e171]: Open Group
+                - listitem [ref=f11e176]:
+                  - button "Document Download Open Group" [ref=f11e178] [cursor=pointer]:
+                    - generic [ref=f11e179]: Document Download
+                    - generic [ref=f11e180]: Open Group
+                - listitem [ref=f11e185]:
+                  - button "Task Status Open Group" [ref=f11e187] [cursor=pointer]:
+                    - generic [ref=f11e188]: Task Status
+                    - generic [ref=f11e189]: Open Group
+                - listitem [ref=f11e194]:
+                  - button "PDF Conversion Open Group" [ref=f11e196] [cursor=pointer]:
+                    - generic [ref=f11e197]: PDF Conversion
+                    - generic [ref=f11e198]: Open Group
+                - listitem [ref=f11e203]:
+                  - button "PDF Management Open Group" [ref=f11e205] [cursor=pointer]:
+                    - generic [ref=f11e206]: PDF Management
+                    - generic [ref=f11e207]: Open Group
+                - listitem [ref=f11e212]:
+                  - button "PDF Creation Open Group" [ref=f11e214] [cursor=pointer]:
+                    - generic [ref=f11e215]: PDF Creation
+                    - generic [ref=f11e216]: Open Group
+                - listitem [ref=f11e221]:
+                  - button "PDF Structural Extraction (Trial) Open Group" [ref=f11e223] [cursor=pointer]:
+                    - generic [ref=f11e224]: PDF Structural Extraction (Trial)
+                    - generic [ref=f11e225]: Open Group
+                - listitem [ref=f11e230]:
+                  - button "PDF Translation (Trial) Open Group" [ref=f11e232] [cursor=pointer]:
+                    - generic [ref=f11e233]: PDF Translation (Trial)
+                    - generic [ref=f11e234]: Open Group
+            - listitem [ref=f11e239]:
+              - generic [ref=f11e240]: Document Generation API
+              - list [ref=f11e242]:
+                - listitem [ref=f11e243]:
+                  - button "Document Generation Overview" [ref=f11e244] [cursor=pointer]
+                - listitem [ref=f11e246]:
+                  - button "Quick Start - Generate a Document from Structured Data" [ref=f11e247] [cursor=pointer]
+                - listitem [ref=f11e249]:
+                  - button "Generate a Document Open Group" [ref=f11e251] [cursor=pointer]:
+                    - generic [ref=f11e252]: Generate a Document
+                    - generic [ref=f11e253]: Open Group
+                - listitem [ref=f11e258]:
+                  - button "Analyze a Document Open Group" [ref=f11e260] [cursor=pointer]:
+                    - generic [ref=f11e261]: Analyze a Document
+                    - generic [ref=f11e262]: Open Group
+          - button [pressed] [ref=f11e269] [cursor=pointer]:
+            - generic "Set light mode" [ref=f11e272]
+        - main "Open API Documentation for Foxit APIs Reference" [ref=f11e275]:
+          - generic [ref=f11e276]:
+            - region "Introduction" [ref=f11e278]:
+              - generic [ref=f11e279]:
+                - generic [ref=f11e280]:
+                  - heading "Foxit APIs Reference" [level=1] [ref=f11e282]
+                  - link "Foxit APIs Support" [ref=f11e285] [cursor=pointer]:
+                    - /url: mailto:jason_welch@foxitsoftware.com
+                - generic [ref=f11e290]:
+                  - generic [ref=f11e291]:
+                    - button "Download OpenAPI Document" [ref=f11e293] [cursor=pointer]
+                    - generic [ref=f11e297]:
+                      - paragraph [ref=f11e298]: Foxit APIs help you send documents for signature, generate documents from structured data, process and convert PDFs, and embed document experiences in your application. Use one developer account and a consistent API workflow to build complete document journeys from creation through signature.
+                      - paragraph [ref=f11e299]: "Before making any API calls, you’ll need your developer credentials:"
+                      - paragraph [ref=f11e300]:
+                        - strong [ref=f11e301]: 1. Sign up on the Foxit API Developer Portal
+                      - link "Start for Free" [ref=f11e303] [cursor=pointer]:
+                        - /url: /sign-up
+                      - paragraph [ref=f11e304]:
+                        - strong [ref=f11e305]: 2. Retrieve your API credentials
+                      - list [ref=f11e307]:
+                        - listitem [ref=f11e308]:
+                          - text: After completing account setup, get your
+                          - strong [ref=f11e309]: Client ID
+                          - text: and
+                          - strong [ref=f11e310]: Client Secret
+                          - text: from the default application created in the Developer Portal.
+                        - listitem [ref=f11e311]:
+                          - text: Use these values as the
+                          - code [ref=f11e312]: client_id
+                          - text: and
+                          - code [ref=f11e313]: client_secret
+                          - text: headers in your Foxit API requests.
+                      - paragraph [ref=f11e314]:
+                        - strong [ref=f11e315]: 3. Next Steps
+                      - generic [ref=f11e316]:
+                        - paragraph [ref=f11e317]: "If you are new to Foxit APIs, start with one of these guides:"
+                        - list [ref=f11e318]:
+                          - listitem [ref=f11e319]:
+                            - link "Quick Start - Send a Document for Signature" [ref=f11e320] [cursor=pointer]:
+                              - /url: /reference/tag/quick-start---send-a-document-for-signature
+                          - listitem [ref=f11e321]:
+                            - link "eSign API Overview" [ref=f11e322] [cursor=pointer]:
+                              - /url: /reference/tag/esign-api-overview
+                          - listitem [ref=f11e323]:
+                            - link "Quick Start - Merge Two PDFs Guide" [ref=f11e324] [cursor=pointer]:
+                              - /url: /reference/tag/quick-start---merge-two-pdfs
+                          - listitem [ref=f11e325]:
+                            - link "Quick Start - Generate a Document from Structured Data" [ref=f11e326] [cursor=pointer]:
+                              - /url: /reference/tag/quick-start---generate-a-document-from-structured-data
+                          - listitem [ref=f11e327]:
+                            - link "Quick Start - Automatically fill form data in a pdf" [ref=f11e328] [cursor=pointer]:
+                              - /url: /reference/tag/quick-start---automatically-fill-form-data-in-a-pdf
+                          - listitem [ref=f11e329]:
+                            - link "Quick Start - Convert HTML to PDF" [ref=f11e330] [cursor=pointer]:
+                              - /url: /reference/tag/quick-start---convert-html-to-pdf
+                          - listitem [ref=f11e331]:
+                            - link "PDF Services Overview" [ref=f11e332] [cursor=pointer]:
+                              - /url: /reference/tag/pdf-services-overview
+                          - listitem [ref=f11e333]:
+                            - link "Document Generation API Overview" [ref=f11e334] [cursor=pointer]:
+                              - /url: /reference/tag/document-generation-overview
+                  - generic [ref=f11e337]:
+                    - generic [ref=f11e338]:
+                      - generic [ref=f11e339]: Server
+                      - generic [ref=f11e341]:
+                        - generic [ref=f11e342]: "Server:"
+                        - generic [ref=f11e343]: https://na1.fusion.foxit.com
+                      - paragraph [ref=f11e345]: Foxit Secure Servers
+                    - region [ref=f11e348]:
+                      - generic [ref=f11e349]:
+                        - button [disabled] [expanded] [ref=f11e350]:
+                          - heading "Authentication Required" [level=2] [ref=f11e351]:
+                            - generic [ref=f11e353]:
+                              - generic [ref=f11e354]: Authentication
+                              - generic [ref=f11e355] [cursor=pointer]: Required
+                        - 'button "Selected Auth Type: clientId & clientSecret" [ref=f11e358] [cursor=pointer]':
+                          - generic [ref=f11e359]: "Selected Auth Type:"
+                          - text: clientId & clientSecret
+                      - generic [ref=f11e365]:
+                        - generic [ref=f11e366]:
+                          - paragraph [ref=f11e367]: "ClientId: header"
+                          - paragraph [ref=f11e370]: Client ID issued by Foxit
+                        - generic [ref=f11e371]:
+                          - generic [ref=f11e372]: Name
+                          - text: ":"
+                        - textbox [ref=f11e377]:
+                          - generic [ref=f11e378]: client_id
+                        - button "Clear Value" [ref=f11e379] [cursor=pointer]
+                        - generic [ref=f11e384]:
+                          - generic [ref=f11e385]: Value
+                          - text: ":"
+                        - textbox "Value" [ref=f11e387]:
+                          - /placeholder: QUxMIFlPVVIgQkFTRSBBUkUgQkVMT05HIFRPIFVT
+                        - button "Show Password" [ref=f11e388] [cursor=pointer]
+                        - generic [ref=f11e393]:
+                          - paragraph [ref=f11e394]: "ClientSecret: header"
+                          - paragraph [ref=f11e397]: Client secret issued by Foxit
+                        - generic [ref=f11e398]:
+                          - generic [ref=f11e399]: Name
+                          - text: ":"
+                        - textbox [ref=f11e404]:
+                          - generic [ref=f11e405]: client_secret
+                        - button "Clear Value" [ref=f11e406] [cursor=pointer]
+                        - generic [ref=f11e411]:
+                          - generic [ref=f11e412]: Value
+                          - text: ":"
+                        - textbox "Value" [ref=f11e414]:
+                          - /placeholder: QUxMIFlPVVIgQkFTRSBBUkUgQkVMT05HIFRPIFVT
+                        - button "Show Password" [ref=f11e415] [cursor=pointer]
+                    - generic [ref=f11e421]:
+                      - generic [ref=f11e422]: Client Libraries
+                      - tablist "Client Libraries" [ref=f11e423]:
+                        - generic [ref=f11e424]:
+                          - tab "Shell" [selected] [ref=f11e425] [cursor=pointer]
+                          - tab "Ruby" [ref=f11e430] [cursor=pointer]
+                          - tab "Node.js" [ref=f11e435] [cursor=pointer]
+                          - tab "PHP" [ref=f11e441] [cursor=pointer]
+                          - tab "Python" [ref=f11e446] [cursor=pointer]
+                          - button "More Select from all clients" [ref=f11e452] [cursor=pointer]:
+                            - generic [ref=f11e456]: More
+                            - generic [ref=f11e457]: Select from all clients
+                      - tabpanel "Shell" [ref=f11e459]: Shell Curl
+            - generic [ref=f11e462]:
+              - region [ref=f11e467]:
+                - generic [ref=f11e470]:
+                  - heading "Adding Fields with the API (Collapsed)" [level=2] [ref=f11e472]:
+                    - text: Adding Fields with the API
+                    - generic [ref=f11e473]: (Collapsed)
+                  - button "Copy link" [ref=f11e474] [cursor=pointer]
+                - generic [ref=f11e482]:
+                  - paragraph [ref=f11e483]:
+                    - text: Add signature and form fields directly in the
+                    - code [ref=f11e484]: fields
+                    - text: array when you create an envelope or a reusable template. Field objects give you precise control over placement, dimensions, recipient assignment, validation, and text styling.
+                  - paragraph [ref=f11e485]:
+                    - text: Use this approach when your application knows where each field belongs. If the field markers are already part of the source PDF, use
+                    - link "Text Tags" [ref=f11e486] [cursor=pointer]:
+                      - /url: /reference/tag/preparing-pdf-documents-with-text-tags
+                    - text: instead. If a user should arrange fields visually before sending, use the embedded document sending view.
+                  - table [ref=f11e487]:
+                    - rowgroup [ref=f11e488]:
+                      - row [ref=f11e489]:
+                        - columnheader "Field placement method" [ref=f11e490]
+                        - columnheader "Best for" [ref=f11e491]
+                    - rowgroup [ref=f11e492]:
+                      - row [ref=f11e493]:
+                        - cell [ref=f11e494]:
+                          - code [ref=f11e495]: fields
+                          - text: array
+                        - cell "Programmatically generated or consistently formatted documents with known field coordinates." [ref=f11e496]
+                      - row [ref=f11e497]:
+                        - cell "Text Tags" [ref=f11e498]
+                        - cell "Documents whose source content can contain field markers." [ref=f11e499]
+                      - row [ref=f11e500]:
+                        - cell "Embedded preparation" [ref=f11e501]
+                        - cell "Workflows where a user reviews the document and places fields interactively." [ref=f11e502]
+                  - heading "Coordinate system" [level=2] [ref=f11e503]
+                  - paragraph [ref=f11e504]:
+                    - text: Foxit eSign positions a field relative to the
+                    - strong [ref=f11e505]: top-left corner
+                    - text: "of its PDF page:"
+                  - list [ref=f11e506]:
+                    - listitem [ref=f11e507]:
+                      - code [ref=f11e508]: x
+                      - text: moves the field to the right;
+                      - code [ref=f11e509]: "y"
+                      - text: moves it down.
+                    - listitem [ref=f11e510]:
+                      - code [ref=f11e511]: width
+                      - text: and
+                      - code [ref=f11e512]: height
+                      - text: set the field dimensions.
+                    - listitem [ref=f11e513]: Coordinates and dimensions are expressed in pixels.
+                    - listitem [ref=f11e514]:
+                      - code [ref=f11e515]: pageNumber
+                      - text: ","
+                      - code [ref=f11e516]: documentNumber
+                      - text: ", and"
+                      - code [ref=f11e517]: party
+                      - text: use 1-based numbering.
+                    - listitem [ref=f11e518]:
+                      - text: In a multi-document request,
+                      - code [ref=f11e519]: documentNumber
+                      - text: identifies the document in the
+                      - code [ref=f11e520]: fileUrls
+                      - text: ","
+                      - code [ref=f11e521]: base64FileString
+                      - text: ", or file array."
+                    - listitem [ref=f11e522]:
+                      - code [ref=f11e523]: party
+                      - text: assigns the field to the corresponding recipient in the
+                      - code [ref=f11e524]: parties
+                      - text: array.
+                  - blockquote [ref=f11e525]:
+                    - paragraph [ref=f11e526]:
+                      - strong [ref=f11e527]: "Important:"
+                      - text: Every field object must include
+                      - code [ref=f11e528]: type
+                      - text: ","
+                      - code [ref=f11e529]: x
+                      - text: ","
+                      - code [ref=f11e530]: "y"
+                      - text: ","
+                      - code [ref=f11e531]: width
+                      - text: ","
+                      - code [ref=f11e532]: height
+                      - text: ","
+                      - code [ref=f11e533]: pageNumber
+                      - text: ", and"
+                      - code [ref=f11e534]: party
+                      - text: . A field may not appear if one of these values is missing. Include
+                      - code [ref=f11e535]: documentNumber
+                      - text: whenever the request contains more than one document.
+                  - heading "US Letter page size and resolution" [level=2] [ref=f11e536]
+                  - paragraph [ref=f11e537]:
+                    - text: The
+                    - link "sample PDF" [ref=f11e538] [cursor=pointer]:
+                      - /url: /esign/foxit-esign-api-sample.pdf
+                    - text: "used below is a one-page, portrait US Letter document:"
+                  - table [ref=f11e539]:
+                    - rowgroup [ref=f11e540]:
+                      - row [ref=f11e541]:
+                        - columnheader "Measurement" [ref=f11e542]
+                        - columnheader "Value" [ref=f11e543]
+                    - rowgroup [ref=f11e544]:
+                      - row [ref=f11e545]:
+                        - cell "Physical page size" [ref=f11e546]
+                        - cell "8.5 × 11 inches" [ref=f11e547]
+                      - row [ref=f11e548]:
+                        - cell "PDF page size" [ref=f11e549]
+                        - cell "612 × 792 points" [ref=f11e550]
+                  - paragraph [ref=f11e551]:
+                    - text: For this sample, place fields within a
+                    - strong [ref=f11e552]: 612 × 792
+                    - text: coordinate space. For example,
+                    - code [ref=f11e553]: "x: 306"
+                    - text: is halfway across the page and
+                    - code [ref=f11e554]: "y: 396"
+                    - text: is halfway down the page.
+                  - blockquote [ref=f11e555]:
+                    - paragraph [ref=f11e556]:
+                      - strong [ref=f11e557]: "PDF resolution:"
+                      - text: A PDF page does not have one fixed raster resolution. Its page box defines the coordinate space, while scanned images or other raster content inside the PDF can have their own DPI. Use the PDF page dimensions for field coordinates; do not substitute the 150 or 300 DPI raster dimensions for
+                      - code [ref=f11e558]: x
+                      - text: ","
+                      - code [ref=f11e559]: "y"
+                      - text: ","
+                      - code [ref=f11e560]: width
+                      - text: ", or"
+                      - code [ref=f11e561]: height
+                      - text: .
+                  - heading "Field properties" [level=2] [ref=f11e562]
+                  - table [ref=f11e563]:
+                    - rowgroup [ref=f11e564]:
+                      - row [ref=f11e565]:
+                        - columnheader "Property" [ref=f11e566]
+                        - columnheader "Required" [ref=f11e567]
+                        - columnheader "Description" [ref=f11e568]
+                    - rowgroup [ref=f11e569]:
+                      - row [ref=f11e570]:
+                        - cell [ref=f11e571]:
+                          - code [ref=f11e572]: type
+                        - cell "Yes" [ref=f11e573]
+                        - cell [ref=f11e574]:
+                          - text: Field type, such as
+                          - code [ref=f11e575]: text
+                          - text: ","
+                          - code [ref=f11e576]: signature
+                          - text: ","
+                          - code [ref=f11e577]: initial
+                          - text: ","
+                          - code [ref=f11e578]: date
+                          - text: ","
+                          - code [ref=f11e579]: checkbox
+                          - text: ", or"
+                          - code [ref=f11e580]: dropdown
+                          - text: .
+                      - row [ref=f11e581]:
+                        - cell [ref=f11e582]:
+                          - code [ref=f11e583]: x
+                          - text: ","
+                          - code [ref=f11e584]: "y"
+                        - cell "Yes" [ref=f11e585]
+                        - cell "Position of the field's top-left corner on the page." [ref=f11e586]
+                      - row [ref=f11e587]:
+                        - cell [ref=f11e588]:
+                          - code [ref=f11e589]: width
+                          - text: ","
+                          - code [ref=f11e590]: height
+                        - cell "Yes" [ref=f11e591]
+                        - cell "Field dimensions in pixels." [ref=f11e592]
+                      - row [ref=f11e593]:
+                        - cell [ref=f11e594]:
+                          - code [ref=f11e595]: pageNumber
+                        - cell "Yes" [ref=f11e596]
+                        - cell [ref=f11e597]:
+                          - text: Page that contains the field, starting from
+                          - code [ref=f11e598]: "1"
+                          - text: .
+                      - row [ref=f11e599]:
+                        - cell [ref=f11e600]:
+                          - code [ref=f11e601]: party
+                        - cell "Yes" [ref=f11e602]
+                        - cell [ref=f11e603]:
+                          - text: Recipient responsible for the field, starting from
+                          - code [ref=f11e604]: "1"
+                          - text: .
+                      - row [ref=f11e605]:
+                        - cell [ref=f11e606]:
+                          - code [ref=f11e607]: documentNumber
+                        - cell "For multiple documents" [ref=f11e608]
+                        - cell [ref=f11e609]:
+                          - text: Document that contains the field, starting from
+                          - code [ref=f11e610]: "1"
+                          - text: .
+                      - row [ref=f11e611]:
+                        - cell [ref=f11e612]:
+                          - code [ref=f11e613]: tabOrder
+                        - cell "No" [ref=f11e614]
+                        - cell "Keyboard navigation order between fields." [ref=f11e615]
+                      - row [ref=f11e616]:
+                        - cell [ref=f11e617]:
+                          - code [ref=f11e618]: name
+                          - text: ","
+                          - code [ref=f11e619]: tooltip
+                        - cell "No" [ref=f11e620]
+                        - cell "Internal field label and signer-facing instruction." [ref=f11e621]
+                      - row [ref=f11e622]:
+                        - cell [ref=f11e623]:
+                          - code [ref=f11e624]: required
+                        - cell "No" [ref=f11e625]
+                        - cell "Whether the recipient must complete the field." [ref=f11e626]
+                      - row [ref=f11e627]:
+                        - cell [ref=f11e628]:
+                          - code [ref=f11e629]: fontSize
+                          - text: ","
+                          - code [ref=f11e630]: fontColor
+                        - cell "No" [ref=f11e631]
+                        - cell [ref=f11e632]:
+                          - text: Text appearance. Use a CSS hex value such as
+                          - code [ref=f11e633]: "#000000"
+                          - text: for
+                          - code [ref=f11e634]: fontColor
+                          - text: .
+                      - row [ref=f11e635]:
+                        - cell "Type-specific properties" [ref=f11e636]
+                        - cell "No" [ref=f11e637]
+                        - cell [ref=f11e638]:
+                          - text: Options such as
+                          - code [ref=f11e639]: characterLimit
+                          - text: ","
+                          - code [ref=f11e640]: dateFormat
+                          - text: ","
+                          - code [ref=f11e641]: checked
+                          - text: ","
+                          - code [ref=f11e642]: group
+                          - text: ", or"
+                          - code [ref=f11e643]: options
+                          - text: .
+                  - heading "Create an envelope from a URL with fields" [level=2] [ref=f11e644]
+                  - paragraph [ref=f11e645]:
+                    - text: Send the following body to
+                    - code [ref=f11e646]: POST /esign/api/v1/folders/createfolder
+                    - text: . It is based on the application's sample request, uses the hosted sample PDF, and creates four fields for the first recipient. Keep
+                    - code [ref=f11e647]: sendNow
+                    - text: set to
+                    - code [ref=f11e648]: "false"
+                    - text: while testing field placement.
+                  - code [ref=f11e650]:
+                    - text: "{ \"folderName\": \"My first eSign envelope\", \"inputType\": \"url\", \"fileUrls\": [ \"https://app.developer-api.foxit.com/esign/foxit-esign-api-sample.pdf\" ], \"fileNames\": [\"Foxit eSign Contract.pdf\"], \"parties\": [ { \"firstName\": \"Test\", \"lastName\": \"Signer\", \"emailId\": \"signer@example.com\", \"permission\": \"FILL_FIELDS_AND_SIGN\", \"sequence\": 1 } ], \"fields\": [ { \"type\": \"text\", \"x\": 108, \"y\": 491, \"width\": 180, \"height\": 28, \"documentNumber\": 1, \"pageNumber\": 1, \"tabOrder\": 1, \"party\": 1, \"partyResponsible\": 1, \"textfieldName\": \"Company Name\", \"name\": \"Company Name\", \"required\":"
+                    - generic [ref=f11e651]: "true"
+                    - text: ", \"characterLimit\": 100, \"fontSize\": 12, \"fontFamily\": \"default\", \"fontColor\": \"#000000\" }, { \"type\": \"text\", \"x\": 336, \"y\": 491, \"width\": 170, \"height\": 28, \"documentNumber\": 1, \"pageNumber\": 1, \"tabOrder\": 2, \"party\": 1, \"partyResponsible\": 1, \"textfieldName\": \"Phone Number\", \"name\": \"Phone Number\", \"required\":"
+                    - generic [ref=f11e652]: "true"
+                    - text: ", \"characterLimit\": 40, \"fontSize\": 8, \"fontFamily\": \"default\", \"fontColor\": \"#eee\", \"validation\": \"RegexValidation\", \"customValidationType\": \"Warning\", \"customValidationValue\": \"%2F%28%3F%3A%5Cd%7B3%7D%7C%5C%28%5Cd%7B3%7D%5C%29%29%28%5B-%5C%2F%5C.%5D%29%5Cd%7B3%7D%5C1%5Cd%7B4%7D%2F\", \"customValidationMsg\": \"Phone Number Validation\", \"hideFieldNameForRecipients\":"
+                    - generic [ref=f11e653]: "false"
+                    - text: "}, { \"type\": \"text\", \"x\": 108, \"y\": 578, \"width\": 180, \"height\": 28, \"documentNumber\": 1, \"pageNumber\": 1, \"tabOrder\": 3, \"party\": 1, \"partyResponsible\": 1, \"textfieldName\": \"Signer Name\", \"name\": \"Signer Name\", \"required\":"
+                    - generic [ref=f11e654]: "true"
+                    - text: ", \"characterLimit\": 100, \"fontSize\": 12, \"fontFamily\": \"default\", \"fontColor\": \"#000000\", \"readOnly\":"
+                    - generic [ref=f11e655]: "true"
+                    - text: ", \"systemField\":"
+                    - generic [ref=f11e656]: "true"
+                    - text: "}, { \"type\": \"signature\", \"x\": 336, \"y\": 578, \"width\": 170, \"height\": 28, \"documentNumber\": 1, \"pageNumber\": 1, \"tabOrder\": 4, \"party\": 1, \"required\":"
+                    - generic [ref=f11e657]: "true"
+                    - text: "} ], \"processTextTags\":"
+                    - generic [ref=f11e658]: "false"
+                    - text: ", \"processAcroFields\":"
+                    - generic [ref=f11e659]: "false"
+                    - text: ", \"createEmbeddedSigningSession\":"
+                    - generic [ref=f11e660]: "false"
+                    - text: ", \"createEmbeddedSendingSession\":"
+                    - generic [ref=f11e661]: "true"
+                    - text: ", \"sendNow\":"
+                    - generic [ref=f11e662]: "false"
+                    - text: "}"
+                  - paragraph [ref=f11e663]:
+                    - text: See
+                    - link "Create Envelope from URL" [ref=f11e664] [cursor=pointer]:
+                      - /url: /reference/tag/envelopes/POST/esign/api/v1/folders/createfolder
+                    - text: for the complete request and response schema.
+                  - heading "Create a template with fields" [level=2] [ref=f11e665]
+                  - paragraph [ref=f11e666]:
+                    - text: Template fields use the same coordinate system and recipient assignment. Define each template recipient in
+                    - code [ref=f11e667]: parties
+                    - text: ", then use its 1-based position as the field's"
+                    - code [ref=f11e668]: party
+                    - text: value.
+                  - code [ref=f11e670]:
+                    - text: "{ \"templateName\": \"NDA template.pdf\", \"inputType\": \"url\", \"templateUrl\": \"https://app.developer-api.foxit.com/esign/foxit-esign-api-sample.pdf\", \"processTextTags\":"
+                    - generic [ref=f11e671]: "false"
+                    - text: ", \"processAcroFields\":"
+                    - generic [ref=f11e672]: "false"
+                    - text: ", \"shareAll\":"
+                    - generic [ref=f11e673]: "false"
+                    - text: ", \"numberOfParties\": 1, \"parties\": [ { \"permission\": \"FILL_FIELDS_AND_SIGN\", \"sequence\": 1, \"partyRole\": \"Signer\" } ], \"fields\": [ { \"type\": \"date\", \"x\": 336, \"y\": 500, \"width\": 130, \"height\": 24, \"documentNumber\": 1, \"pageNumber\": 1, \"party\": 1, \"tabOrder\": 1, \"name\": \"Agreement date\", \"tooltip\": \"Enter the agreement date\", \"required\":"
+                    - generic [ref=f11e674]: "true"
+                    - text: ", \"fontSize\": 12, \"fontColor\": \"#000000\", \"dateFormat\": \"MM-DD-YYYY\" }, { \"type\": \"signature\", \"x\": 108, \"y\": 560, \"width\": 160, \"height\": 28, \"documentNumber\": 1, \"pageNumber\": 1, \"party\": 1, \"tabOrder\": 2, \"required\":"
+                    - generic [ref=f11e675]: "true"
+                    - text: "} ] }"
+                  - paragraph [ref=f11e676]:
+                    - text: See
+                    - link "Create Template" [ref=f11e677] [cursor=pointer]:
+                      - /url: /reference/tag/templates/POST/esign/api/v1/templates/createtemplate
+                    - text: for the complete request and response schema.
+              - region [ref=f11e680]:
+                - generic [ref=f11e683]:
+                  - heading "Envelopes (Collapsed)" [level=2] [ref=f11e685]:
+                    - text: Envelopes
+                    - generic [ref=f11e686]: (Collapsed)
+                  - button "Copy link" [ref=f11e687] [cursor=pointer]
+                - generic [ref=f11e693]:
+                  - paragraph [ref=f11e696]: Send documents for signature and manage their status, recipients, activity, and completed files. API resource names use “envelope” for a document package and its signing workflow.
+                  - group "Envelopes Operations" [ref=f11e698]:
+                    - generic [ref=f11e700]:
+                      - generic [ref=f11e701]: Envelopes
+                      - text: Operations
+                    - list "Envelopes endpoints" [ref=f11e703]:
+                      - listitem [ref=f11e704]:
+                        - generic [ref=f11e705] [cursor=pointer]:
+                          - generic [ref=f11e706]: post
+                          - generic [ref=f11e707]: /esign/api/v1/folders/createfolder
+                      - listitem [ref=f11e708]:
+                        - generic [ref=f11e709] [cursor=pointer]:
+                          - generic [ref=f11e710]: post
+                          - generic [ref=f11e711]: /esign/api/v1/embedded/regenerateEmbeddedSigningSession
+                      - listitem [ref=f11e712]:
+                        - generic [ref=f11e713] [cursor=pointer]:
+                          - generic [ref=f11e714]: get
+                          - generic [ref=f11e715]: /esign/api/v1/folders/myfolder
+                      - listitem [ref=f11e716]:
+                        - generic [ref=f11e717] [cursor=pointer]:
+                          - generic [ref=f11e718]: get
+                          - generic [ref=f11e719]: /esign/api/v1/folders/getAllFolderIdsByStatus
+                      - listitem [ref=f11e720]:
+                        - generic [ref=f11e721] [cursor=pointer]:
+                          - generic [ref=f11e722]: post
+                          - generic [ref=f11e723]: /esign/api/v1/folders/signaturereminder
+                      - listitem [ref=f11e724]:
+                        - generic [ref=f11e725] [cursor=pointer]:
+                          - generic [ref=f11e726]: post
+                          - generic [ref=f11e727]: /esign/api/v1/folders/cancelFolder
+                      - listitem [ref=f11e728]:
+                        - generic [ref=f11e729] [cursor=pointer]:
+                          - generic [ref=f11e730]: get
+                          - generic [ref=f11e731]: /esign/api/v1/folders/viewActivityHistory
+                      - listitem [ref=f11e732]:
+                        - generic [ref=f11e733] [cursor=pointer]:
+                          - generic [ref=f11e734]: get
+                          - generic [ref=f11e735]: /esign/api/v1/folders/deletedLog
+                      - listitem [ref=f11e736]:
+                        - generic [ref=f11e737] [cursor=pointer]:
+                          - generic [ref=f11e738]: get
+                          - generic [ref=f11e739]: /esign/api/v1/folders/download
+                      - listitem [ref=f11e740]:
+                        - generic [ref=f11e741] [cursor=pointer]:
+                          - generic [ref=f11e742]: get
+                          - generic [ref=f11e743]: /esign/api/v1/folders/document/download
+                      - listitem [ref=f11e744]:
+                        - generic [ref=f11e745] [cursor=pointer]:
+                          - generic [ref=f11e746]: post
+                          - generic [ref=f11e747]: /esign/api/v1/folders/movetorecyclebin
+                      - listitem [ref=f11e748]:
+                        - generic [ref=f11e749] [cursor=pointer]:
+                          - generic [ref=f11e750]: post
+                          - generic [ref=f11e751]: /esign/api/v1/folders/delete
+                - button "Show all Envelopes endpoints" [ref=f11e752] [cursor=pointer]: Show More
+              - region [ref=f11e757]:
+                - generic [ref=f11e760]:
+                  - heading "Templates (Collapsed)" [level=2] [ref=f11e762]:
+                    - text: Templates
+                    - generic [ref=f11e763]: (Collapsed)
+                  - button "Copy link" [ref=f11e764] [cursor=pointer]
+                - generic [ref=f11e770]:
+                  - paragraph [ref=f11e773]: Create and manage reusable document templates for repeatable signature workflows.
+                  - group "Templates Operations" [ref=f11e775]:
+                    - generic [ref=f11e777]:
+                      - generic [ref=f11e778]: Templates
+                      - text: Operations
+                    - list "Templates endpoints" [ref=f11e780]:
+                      - listitem [ref=f11e781]:
+                        - generic [ref=f11e782] [cursor=pointer]:
+                          - generic [ref=f11e783]: post
+                          - generic [ref=f11e784]: /esign/api/v1/templates/createtemplate
+                      - listitem [ref=f11e785]:
+                        - generic [ref=f11e786] [cursor=pointer]:
+                          - generic [ref=f11e787]: post
+                          - generic [ref=f11e788]: /esign/api/v1/templates/createFolder
+                      - listitem [ref=f11e789]:
+                        - generic [ref=f11e790] [cursor=pointer]:
+                          - generic [ref=f11e791]: get
+                          - generic [ref=f11e792]: /esign/api/v1/templates/list
+                      - listitem [ref=f11e793]:
+                        - generic [ref=f11e794] [cursor=pointer]:
+                          - generic [ref=f11e795]: post
+                          - generic [ref=f11e796]: /esign/api/v1/templates/templateDetails
+                      - listitem [ref=f11e797]:
+                        - generic [ref=f11e798] [cursor=pointer]:
+                          - generic [ref=f11e799]: get
+                          - generic [ref=f11e800]: /esign/api/v1/templates/mytemplate
+                - button "Show all Templates endpoints" [ref=f11e801] [cursor=pointer]: Show More
+              - region [ref=f11e806]:
+                - generic [ref=f11e809]:
+                  - heading "Parties (Collapsed)" [level=2] [ref=f11e811]:
+                    - text: Parties
+                    - generic [ref=f11e812]: (Collapsed)
+                  - button "Copy link" [ref=f11e813] [cursor=pointer]
+                - generic [ref=f11e819]:
+                  - paragraph [ref=f11e822]: Create and manage recipient groups used in document signature workflows.
+                  - group "Parties Operations" [ref=f11e824]:
+                    - generic [ref=f11e826]:
+                      - generic [ref=f11e827]: Parties
+                      - text: Operations
+                    - list "Parties endpoints" [ref=f11e829]:
+                      - listitem [ref=f11e830]:
+                        - generic [ref=f11e831] [cursor=pointer]:
+                          - generic [ref=f11e832]: post
+                          - generic [ref=f11e833]: /esign/api/v1/parties/getEmailGroups
+                      - listitem [ref=f11e834]:
+                        - generic [ref=f11e835] [cursor=pointer]:
+                          - generic [ref=f11e836]: post
+                          - generic [ref=f11e837]: /esign/api/v1/parties/createEmailGroup
+                - button "Show all Parties endpoints" [ref=f11e838] [cursor=pointer]: Show More
+              - region [ref=f11e843]:
+                - generic [ref=f11e846]:
+                  - heading "Webhooks" [level=2] [ref=f11e848]
+                  - button "Copy link" [ref=f11e849] [cursor=pointer]
+                - generic [ref=f11e857]:
+                  - paragraph [ref=f11e858]: Foxit eSign webhooks notify your application when an envelope changes. Webhook delivery is asynchronous, so your endpoint should acknowledge each request quickly and process longer-running work separately.
+                  - heading "Webhook Overview" [level=2] [ref=f11e859]
+                  - paragraph [ref=f11e860]:
+                    - text: A webhook channel connects a publicly accessible endpoint to one or more eSign events. Channels can receive activity for envelopes created through the API, or for the entire account when the channel level is set to
+                    - code [ref=f11e861]: Account
+                    - text: .
+                  - paragraph [ref=f11e862]:
+                    - text: Configure delivery and event subscriptions with the operations in
+                    - link "Webhook Channels" [ref=f11e863] [cursor=pointer]:
+                      - /url: /reference/tag/webhook-channels
+                    - text: .
+                  - heading "Webhook Events" [level=2] [ref=f11e864]
+                  - paragraph [ref=f11e865]:
+                    - text: Every webhook request is an HTTP
+                    - code [ref=f11e866]: POST
+                    - text: containing an
+                    - code [ref=f11e867]: event_name
+                    - text: ", an"
+                    - code [ref=f11e868]: event_date
+                    - text: expressed as Unix time in milliseconds, and a
+                    - code [ref=f11e869]: data
+                    - text: object containing the affected envelope.
+                  - table [ref=f11e870]:
+                    - rowgroup [ref=f11e871]:
+                      - row [ref=f11e872]:
+                        - columnheader "Event" [ref=f11e873]
+                        - columnheader "When it is delivered" [ref=f11e874]
+                        - columnheader "Additional data" [ref=f11e875]
+                    - rowgroup [ref=f11e876]:
+                      - row [ref=f11e877]:
+                        - cell [ref=f11e878]:
+                          - code [ref=f11e879]: folder_sent
+                        - cell "An envelope is sent for signature." [ref=f11e880]
+                        - cell [ref=f11e881]:
+                          - code [ref=f11e882]: folder
+                      - row [ref=f11e883]:
+                        - cell [ref=f11e884]:
+                          - code [ref=f11e885]: folder_viewed
+                        - cell "A recipient opens the envelope for the first time." [ref=f11e886]
+                        - cell [ref=f11e887]:
+                          - code [ref=f11e888]: folder
+                          - text: ","
+                          - code [ref=f11e889]: viewing_party
+                      - row [ref=f11e890]:
+                        - cell [ref=f11e891]:
+                          - code [ref=f11e892]: folder_signed
+                        - cell "A recipient signs the envelope." [ref=f11e893]
+                        - cell [ref=f11e894]:
+                          - code [ref=f11e895]: folder
+                          - text: ","
+                          - code [ref=f11e896]: signing_party
+                      - row [ref=f11e897]:
+                        - cell [ref=f11e898]:
+                          - code [ref=f11e899]: folder_cancelled
+                        - cell "A recipient cancels or declines the envelope." [ref=f11e900]
+                        - cell [ref=f11e901]:
+                          - code [ref=f11e902]: folder
+                          - text: ","
+                          - code [ref=f11e903]: cancelling_party
+                          - text: ","
+                          - code [ref=f11e904]: reason_for_cancelling
+                      - row [ref=f11e905]:
+                        - cell [ref=f11e906]:
+                          - code [ref=f11e907]: folder_completed
+                        - cell "All required recipients have completed signing." [ref=f11e908]
+                        - cell [ref=f11e909]:
+                          - code [ref=f11e910]: folder
+                      - row [ref=f11e911]:
+                        - cell [ref=f11e912]:
+                          - code [ref=f11e913]: folder_executed
+                        - cell [ref=f11e914]:
+                          - text: Digital signatures have been applied to the completed documents. This normally follows
+                          - code [ref=f11e915]: folder_completed
+                          - text: by approximately 5–10 seconds.
+                        - cell [ref=f11e916]:
+                          - code [ref=f11e917]: folder
+                      - row [ref=f11e918]:
+                        - cell [ref=f11e919]:
+                          - code [ref=f11e920]: folder_deleted
+                        - cell "An envelope is deleted." [ref=f11e921]
+                        - cell [ref=f11e922]:
+                          - code [ref=f11e923]: folder
+                          - text: ","
+                          - code [ref=f11e924]: deleting_party
+                  - paragraph [ref=f11e925]:
+                    - text: Channel subscriptions expose
+                    - code [ref=f11e926]: folder_sent
+                    - text: ","
+                    - code [ref=f11e927]: folder_viewed
+                    - text: ","
+                    - code [ref=f11e928]: folder_signed
+                    - text: ","
+                    - code [ref=f11e929]: folder_cancelled
+                    - text: ","
+                    - code [ref=f11e930]: folder_executed
+                    - text: ", and"
+                    - code [ref=f11e931]: folder_deleted
+                    - text: . The
+                    - code [ref=f11e932]: folder_completed
+                    - text: notification is part of the delivery lifecycle but is not a separate channel-subscription switch.
+                  - paragraph [ref=f11e933]:
+                    - text: Example
+                    - code [ref=f11e934]: folder_signed
+                    - text: "payload:"
+                  - code [ref=f11e936]: "{ \"event_name\": \"folder_signed\", \"event_date\": 1464237988093, \"data\": { \"folder\": { \"folderId\": 649, \"folderName\": \"NDA\", \"folderAuthorEmail\": \"abc@xyz.com\", \"folderStatus\": \"SHARED\", \"folderDocumentIds\": [1239, 1240] }, \"signing_party\": { \"partyId\": 1, \"firstName\": \"John\", \"lastName\": \"Doe\", \"emailId\": \"johndoe@example.com\" } } }"
+                  - heading "Webhook Security" [level=2] [ref=f11e937]
+                  - paragraph [ref=f11e938]:
+                    - text: Always register an HTTPS webhook URL. For additional authenticity and integrity checks, assign a
+                    - code [ref=f11e939]: webhookSecret
+                    - text: when creating or updating the channel.
+                  - paragraph [ref=f11e940]: "When a secret is configured, Foxit eSign:"
+                  - list [ref=f11e941]:
+                    - listitem [ref=f11e942]: Calculates an HMAC-SHA-256 digest of the raw HTTP request body using the webhook secret.
+                    - listitem [ref=f11e943]: Base64-encodes the digest.
+                    - listitem [ref=f11e944]:
+                      - text: Adds the value to the callback URL as the
+                      - code [ref=f11e945]: signature
+                      - text: query parameter.
+                  - paragraph [ref=f11e946]:
+                    - text: For a registered URL of
+                    - code [ref=f11e947]: https://example.com/esign-webhook
+                    - text: ", the delivery URL has the form:"
+                  - code [ref=f11e949]: https://example.com/esign-webhook?signature=BASE64_SIGNATURE
+                  - paragraph [ref=f11e950]: Verify the signature against the exact raw request bytes before parsing or modifying the JSON. Use a constant-time comparison and reject the request when the signature is absent or invalid.
+                  - code [ref=f11e952]: "import { createHmac, timingSafeEqual } from \"node:crypto\"; export function verifyWebhook(rawBody, receivedSignature, secret) { const expected = createHmac(\"sha256\", secret) .update(rawBody) .digest(); const received = Buffer.from(receivedSignature, \"base64\"); return received.length === expected.length && timingSafeEqual(received, expected); }"
+                  - paragraph [ref=f11e953]: Treat the webhook secret like a password. Store it securely and never log or expose it to clients.
+              - region [ref=f11e956]:
+                - generic [ref=f11e959]:
+                  - heading "Webhook Channels (Collapsed)" [level=2] [ref=f11e961]:
+                    - text: Webhook Channels
+                    - generic [ref=f11e962]: (Collapsed)
+                  - button "Copy link" [ref=f11e963] [cursor=pointer]
+                - generic [ref=f11e969]:
+                  - generic [ref=f11e971]:
+                    - paragraph [ref=f11e972]: A webhook channel connects Foxit eSign to a publicly accessible endpoint. You can create multiple channels and independently select the envelope events delivered to each one.
+                    - paragraph [ref=f11e973]: Channel operations let you create a destination, retrieve one channel, list every channel in the account, update its endpoint or subscriptions, temporarily deactivate or reactivate delivery, and permanently delete channels.
+                    - paragraph [ref=f11e974]:
+                      - text: Configure a
+                      - code [ref=f11e975]: webhookSecret
+                      - text: to sign deliveries and validate the
+                      - code [ref=f11e976]: signature
+                      - text: query parameter as described in
+                      - link "Webhook Security" [ref=f11e977] [cursor=pointer]:
+                        - /url: /reference/tag/webhooks#webhook-security
+                      - text: .
+                  - group "Webhook Channels Operations" [ref=f11e979]:
+                    - generic [ref=f11e981]:
+                      - generic [ref=f11e982]: Webhook Channels
+                      - text: Operations
+                    - list "Webhook Channels endpoints" [ref=f11e984]:
+                      - listitem [ref=f11e985]:
+                        - generic [ref=f11e986] [cursor=pointer]:
+                          - generic [ref=f11e987]: post
+                          - generic [ref=f11e988]: /esign/api/v1/webhook/createwebhookchannel
+                      - listitem [ref=f11e989]:
+                        - generic [ref=f11e990] [cursor=pointer]:
+                          - generic [ref=f11e991]: get
+                          - generic [ref=f11e992]: /esign/api/v1/webhook/mychannel
+                      - listitem [ref=f11e993]:
+                        - generic [ref=f11e994] [cursor=pointer]:
+                          - generic [ref=f11e995]: get
+                          - generic [ref=f11e996]: /esign/api/v1/webhook/channellist
+                      - listitem [ref=f11e997]:
+                        - generic [ref=f11e998] [cursor=pointer]:
+                          - generic [ref=f11e999]: post
+                          - generic [ref=f11e1000]: /esign/api/v1/webhook/updatewebhookchannel
+                      - listitem [ref=f11e1001]:
+                        - generic [ref=f11e1002] [cursor=pointer]:
+                          - generic [ref=f11e1003]: get
+                          - generic [ref=f11e1004]: /esign/api/v1/webhook/channelreactivate
+                      - listitem [ref=f11e1005]:
+                        - generic [ref=f11e1006] [cursor=pointer]:
+                          - generic [ref=f11e1007]: get
+                          - generic [ref=f11e1008]: /esign/api/v1/webhook/channeldeactivate
+                      - listitem [ref=f11e1009]:
+                        - generic [ref=f11e1010] [cursor=pointer]:
+                          - generic [ref=f11e1011]: post
+                          - generic [ref=f11e1012]: /esign/api/v1/webhook/deletechannels
+                - button "Show all Webhook Channels endpoints" [ref=f11e1013] [cursor=pointer]: Show More
+      - region "Notifications alt+T":
+        - list
+  - contentinfo [ref=f11e1021]:
+    - generic [ref=f11e1022]:
+      - generic [ref=f11e1023]:
+        - generic [ref=f11e1024]:
+          - link [ref=f11e1025] [cursor=pointer]:
+            - /url: /
+            - img "Foxit APIs Logo" [ref=f11e1026]
+          - generic [ref=f11e1027]:
+            - generic [ref=f11e1030]: Contact US
+            - link "1-866-680-3668" [ref=f11e1031] [cursor=pointer]:
+              - /url: tel:1-866-680-3668
+          - generic [ref=f11e1032]:
+            - generic [ref=f11e1040]: "Support:"
+            - link "Submit a Case" [ref=f11e1041] [cursor=pointer]:
+              - /url: https://kb.foxit.com/s/submit-a-case
+        - generic [ref=f11e1042]:
+          - generic [ref=f11e1043]: APIs
+          - link "PDF Services API" [ref=f11e1044] [cursor=pointer]:
+            - /url: https://developer-api.foxit.com/pdf-services/
+          - link "Document Generation API" [ref=f11e1045] [cursor=pointer]:
+            - /url: https://developer-api.foxit.com/document-generation/
+          - link "PDF Embed API" [ref=f11e1046] [cursor=pointer]:
+            - /url: https://developer-api.foxit.com/pdf-embed/
+          - link "eSign API" [ref=f11e1047] [cursor=pointer]:
+            - /url: https://developer-api.foxit.com/esign/
+        - generic [ref=f11e1048]:
+          - generic [ref=f11e1049]: Resources
+          - link "PDF Services API" [ref=f11e1050] [cursor=pointer]:
+            - /url: /reference/tag/pdf-services-overview
+          - link "eSign API" [ref=f11e1051] [cursor=pointer]:
+            - /url: /reference/tag/esign-api-overview
+          - link "PDF Embed API" [ref=f11e1052] [cursor=pointer]:
+            - /url: https://docs.developer-api.foxit.com/?_gl=1*15tl3g8*_gcl_au*MTc0OTI5OTE4NC4xNzU1MDc5ODc1LjE3Njc2MDczMjEuMTc2MTA4NDE5OC4xNzYxMDg0MjA5#8690e041-8274-459e-b4f2-5bd64f1463e7
+          - link "Document Generation API" [ref=f11e1053] [cursor=pointer]:
+            - /url: /reference/tag/document-generation-overview
+        - generic [ref=f11e1054]:
+          - generic [ref=f11e1055]: Documentation
+          - link "PDF Services API" [ref=f11e1056] [cursor=pointer]:
+            - /url: /reference/tag/pdf-services-overview
+          - link "eSign API" [ref=f11e1057] [cursor=pointer]:
+            - /url: /reference/tag/esign-api-overview
+          - link "PDF Embed API" [ref=f11e1058] [cursor=pointer]:
+            - /url: https://docs.developer-api.foxit.com/?_gl=1*15tl3g8*_gcl_au*MTc0OTI5OTE4NC4xNzU1MDc5ODc1LjE3Njc2MDczMjEuMTc2MTA4NDE5OC4xNzYxMDg0MjA5#pdf-embed-api
+          - link "Document Generation API" [ref=f11e1059] [cursor=pointer]:
+            - /url: /reference/tag/document-generation-overview
+        - generic [ref=f11e1060]: Pricing
+      - generic [ref=f11e1062]:
+        - generic [ref=f11e1063]: © 2026 Foxit Software Incorporated. All rights reserved.
+        - generic [ref=f11e1064]:
+          - link [ref=f11e1065] [cursor=pointer]:
+            - /url: https://www.youtube.com/channel/UCgh3Bs-EnS4Lwv4Cb96lG_Q
+          - link [ref=f11e1068] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/foxit-corporation/
+          - link [ref=f11e1071] [cursor=pointer]:
+            - /url: https://www.facebook.com/foxitsoftware
+          - link [ref=f11e1074] [cursor=pointer]:
+            - /url: https://x.com/foxitsoftware
+  - region "Notifications alt+T"
+  - alert [ref=f11e1077]

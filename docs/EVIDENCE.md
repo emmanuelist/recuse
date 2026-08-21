@@ -32,6 +32,20 @@ evidence/
   `response-3.json`.
 - **Log Foxit credit spend here.** 500 per year is the hard ceiling.
 
+## Webhook payload shape
+
+Confirmed against the Foxit API reference 2026-08-21. The handler originally
+read `event` and `folder.folderId` at the top level and would have matched
+nothing on the first genuine signature — a failure that only shows up on demo
+day.
+
+```json
+{ "event_name": "folder_signed",
+  "event_date": 1464237988093,
+  "data": { "folder": { "folderId": 649, "folderStatus": "SHARED" },
+            "signing_party": { "emailId": "..." } } }
+```
+
 ## Foxit credit ledger
 
 Measured from the dashboard, which is the only place credits are visible.
