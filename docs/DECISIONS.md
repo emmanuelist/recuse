@@ -112,3 +112,19 @@ reading the docs instead of trusting recall.
 
 **Reverses if:** free-tier rate limits prove too tight in rehearsal *and* a small
 spend becomes acceptable. Decide before Sept 1, not on demo day.
+
+## D007 · No application auth
+**2026-08-20**
+
+Neon Auth left off at project creation. Nobody logs into Recuse: the human
+authorization happens in Foxit's hosted signing flow, and is proven by the
+signature and the webhook rather than by a session in our app.
+
+**Why it matters:** a login wall between a judge and a four-minute demo costs
+real marks, and building it costs days that M1 and M2 need.
+
+**Not a lock-in.** Neon Auth can be enabled later from Project → Branch → Auth,
+and disabling it leaves the schema and data intact.
+
+**What this does not solve:** credit exposure on a public URL — see ISSUE-017.
+The answer there is a gate on the run action specifically, not app-wide auth.
