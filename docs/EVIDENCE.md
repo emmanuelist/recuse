@@ -46,6 +46,16 @@ day.
             "signing_party": { "emailId": "..." } } }
 ```
 
+## eSign envelope ledger
+
+Separate from and tighter than the 500-credit pool. Only `sendNow: true`
+consumes an envelope; `sendNow: false` drafts are free, which is why all
+development runs use drafts.
+
+| Date | Purpose | Envelopes | Remaining |
+|---|---|---|---|
+| 2026-08-21 | trial baseline observed in portal | — | 22 |
+
 ## Foxit credit ledger
 
 Measured from the dashboard, which is the only place credits are visible.
