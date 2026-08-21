@@ -64,51 +64,31 @@ product's entire claim, inverted.
 6. **Record evidence as you go.** See `docs/EVIDENCE.md`. Proof captured at the
    moment it works is worth ten times proof reconstructed on deadline day.
 
-## 4. Credit discipline — read this before writing any Foxit call
+## 4. Credit discipline
 
-**Foxit's free tier is 500 credits per YEAR**, shared across eSign, Document
-Generation, and PDF Services. It is the scarcest resource in this project and it
-does not refill. Careless iteration will exhaust it before demo day and there is
-no recovery.
+**Measured 2026-08-21, replacing an earlier guess.** The 500/year pool is spent
+only by `create/pdf-from-html`, at 1 credit per conversion. Uploads, task
+polling, failed requests, and draft eSign folders are all free. 497 remain,
+which is roughly 497 more full runs — ample.
 
-The rule:
+The earlier version of this rule treated credits as the scarcest resource in the
+project and mandated replaying captured responses during development. That was
+written before anything had been measured and it was wrong; it would have slowed
+the build to protect a resource that was never at risk.
 
-- **Capture once, replay locally.** The first successful call to any Foxit
-  endpoint gets its full real response written to `evidence/api/`. Local
-  development replays that captured response.
-- **Replay is captured truth, never invention.** Fixtures are recorded real
-  responses, byte for byte. Writing a plausible-looking fixture by hand is
-  fabricating data and violates §3.1.
-- **The deployed app always calls the real API.** Replay is a local-development
-  affordance only, switched by an explicit env flag that is off in production and
-  off in the demo.
-- **Live calls are budgeted.** Integration checkpoints and demo rehearsal only.
-  Log every live call's credit cost in `docs/EVIDENCE.md`.
+What still holds:
 
-Nutrient (5,000 extraction credits/month) and SerpApi (250 searches/month, 50/hr)
-are comfortable but not unlimited. Same habit, less anxiety.
+- **Know what bills.** Only document conversion. Probe endpoints freely — errors
+  are free, and `GET /pdf-services/api/tasks/{id}` authenticates for nothing.
+- **Log real spend** in `docs/EVIDENCE.md` at each checkpoint. The dashboard is
+  the only place credits are visible; there is no usage endpoint.
+- **`sendNow: true` is unmeasured** and emails a real person. It stays gated
+  behind `RECUSE_SEND_FOR_REAL`. Measure its cost on the first live send.
+- **Captured responses in `evidence/api/` are recorded truth, never invented.**
+  That rule was never about credits — it is rule 3.1, and it does not relax.
 
-### Verified endpoints
-
-Confirmed against live calls on 2026-08-20. Do not guess these — the providers
-run several products on adjacent paths and the wrong one returns 403, not 404.
-
-| Stage | Endpoint | Auth |
-|---|---|---|
-| Draft | `POST https://na1.fusion.foxit.com/document-generation/api/generate` | `client_id` + `client_secret` headers |
-| Auth probe (0 credits) | `GET https://na1.fusion.foxit.com/pdf-services/api/tasks/{id}` | same |
-| Establish | `POST https://api.nutrient.io/extraction/parse` | `Authorization: Bearer pdf_live_…` |
-| Authorize | `POST https://na1.fusion.foxit.com/esign/api/v1/…` (e.g. `folders/createfolder`) | **same** `client_id` + `client_secret` |
-
-eSign runs on the **same fusion host and the same credentials** as PDF Services —
-it only needs one-time activation in the dashboard (eSign API → Activation, with
-a company name set on the Foxit account profile). Published guides claiming eSign
-needs separate keys on `foxitesign.foxit.com` describe an older product; verified
-false on 2026-08-20 against this account.
-
-Nutrient's `/build` and `/tokens` belong to the **Processor** API and return 403
-with a Data Extraction key. Extraction is multipart: `file` plus an
-`instructions` field, e.g. `{"mode":"understand","output":{"format":"spatial"}}`.
+Nutrient (5,000 extraction credits/month) and SerpApi (250 searches/month,
+50/hr) are comfortable. Same habit, less anxiety.
 
 ## 5. Stack
 

@@ -34,9 +34,25 @@ evidence/
 
 ## Foxit credit ledger
 
-| Date | Call | Credits | Running total |
-|---|---|---|---|
-| 2026-08-20 | `GET /api/tasks/{id}` auth probe ×3 | 0 | 0 / 500 |
+Measured from the dashboard, which is the only place credits are visible.
 
-Auth verification cost nothing: a task-status lookup authenticates without
-performing billable work. Use this endpoint for any future credential check.
+| Checkpoint | Requests | Succeeded | Credits used |
+|---|---|---|---|
+| After endpoint probing | 20 | 1 | **0** |
+| After 3 document generations | 49 | 25 | **3** |
+
+**What actually bills: `create/pdf-from-html`, at 1 credit per conversion.**
+Three conversions succeeded between those two readings and exactly three credits
+were consumed.
+
+Free, confirmed by the same arithmetic:
+- every failed request — 24 failures across both readings cost nothing
+- `documents/upload`
+- `tasks/{id}` polling, which runs 5–8 times per draft
+- `esign/folders/createfolder` with `sendNow: false`
+
+**497 credits remain ≈ 497 more full document generations.** This is not a
+binding constraint for a 13-day build.
+
+**Still unmeasured:** `sendNow: true`. A live send that emails a human may bill
+differently. Measure it on the first real send, not on demo day.
