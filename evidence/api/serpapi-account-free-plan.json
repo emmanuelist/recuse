@@ -1,0 +1,18 @@
+{
+  "account_id": "6a87a674d20432eec62836a4",
+  "api_key": "REDACTED",
+  "account_email": "emmanuelpaul152@gmail.com",
+  "account_status": "Active",
+  "plan_id": "free",
+  "plan_name": "Free Plan",
+  "plan_monthly_price": 0.0,
+  "plan_renewal_date": "2026-09-21",
+  "searches_per_month": 250,
+  "plan_searches_left": 250,
+  "extra_credits": 0,
+  "total_searches_left": 250,
+  "this_month_usage": 0,
+  "this_hour_searches": 0,
+  "last_hour_searches": 0,
+  "account_rate_limit_per_hour": 250
+}

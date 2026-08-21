@@ -36,4 +36,7 @@ evidence/
 
 | Date | Call | Credits | Running total |
 |---|---|---|---|
-| — | — | — | 0 / 500 |
+| 2026-08-20 | `GET /api/tasks/{id}` auth probe ×3 | 0 | 0 / 500 |
+
+Auth verification cost nothing: a task-status lookup authenticates without
+performing billable work. Use this endpoint for any future credential check.

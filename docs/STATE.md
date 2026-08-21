@@ -17,17 +17,33 @@ provisioned, no deployment. That is M0's remaining work.
 
 ## Working right now
 
-Nothing yet — the repo is documentation and scaffolding only.
+Four credentials provisioned and verified against live APIs on 2026-08-20.
+Responses captured to `evidence/api/`.
+
+| Provider | Status |
+|---|---|
+| Gemini | Valid. `gemini-3.7-flash` confirmed present on this account. |
+| SerpApi | Valid. Free Plan, 250/250 searches remaining. |
+| Foxit PDF Services + Doc Gen | Valid. Verified with negative controls; 0 credits spent. |
+| Nutrient | **403 Forbidden** — see ISSUE-014 |
+| Foxit eSign | **Separate credentials required** — see ISSUE-015 |
+| Neon | Not created yet |
+
+Foxit host is `https://na1.fusion.foxit.com/pdf-services`, authenticating with
+`client_id` and `client_secret` request headers (not OAuth token exchange).
 
 ## Blocked
 
-Nothing blocked. Every dependency is free, self-serve, and card-free — including
-the agent model, which the first research pass missed and D006 corrected.
+Two P0s, both needing action in a vendor dashboard rather than in code:
+
+- **ISSUE-015 blocks M1**, the thesis milestone. No eSign credentials means no
+  authorization boundary to demonstrate.
+- **ISSUE-014 blocks M3.** Not urgent yet — M1 and M2 come first.
 
 ## Next three actions
 
-1. Provision four API keys — Foxit, Nutrient, SerpApi, Gemini. Confirm one live
-   call each and capture the response to `evidence/api/`. (ISSUE-001…003, 012)
+1. Resolve ISSUE-015 — separate Foxit eSign account. This gates the thesis.
+   Then ISSUE-014, the Nutrient 403.
 2. Scaffold Next.js + TypeScript + Tailwind, pin resolved versions into
    `AGENTS.md` § 5. (ISSUE-004)
 3. Deploy the empty shell to Vercel and confirm a public HTTPS endpoint can
