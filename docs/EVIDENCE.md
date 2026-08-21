@@ -11,7 +11,7 @@ reconstructed on deadline day.
 | The document is really generated | Captured Foxit generation response + the artifact | — |
 | The agent cannot sign | The gated `run()`, plus a transcript showing the refusal | — |
 | A human really signed | eSign webhook payload, timestamped, persisted | — |
-| Terms are really extracted | Captured Nutrient extraction response | — |
+| Terms are really extracted | Captured Nutrient extraction response | ✅ `nutrient-extraction-real-response.json` + the input PDF |
 | Claims are really corroborated | Captured SerpApi response showing a contradiction | — |
 | It runs deployed, not locally | Live URL, reachable from a phone on cellular | — |
 

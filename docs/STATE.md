@@ -36,7 +36,7 @@ Responses captured to `evidence/api/`.
 | Gemini | Valid. `gemini-3.7-flash` confirmed present on this account. |
 | SerpApi | Valid. Free Plan, 250/250 searches remaining. |
 | Foxit PDF Services + Doc Gen | Valid. Verified with negative controls; 0 credits spent. |
-| Nutrient | **403 Forbidden** — see ISSUE-014 |
+| Nutrient | Valid. 5,000/5,000 credits. Extraction verified on a real PDF. |
 | Foxit eSign | **Separate credentials required** — see ISSUE-015 |
 | Neon | Valid. PostgreSQL 18.6, us-east-1, 6 tables migrated. |
 
@@ -45,16 +45,17 @@ Foxit host is `https://na1.fusion.foxit.com/pdf-services`, authenticating with
 
 ## Blocked
 
-Two P0s, both needing action in a vendor dashboard rather than in code:
+One P0 remains:
 
 - **ISSUE-015 blocks M1**, the thesis milestone. No eSign credentials means no
-  authorization boundary to demonstrate.
-- **ISSUE-014 blocks M3.** Not urgent yet — M1 and M2 come first.
+  authorization boundary to demonstrate. Provision from the Foxit dashboard —
+  "Get started with eSign", or the eSign API item in the left sidebar.
+
+ISSUE-014 is closed: the Nutrient key was always fine, the endpoint was wrong.
 
 ## Next three actions
 
-1. Resolve ISSUE-015 — separate Foxit eSign account. This gates the thesis.
-   Then ISSUE-014, the Nutrient 403.
+1. Resolve ISSUE-015 — provision eSign from the Foxit dashboard. Gates the thesis.
 2. Scaffold Next.js + TypeScript + Tailwind, pin resolved versions into
    `AGENTS.md` § 5. (ISSUE-004)
 3. Deploy the empty shell to Vercel and confirm a public HTTPS endpoint can

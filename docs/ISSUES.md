@@ -17,7 +17,6 @@ outcome.
 | ISSUE-003 | P0 | M0 | Provision SerpApi key. Free tier 250 searches/mo, 50/hr. Respect the hourly cap during rehearsal. |
 | ISSUE-012 | P0 | M0 | Provision Gemini key at aistudio.google.com/apikey. Free, no card. Confirm `gemini-3.7-flash` responds and supports the tool surface we need. |
 | ISSUE-013 | P1 | M4 | Read actual free-tier rate limits at aistudio.google.com/rate-limit — they are account-specific and unpublished. Make the agent survive a 429 mid-run rather than assuming headroom. |
-| ISSUE-014 | P0 | M0 | **Nutrient key returns 403 Forbidden** on every real endpoint (`/build`, `/tokens`); 404 on fake ones, so routing is fine and the key itself is being rejected. Likely needs plan activation or per-API enablement at dashboard.nutrient.io. Blocks M3. |
 | ISSUE-015 | P0 | M1 | **Foxit eSign needs its OWN credentials.** The developer-portal client_id/secret authenticate PDF Services and Document Generation only — Foxit documents that eSign runs on a separate host (`na1.foxitesign.foxit.com`) with its own API Key and Secret. Separate signup required. Blocks the thesis. |
 | ISSUE-016 | P1 | M5 | Rotate all credentials after submission — four API keys and the Neon database password were pasted into a chat transcript. Free-tier keys are low blast radius, but `AIza…` keys get scraped aggressively and the DB password grants full write access. |
 | ISSUE-017 | P1 | M2 | **Public demo URL can drain Foxit credits.** 500/year total, and one pipeline run spends several. An unauthenticated "run the agent" button on a public link is a credit-drain vector — a handful of curious visitors could exhaust the year before judging. Fix with a gate on the live-run action, NOT app-wide auth: the read path shows real completed runs from the database, and only triggering a new run is limited. |
@@ -32,4 +31,6 @@ outcome.
 
 ## Closed
 
-_None yet._
+| ID | Outcome |
+|---|---|
+| ISSUE-014 | **Not a real issue — my diagnosis was wrong.** The key was valid the whole time with 5,000/5,000 credits. The 403 came from calling `/build` and `/tokens`, which are *Processor* API endpoints, with a *Data Extraction* key. Correct endpoint is `POST /extraction/parse`. Verified with a real contract PDF: counterparty, fee, term dates, and clause roles all extracted correctly. Response captured to `evidence/api/`. Cost 1 of 5,000 credits. |

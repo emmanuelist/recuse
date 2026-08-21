@@ -88,6 +88,22 @@ The rule:
 Nutrient (5,000 extraction credits/month) and SerpApi (250 searches/month, 50/hr)
 are comfortable but not unlimited. Same habit, less anxiety.
 
+### Verified endpoints
+
+Confirmed against live calls on 2026-08-20. Do not guess these — the providers
+run several products on adjacent paths and the wrong one returns 403, not 404.
+
+| Stage | Endpoint | Auth |
+|---|---|---|
+| Draft | `POST https://na1.fusion.foxit.com/document-generation/api/generate` | `client_id` + `client_secret` headers |
+| Auth probe (0 credits) | `GET https://na1.fusion.foxit.com/pdf-services/api/tasks/{id}` | same |
+| Establish | `POST https://api.nutrient.io/extraction/parse` | `Authorization: Bearer pdf_live_…` |
+| Authorize | eSign — separate host and credentials, see ISSUE-015 | — |
+
+Nutrient's `/build` and `/tokens` belong to the **Processor** API and return 403
+with a Data Extraction key. Extraction is multipart: `file` plus an
+`instructions` field, e.g. `{"mode":"understand","output":{"format":"spatial"}}`.
+
 ## 5. Stack
 
 - **Runtime:** Node 26.0.0, npm 11.12.1 (confirmed on this machine)
