@@ -1,0 +1,16 @@
+Foxit endpoint probe — 2026-08-21. All responses with valid credentials.
+404/405/415 cost no credits.
+
+  POST /document-generation/api/generate                  404  (dashboard sample path; not live for this account)
+  POST /document-generation/api/GenerateDocument          404
+  POST /document-generation/api/documentGeneration/generate 404
+  POST /pdf-services/api/documents/generate               405  method not supported
+  POST /pdf-services/api/documents/create/pdf-from-template 404
+  POST /pdf-services/api/documents/enhance/document-generation 404
+
+  POST /pdf-services/api/documents/upload                 415  EXISTS — requires multipart
+  POST /pdf-services/api/documents/create/pdf-from-html   400  EXISTS — "documentId is required"
+  POST /pdf-services/api/documents/create/pdf-from-word   400  EXISTS — "documentId is required"
+  GET  /pdf-services/api/tasks/{id}                       200  EXISTS — free auth probe
+
+Conclusion: draft stage is upload -> create/pdf-from-html -> poll tasks/{id}.

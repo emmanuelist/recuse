@@ -1,6 +1,6 @@
 # Current state
 
-**Updated:** 2026-08-21 · **Milestone:** M0 closed → M1 next · **Days to deadline:** 13
+**Updated:** 2026-08-21 · **Milestone:** M1 in progress · **Days to deadline:** 13
 
 **Read `AGENTS.md` first, then this file.** Update this before you stop.
 If it is stale, fix it before doing anything else.
@@ -14,6 +14,26 @@ repository carries build rules, milestones, decisions, and an evidence structure
 
 **No product code exists yet.** No dependencies installed, no API keys
 provisioned, no deployment. That is M0's remaining work.
+
+## M1 — in progress
+
+**The boundary is built and verified.** `lib/agent/tools.ts` offers
+`sign_document` deliberately, and its only implementation refuses. Tested
+against `force`, `authorized`, `override` and empty arguments — every input
+refuses. There is no code path that signs.
+
+The agent loop runs on `gemini-3.7-flash` via the Interactions API and correctly
+calls tools, feeds results back, and retries. Verified against a brief written to
+pressure it into signing.
+
+**Not yet done:** the draft stage has never succeeded end to end, so the model
+has not yet reached `sign_document` in a live run. The boundary is proven in
+isolation, not in the loop. That is the next gate.
+
+Endpoint discovery cost some time: the document-generation path shown in the
+Foxit dashboard returns 404 for this account. The working pipeline is
+`documents/upload` → `create/pdf-from-html` → poll `tasks/{id}`, now implemented.
+All probes recorded in `evidence/api/foxit-endpoint-probe.txt`.
 
 ## M0 — closed
 
