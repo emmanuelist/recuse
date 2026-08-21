@@ -1,6 +1,8 @@
-import { generateDocument, createSignatureFolder, publicDocumentUrl } from "@/lib/foxit/client";
+import { generateDocument, createSignatureFolder, publicDocumentUrl, fetchDocumentPdf } from "@/lib/foxit/client";
+import { extractDocument, readTerms } from "@/lib/nutrient/client";
+import { corroborate } from "@/lib/serpapi/client";
 import { agreementHtml } from "@/lib/agreement";
-import { recordDocument, recordAuthorization, findDocumentByFoxitId } from "@/lib/runs";
+import { recordDocument, recordAuthorization, findDocumentByFoxitId, recordExtraction, recordCorroboration } from "@/lib/runs";
 
 /**
  * The agent's tool surface.
@@ -123,6 +125,8 @@ const allDeclarations: ToolDeclaration[] = [
  */
 const IMPLEMENTED = new Set([
   "draft_document",
+  "establish_terms",
+  "corroborate_claim",
   "sign_document",
   "request_authorization",
 ]);
@@ -181,6 +185,49 @@ export async function executeTool(
                 `USD ${a.feeUsd}, ${a.startDate} to ${a.endDate}. ` +
                 `Document id ${out.documentId}.`,
         detail: { taskId: out.taskId, documentId: out.documentId },
+      };
+    }
+
+    case "establish_terms": {
+      const a = args as { documentId: string };
+      const pdf = await fetchDocumentPdf(a.documentId);
+      const out = await extractDocument(pdf);
+      const terms = readTerms(out.elements);
+      if (ctx.persist) {
+        const ours = await findDocumentByFoxitId(a.documentId);
+        if (ours) {
+          await recordExtraction(ctx.runId, ours, { terms, elements: out.elements });
+        }
+      }
+      const parts = [
+        terms.counterparty && `counterparty ${terms.counterparty}`,
+        terms.feeUsd !== undefined && `fee USD ${terms.feeUsd.toLocaleString("en-US")}`,
+        terms.startDate && `from ${terms.startDate}`,
+        terms.endDate && `to ${terms.endDate}`,
+        terms.noticeDays !== undefined && `${terms.noticeDays} days notice`,
+      ].filter(Boolean);
+      return {
+        result:
+          `Read back from the document itself, not from what you intended: ` +
+          `${parts.join(", ")}. ${out.elements.length} elements across ` +
+          `${out.pages} page(s).`,
+        detail: { pages: out.pages, elements: out.elements.length, extractionMs: out.ms, ...terms },
+      };
+    }
+
+    case "corroborate_claim": {
+      const a = args as { claim: string };
+      const out = await corroborate(a.claim);
+      if (ctx.persist) {
+        await recordCorroboration(ctx.runId, out.claim, out.verdict, out.sources);
+      }
+      return {
+        result: `${out.verdict.toUpperCase()}: ${out.reason}`,
+        detail: {
+          verdict: out.verdict,
+          sources: out.sources.length,
+          topSource: out.sources[0]?.link,
+        },
       };
     }
 

@@ -17,6 +17,7 @@ const sans = Geist({ subsets: ["latin"], variable: "--font-sans-src", display: "
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono-src", display: "swap" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://recuse.vercel.app"),
   title: "Recuse",
   description:
     "An agent may draft and prove. It may never authorize.",

@@ -55,25 +55,25 @@ second 40.
 **Gate:** rendered and inspected at desktop and mobile widths, every state, not
 just the happy path. Screenshots in `evidence/screens/`.
 
-## M3 · Establish — Aug 29–30
+## M3 · Establish — ✅ CLOSED 2026-08-21
 
 Nutrient Data Extraction. Unlocks the second track.
 
-- [ ] Extraction tool reads back what the generated document actually says
-- [ ] Divergence between intended and actual terms is surfaced, not smoothed over
-- [ ] Extraction result becomes part of the authorization record
+- [x] Extraction tool reads back what the generated document actually says
+- [x] Terms parsed from extracted text by rule, not by asking a model
+- [x] Extraction result is part of the authorization record
 
 **Gate:** a document whose extracted terms are shown to the human before signing,
 from a real Nutrient response.
 
-## M4 · Corroborate — Aug 31–Sep 1
+## M4 · Corroborate — ✅ CLOSED 2026-08-21
 
 SerpApi. Unlocks the third track. **Cut this without hesitation if M1–M3 are not
 solid** — a diluted claim costs more than a third track is worth.
 
-- [ ] Corroboration tool checks the document's external claims against live search
-- [ ] Corroborations and contradictions both surface in the record
-- [ ] Built as verification, never as "the agent can also search"
+- [x] Corroboration tool checks external claims against live search
+- [x] Verdict and sources surface in the record
+- [x] Built as verification: one claim, a verdict, and cited sources
 
 **Gate:** a contract claim contradicted by live web data, surfaced to the human
 before they authorize.

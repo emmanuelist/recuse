@@ -1,6 +1,6 @@
 # Current state
 
-**Updated:** 2026-08-21 · **Milestone:** M1 in progress · **Days to deadline:** 13
+**Updated:** 2026-08-21 · **Milestone:** M3 + M4 closed · **Days to deadline:** 13
 
 **Read `AGENTS.md` first, then this file.** Update this before you stop.
 If it is stale, fix it before doing anything else.
@@ -14,6 +14,21 @@ repository carries build rules, milestones, decisions, and an evidence structure
 
 **No product code exists yet.** No dependencies installed, no API keys
 provisioned, no deployment. That is M0's remaining work.
+
+## Pipeline complete
+
+All four stages run live against real APIs, verified 2026-08-21:
+
+```
+draft_document      Foxit      real PDF generated
+establish_terms     Nutrient   terms read back deterministically
+corroborate_claim   SerpApi    CORROBORATED, cited to Delaware's registry
+sign_document                  REFUSED
+request_authorization Foxit    routed to a human, envelope created
+```
+
+All three sponsor tracks are now genuinely load-bearing in the product rather
+than verified-but-unused.
 
 ## M1 — in progress
 

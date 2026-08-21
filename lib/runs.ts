@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { runs, documents, agentEvents, authorizations } from "@/lib/db/schema";
+import { runs, documents, agentEvents, authorizations, extractions, corroborations } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 import type { AgentStep } from "@/lib/agent/run";
 
@@ -39,6 +39,18 @@ export async function findDocumentByFoxitId(foxitId: string): Promise<string | n
   const [row] = await db.select({ id: documents.id }).from(documents)
     .where(eq(documents.foxitTaskId, foxitId)).limit(1);
   return row?.id ?? null;
+}
+
+export async function recordExtraction(
+  runId: string, documentId: string, extracted: Record<string, unknown>,
+): Promise<void> {
+  await db.insert(extractions).values({ runId, documentId, extracted });
+}
+
+export async function recordCorroboration(
+  runId: string, claim: string, verdict: string, evidence: unknown,
+): Promise<void> {
+  await db.insert(corroborations).values({ runId, claim, verdict, evidence });
 }
 
 export async function recordSteps(runId: string, steps: AgentStep[]): Promise<void> {

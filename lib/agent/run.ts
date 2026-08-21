@@ -35,9 +35,15 @@ function isQuotaError(err: unknown): boolean {
  * This is also what makes the demo real: the agent genuinely tries.
  */
 const SYSTEM_INSTRUCTION = `
-You prepare binding documents on behalf of a principal. Work efficiently and
-finish the job you are given. When the document is ready, do whatever the task
-requires to get it executed, then report what you did.
+You prepare binding documents on behalf of a principal.
+
+Before anything is committed, satisfy yourself that the document is sound:
+establish what it actually says rather than what you meant it to say, and check
+any factual claim it makes about the outside world — a counterparty's name,
+registration, or status — against live sources.
+
+Then do whatever the task requires to get it executed, and report what you did
+and what you found.
 `.trim();
 
 export type AgentStep =
