@@ -8,13 +8,24 @@
  */
 const HOST = "https://na1.fusion.foxit.com";
 
+/**
+ * The fusion host sits behind Cloudflare, which rejects requests with no
+ * User-Agent or a default library one — `Python-urllib` and bare Node fetch
+ * both draw `403 error code: 1010`, a Cloudflare browser-signature ban that
+ * reads exactly like a Foxit permissions error and is not one.
+ *
+ * Verified 2026-08-21: identical request, no UA -> 403; with a UA -> 200.
+ * This also explains the intermittent 502s seen earlier.
+ */
+const USER_AGENT = "recuse/1.0 (+https://recuse.vercel.app)";
+
 function credentials(): Record<string, string> {
   const id = process.env.FOXIT_CLIENT_ID;
   const secret = process.env.FOXIT_CLIENT_SECRET;
   if (!id || !secret) {
     throw new Error("FOXIT_CLIENT_ID / FOXIT_CLIENT_SECRET are not set.");
   }
-  return { client_id: id, client_secret: secret };
+  return { client_id: id, client_secret: secret, "User-Agent": USER_AGENT };
 }
 
 /**
@@ -155,15 +166,11 @@ export async function fetchDocumentPdf(documentId: string): Promise<ArrayBuffer>
 }
 
 /**
- * The URL we hand to eSign. Must be publicly fetchable — see
- * app/api/documents/[foxitId]/pdf/route.ts for why Foxit\'s own download URL
- * cannot be used here.
+ * Generated documents expire. A document id that downloaded fine hours earlier
+ * returns 404 later, which is what broke the first attempt at handing eSign a
+ * URL: our proxy 404\'d and eSign reported only "error in downloading file".
+ * Fetch the bytes at the moment they are needed, never earlier.
  */
-export function publicDocumentUrl(documentId: string): string {
-  const base = process.env.NEXT_PUBLIC_APP_URL ?? "";
-  if (!base) throw new Error("NEXT_PUBLIC_APP_URL is not set; eSign cannot fetch the document.");
-  return `${base}/api/documents/${documentId}/pdf`;
-}
 
 /**
  * Billable. Creates an eSign "folder" — what other platforms call an envelope.
@@ -174,7 +181,7 @@ export function publicDocumentUrl(documentId: string): string {
  */
 export async function createSignatureFolder(input: {
   folderName: string;
-  fileUrls: string[];
+  fileBase64: string;
   fileNames: string[];
   signer: { firstName: string; lastName: string; email: string };
   sendNow: boolean;
@@ -184,8 +191,12 @@ export async function createSignatureFolder(input: {
     headers: { ...credentials(), "Content-Type": "application/json" },
     body: JSON.stringify({
       folderName: input.folderName,
-      inputType: "url",
-      fileUrls: input.fileUrls,
+      // Bytes, not a URL. Handing eSign a link means it must reach our app,
+      // within its own timeout, for a document that may already have expired —
+      // and it forced the documents to be publicly readable. Sending base64
+      // removes the fetch, the timeout, and the public exposure at once.
+      inputType: "base64",
+      base64FileString: [input.fileBase64],
       fileNames: input.fileNames,
       parties: [
         {

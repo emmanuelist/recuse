@@ -1,4 +1,4 @@
-import { generateDocument, createSignatureFolder, publicDocumentUrl, fetchDocumentPdf } from "@/lib/foxit/client";
+import { generateDocument, createSignatureFolder, fetchDocumentPdf } from "@/lib/foxit/client";
 import { extractDocument, readTerms } from "@/lib/nutrient/client";
 import { corroborate } from "@/lib/serpapi/client";
 import { agreementHtml } from "@/lib/agreement";
@@ -178,7 +178,7 @@ export async function executeTool(
         outputName: a.title.replace(/\s+/g, "-").toLowerCase(),
       });
       if (ctx.persist) {
-        await recordDocument(ctx.runId, a.title, out.documentId, publicDocumentUrl(out.documentId));
+        await recordDocument(ctx.runId, a.title, out.documentId, `foxit:${out.documentId}`);
       }
       return {
         result: `Document generated: ${a.title} with ${a.counterparty}, ` +
@@ -236,9 +236,11 @@ export async function executeTool(
         documentId: string; signerEmail: string;
         signerFirstName: string; signerLastName: string;
       };
+      // Pull the bytes now: the document may not survive much longer.
+      const pdf = await fetchDocumentPdf(a.documentId);
       const folder = await createSignatureFolder({
         folderName: `Recuse ${ctx.runId.slice(0, 8)}`,
-        fileUrls: [publicDocumentUrl(a.documentId)],
+        fileBase64: Buffer.from(pdf).toString("base64"),
         fileNames: ["agreement.pdf"],
         signer: {
           firstName: a.signerFirstName,

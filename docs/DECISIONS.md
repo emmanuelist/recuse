@@ -286,3 +286,21 @@ record is a true account of what the agent did. A record that omits a pass which
 sent a real envelope is not a degraded record, it is a false one — and it fails
 in exactly the direction that matters, hiding an action rather than inventing
 one. Losing a run costs an envelope. Publishing a false record costs the thesis.
+
+## D014 · Hand eSign the bytes, not a link
+**2026-08-21**
+
+Sending eSign a `fileUrls` link required the document to be publicly readable
+(ISSUE-023), required eSign to reach our app inside its own timeout, and
+required the underlying Foxit document to still exist when it got there. All
+three failed at once: the document had expired, our proxy returned 404, and
+eSign reported only "error in downloading file from url".
+
+**Decided:** `base64FileString` with `inputType: "base64"`. The bytes are pulled
+with our own credentials at the moment they are needed and posted directly. One
+change removes the public exposure, the fetch, the timeout and the expiry race.
+
+**Also fixed here:** every Foxit request now sends a `User-Agent`. Cloudflare
+returns `403 error code: 1010` to default library agents — a browser-signature
+ban, not a Foxit permission error, and it was diagnosed as one twice. It also
+explains the intermittent 502s that led to the retry wrapper.

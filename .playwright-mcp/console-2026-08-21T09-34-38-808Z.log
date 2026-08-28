@@ -1,0 +1,49 @@
+[     839ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://app.developer-api.foxit.com/reference/tag/folders:0
+[    2373ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=16&frm=0&apvc=1&ae=g&en=page_view&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&ep.ads_data_redaction=0&gdid=dY2Q2ZW&_tu=CA&gtm=45He68j0h1v71091093za200zd71091093xea&gcs=G100&gcd=13q3q3q2q5l1&dma_cps=-&dma=1&tag_exp=115938466~115938468~118897920~118897930~120315471~120385422&tft=1787304880959&tfd=2114&fmt=8:0
+[    2378ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=16&frm=0&apvc=1&ae=g&en=page_view&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&ep.ads_data_redaction=0&gdid=dY2Q2ZW&_tu=CA&gtm=45He68j0h1v71091093za200zd71091093xea&gcs=G100&gcd=13q3q3q2q5l1&dma_cps=-&dma=1&tag_exp=115938466~115938468~118897920~118897930~120315471~120385422&tft=1787304880959&tfd=2114&fmt=3:0
+[    2913ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/pagead/conversion/1072304130/?random=1787304881696&cv=11&fst=1787304881696&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be68j0h1v882138586z871091093za20gzb71091093zd71091093xea&gcs=G100&gcd=13q3qPq2q5l1&dma_cps=-&dma=1&tag_exp=115616985~115938466~115938469~118897920~118897930~119367802~119367810~120315471~120385423&u_w=1440&u_h=1000&url=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&rcb=2&label=VA88CJSrgc0DEIKgqP8D&frm=0&tiba=API%20Reference%20Page%20Not%20Found%20%7C%20Foxit%20APIs&did=dY2Q2ZW&gdid=dY2Q2ZW&bttype=purchase&value=0&hn=www.googleadservices.com&npa=1&pscdl=denied&uaa=arm&uab=64&uafvl=Not%253DA%253FBrand%3B99.0.0.0%7CGoogle%2520Chrome%3B151.0.7922.173%7CChromium%3B151.0.7922.173&uamb=0&uam=&uap=macOS&uapv=26.5.1&uaw=0&_tu=CA&data=ads_data_redaction%3Dfalse&category=acrcp_v1_512&ept=6:0
+[    2913ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=2&frm=0&apvc=0&tid=AW-1072304130&en=page_view&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&did=dY2Q2ZW&gdid=dY2Q2ZW&_tu=CA&gtm=45be68j0h1v882138586z871091093za20gzb71091093zd71091093xec&gcs=G100&gcd=13q3qPq2q5l1&dma_cps=-&dma=1&tag_exp=115616985~115938466~115938469~118897920~118897930~119367802~119367810~120315471~120385423&tft=1787304881698&tfd=2854&tids=AW-1072304130&fmt=8:0
+[    2913ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=2&frm=0&apvc=0&ae=g&tid=AW-1072304130&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&ep.ads_data_redaction=0&did=dY2Q2ZW&gdid=dY2Q2ZW&_tu=CA&gtm=45be68j0h1v882138586z871091093za20gzb71091093zd71091093xea&gcs=G100&gcd=13q3qPq2q5l1&dma_cps=-&dma=1&tag_exp=115616985~115938466~115938469~118897920~118897930~119367802~119367810~120315471~120385423&tft=1787304881699&tfd=2854&tids=AW-1072304130&fmt=8:0
+[    2916ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=18&frm=0&apvc=0&tid=AW-16450149228&en=page_view&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&did=dY2Q2ZW&gdid=dY2Q2ZW&_tu=CA&gtm=45be68j0h1v9177709173z871091093za20gzb71091093zd71091093xec&gcs=G100&gcd=13q3q3q2q5l1&dma_cps=-&dma=1&tag_exp=115938466~115938469~118897920~118897930~119367802~119367810~120315471~120385423&tft=1787304881720&tfd=2875&tids=AW-16450149228&fmt=8:0
+[    2917ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=2&frm=0&apvc=0&tid=AW-1072304130&en=page_view&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&did=dY2Q2ZW&gdid=dY2Q2ZW&_tu=CA&gtm=45be68j0h1v882138586z871091093za20gzb71091093zd71091093xec&gcs=G100&gcd=13q3qPq2q5l1&dma_cps=-&dma=1&tag_exp=115616985~115938466~115938469~118897920~118897930~119367802~119367810~120315471~120385423&tft=1787304881698&tfd=2854&tids=AW-1072304130&fmt=3:0
+[    2919ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=2&frm=0&apvc=0&ae=g&tid=AW-1072304130&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&ep.ads_data_redaction=0&did=dY2Q2ZW&gdid=dY2Q2ZW&_tu=CA&gtm=45be68j0h1v882138586z871091093za20gzb71091093zd71091093xea&gcs=G100&gcd=13q3qPq2q5l1&dma_cps=-&dma=1&tag_exp=115616985~115938466~115938469~118897920~118897930~119367802~119367810~120315471~120385423&tft=1787304881699&tfd=2854&tids=AW-1072304130&fmt=3:0
+[    2920ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://pagead2.googlesyndication.com/ccm/collect?rcb=18&frm=0&apvc=0&tid=AW-16450149228&en=page_view&dl=https%3A%2F%2Fapp.developer-api.foxit.com%2Freference%2Ftag%2Ffolders&scrsrc=www.googletagmanager.com&rnd=1915084168.1787304881&navt=n&npa=1&did=dY2Q2ZW&gdid=dY2Q2ZW&_tu=CA&gtm=45be68j0h1v9177709173z871091093za20gzb71091093zd71091093xec&gcs=G100&gcd=13q3q3q2q5l1&dma_cps=-&dma=1&tag_exp=115938466~115938469~118897920~118897930~119367802~119367810~120315471~120385423&tft=1787304881720&tfd=2875&tids=AW-16450149228&fmt=3:0
+[    6118ms] [LOG] Debugging Google Consent Mode:
+ @ https://cdn-cookieyes.com/client_data/666fd302444803b68fe7fd85/banner.js:0
+[    6118ms] [LOG] 
+	ad_storage:
+		Default: denied
+		Update: denied
+
+
+	analytics_storage:
+		Default: denied
+		Update: granted
+
+
+	ad_user_data:
+		Default: denied
+		Update: denied
+
+
+	ad_personalization:
+		Default: denied
+		Update: denied
+
+
+	functionality_storage:
+		Default: denied
+		Update: denied
+
+
+	personalization_storage:
+		Default: denied
+		Update: denied
+
+
+	security_storage:
+		Default: granted
+		Update: granted
+
+
+	Consent mode states were set correctly. @ https://cdn-cookieyes.com/client_data/666fd302444803b68fe7fd85/banner.js:0

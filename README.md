@@ -107,9 +107,8 @@ Every provider has a free tier that needs no credit card. Total cost to run this
   against production, but registering the callback in the Foxit portal is a manual step
   that is still outstanding. The `signed` state of a record has therefore never been
   rendered from real data.
-- **Generated documents are publicly readable by id.** eSign fetches the file itself and
-  cannot authenticate to Foxit, so the app serves it from a public route. Ids are opaque
-  and not enumerable, but this is genuine public read access. ([ISSUE-023](docs/ISSUES.md))
+- **Generated documents expire.** Foxit's retention window means an older record's
+  source PDF may no longer exist. The record itself is permanent; the file behind it is not.
 - **Foxit trial accounts watermark envelopes** in TEST mode.
 - **The free Gemini tier allows 20 requests/day** on the preferred model — roughly five
   runs. The fallback chain survives one exhaustion, not five.
