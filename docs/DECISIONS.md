@@ -304,3 +304,27 @@ change removes the public exposure, the fetch, the timeout and the expiry race.
 returns `403 error code: 1010` to default library agents — a browser-signature
 ban, not a Foxit permission error, and it was diagnosed as one twice. It also
 explains the intermittent 502s that led to the retry wrapper.
+
+## D015 · Place signature fields by coordinate, not by text tag
+**2026-08-28**
+
+Text tags never worked. `processTextTags: true` was accepted, the folder was
+created, and no field appeared — the literal string `${signfield:1:y:____}`
+printed on the document a human was being asked to sign. Two envelopes went out
+that way before it was caught, and neither could be signed.
+
+Foxit's own quick start does not use tags: it passes an explicit `fields` array
+with coordinates and sets `processTextTags: false`. That is now what we do.
+
+**The origin is top-left**, which cost a round trip. Placing `y: 150` expecting
+150pt up from the bottom put the fields over the body text 150pt down from the
+top. x and width were correct on the first attempt, so only the vertical datum
+was wrong — worth measuring rather than assuming, since it was verifiable from a
+render.
+
+The agreement pins its signature block a fixed 150pt from the bottom regardless
+of how long the body runs, so the field coordinates stay valid as the contract
+text changes.
+
+**Verified by rendering the signer's own view:** two required fields, on the
+signature line, with the signature control live.

@@ -209,7 +209,32 @@ export async function createSignatureFolder(input: {
           sequence: 1,
         },
       ],
-      processTextTags: true,
+      // Foxit's own quick start places fields by coordinate and disables tag
+      // parsing. Text tags were tried and silently ignored: the folder was
+      // created, no field appeared, and the raw ${...} string printed on the
+      // document. Coordinates are exact and verifiable; tag parsing was not.
+      //
+      // Origin is TOP-left in points on a 612x792 page — verified by rendering:
+      // y=150 placed the field 150pt from the top, over the body text, not
+      // 150pt from the bottom. x and width were correct first time, so only the
+      // vertical datum was wrong.
+      //
+      // The agreement pins its signature block 150pt from the bottom with a
+      // 44pt line, so the field's top edge is 792 - 150 - 44 = 598pt.
+      fields: [
+        {
+          type: "signature",
+          x: 78, y: 598, width: 170, height: 44,
+          documentNumber: 1, pageNumber: 1, party: 1, required: true,
+        },
+        {
+          type: "date",
+          x: 300, y: 598, width: 130, height: 44,
+          documentNumber: 1, pageNumber: 1, party: 1, required: true,
+        },
+      ],
+      processTextTags: false,
+      processAcroFields: false,
       // An embedded session lets the human authorize inside Recuse rather than
       // through an email round-trip. It cannot be added afterwards — asking for
       // one on an existing folder fails with "not have this party as an

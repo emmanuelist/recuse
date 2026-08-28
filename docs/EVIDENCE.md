@@ -10,6 +10,7 @@ reconstructed on deadline day.
 |---|---|---|
 | The document is really generated | Captured Foxit generation response + the artifact | ✅ `foxit-draft-real-response.json` |
 | The agent cannot sign | The gated handler, plus a transcript showing the refusal | ✅ `m1-agent-transcript.json` |
+| Signature fields really exist | ✅ signer view rendered: 2 required fields on the signature line (`signer-view-fields.png`) |
 | A human really signed | eSign webhook payload, timestamped, persisted | ⏳ endpoint live and verified (`webhook-live-verification.txt`); awaiting a real signature |
 | Terms are really extracted | Captured Nutrient extraction response | ✅ `nutrient-extraction-real-response.json` + the input PDF |
 | Claims are really corroborated | Captured SerpApi response showing a contradiction | — |
