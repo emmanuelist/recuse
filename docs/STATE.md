@@ -15,6 +15,17 @@ repository carries build rules, milestones, decisions, and an evidence structure
 **No product code exists yet.** No dependencies installed, no API keys
 provisioned, no deployment. That is M0's remaining work.
 
+## Demo identities — fixed
+
+| Role | Address | Why |
+|---|---|---|
+| Commit authorship | `emmanuel.paul75@yahoo.com` | Emmanuel's long-standing git identity |
+| **Human authorizer** | **`emmanuelpaul152@gmail.com`** | The address the Foxit eSign account is registered under, and the inbox that can be opened on stage |
+
+These are different addresses and were conflated: the git identity was carried
+into the demo brief as the signer for several runs. The authorizer in any brief
+must be the gmail address.
+
 ## Pipeline complete
 
 All four stages run live against real APIs, verified 2026-08-21:
