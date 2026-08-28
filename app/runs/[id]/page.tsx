@@ -79,7 +79,7 @@ function Authorization({
 }: {
   auth?: {
     signerEmail: string; status: string; envelopeId: string | null;
-    sentAt: Date | null; signedAt: Date | null;
+    signingUrl: string | null; sentAt: Date | null; signedAt: Date | null;
   };
 }) {
   if (!auth) return null;
@@ -102,6 +102,17 @@ function Authorization({
           </>
         )}
       </p>
+      {!signed && auth.signingUrl && (
+        <a
+          href={auth.signingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-7 inline-flex items-center gap-2.5 rounded-md bg-ink px-5 py-3 text-[14px] font-medium tracking-[-0.01em] text-ground transition-opacity hover:opacity-90"
+        >
+          Authorize this document
+          <span aria-hidden className="text-[16px] leading-none">&rarr;</span>
+        </a>
+      )}
       <dl className="mt-7 flex flex-wrap gap-x-10 gap-y-4">
         {auth.envelopeId && <Field label="Envelope" value={auth.envelopeId} />}
         {auth.sentAt && <Field label="Routed" value={auth.sentAt.toISOString().slice(0, 19).replace("T", " ")} />}

@@ -23,12 +23,14 @@ export async function recordDocument(
  */
 export async function recordAuthorization(input: {
   runId: string; documentId: string; envelopeId: string; signerEmail: string;
+  signingUrl?: string;
 }): Promise<void> {
   await db.insert(authorizations).values({
     runId: input.runId,
     documentId: input.documentId,
     envelopeId: input.envelopeId,
     signerEmail: input.signerEmail,
+    signingUrl: input.signingUrl,
     status: "pending",
     sentAt: new Date(),
   });

@@ -185,7 +185,9 @@ export async function createSignatureFolder(input: {
   fileNames: string[];
   signer: { firstName: string; lastName: string; email: string };
   sendNow: boolean;
-}): Promise<{ folderId?: string; folderStatus?: string; raw: unknown }> {
+}): Promise<{
+  folderId?: string; folderStatus?: string; signingUrl?: string; raw: unknown;
+}> {
   const res = await fetchWithRetry(`${HOST}/esign/api/v1/folders/createfolder`, {
     method: "POST",
     headers: { ...credentials(), "Content-Type": "application/json" },
@@ -208,6 +210,12 @@ export async function createSignatureFolder(input: {
         },
       ],
       processTextTags: true,
+      // An embedded session lets the human authorize inside Recuse rather than
+      // through an email round-trip. It cannot be added afterwards — asking for
+      // one on an existing folder fails with "not have this party as an
+      // embedded signing session" — so it is requested up front, always.
+      createEmbeddedSigningSession: true,
+      embeddedSignersEmailIds: [input.signer.email],
       sendNow: input.sendNow,
     }),
   });
@@ -216,9 +224,11 @@ export async function createSignatureFolder(input: {
   const raw = JSON.parse(text);
   // folderId arrives as an integer; normalise so callers and the DB agree.
   const fid = raw?.folder?.folderId;
+  const session = (raw?.embeddedSigningSessions ?? [])[0];
   return {
     folderId: fid === undefined || fid === null ? undefined : String(fid),
     folderStatus: raw?.folder?.folderStatus,
+    signingUrl: session?.embeddedSessionURL ?? session?.sessionURL,
     raw,
   };
 }

@@ -261,6 +261,7 @@ export async function executeTool(
             documentId: ours,
             envelopeId: folder.folderId,
             signerEmail: a.signerEmail,
+            signingUrl: folder.signingUrl,
           });
         }
       }

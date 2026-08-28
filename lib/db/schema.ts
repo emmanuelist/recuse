@@ -67,6 +67,8 @@ export const authorizations = pgTable("authorizations", {
   documentId: uuid("document_id").notNull().references(() => documents.id, { onDelete: "cascade" }),
   envelopeId: text("envelope_id"),
   signerEmail: text("signer_email").notNull(),
+  /** Embedded signing session, so a person can authorize without leaving. */
+  signingUrl: text("signing_url"),
   status: text("status").notNull().default("pending"), // pending | signed | declined | expired
   sentAt: timestamp("sent_at", { withTimezone: true }),
   signedAt: timestamp("signed_at", { withTimezone: true }),

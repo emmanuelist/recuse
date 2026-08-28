@@ -1,0 +1,1 @@
+ALTER TABLE "authorizations" ADD COLUMN "signing_url" text;
