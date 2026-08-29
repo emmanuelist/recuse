@@ -81,7 +81,7 @@ before they authorize.
 ## M5 · Proof and demo — Sep 1–2
 
 - [ ] README as a proof surface: thesis, live link, video, evidence, honest limits
-- [ ] Demo scripted and timed to three minutes
+- [x] Demo scripted and timed to three minutes — `docs/RUNOFSHOW.md`
 - [ ] Rehearsed out loud twice, end to end
 - [ ] Video recorded and uploaded — assume you never present live
 - [ ] Devpost submission, same thesis sentence verbatim, all three tracks
