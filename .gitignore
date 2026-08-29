@@ -18,3 +18,8 @@ next-env.d.ts
 coverage/
 .env*
 !.env.example
+
+# Demo speaking notes — preparation, not a record of the work.
+# Written early because knowing the beat shapes the build; not published,
+# because it is written about the reader and spoils the one moment.
+.local/
