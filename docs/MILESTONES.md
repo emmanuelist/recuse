@@ -25,17 +25,17 @@ nothing later stalls on setup.
 **Gate:** a deployed URL that responds, and three captured real API responses in
 `evidence/api/`.
 
-## M1 · The signing boundary — Aug 22–25
+## M1 · The signing boundary — ✅ CLOSED 2026-08-29
 
 The thesis, and the only milestone that is genuinely non-negotiable. If nothing
 else ships, this alone is a coherent submission.
 
-- [ ] Agent loop via `toolRunner`, Opus 5, adaptive thinking
-- [ ] Foxit Document Generation tool — drafts a real document from structured data
-- [ ] Foxit eSign tool whose `run()` **refuses** and returns that refusal to the model
-- [ ] Human authorization route — a real person signs a real envelope
-- [ ] eSign webhook received, verified, and persisted
-- [ ] Agent transcript persisted, including the refusal
+- [x] Agent loop on Gemini Interactions API with a model fallback chain
+- [x] Drafts a real document from structured data
+- [x] The signing tool refuses and returns that refusal to the model
+- [x] A real person signed a real envelope — 35628904, 2026-08-29 10:24:32 UTC
+- [x] Webhook received, HMAC verified, persisted; `folder_executed` set `signed`
+- [x] Transcript persisted including the refusal
 
 **Gate:** an agent run that drafts a document, attempts to sign, is structurally
 refused, and a human completes the signature — with the webhook proving it. Show

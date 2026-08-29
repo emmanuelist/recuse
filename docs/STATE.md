@@ -1,6 +1,6 @@
 # Current state
 
-**Updated:** 2026-08-21 · **Milestone:** M3 + M4 closed · **Days to deadline:** 13
+**Updated:** 2026-08-29 · **Milestone:** M0–M4 all closed · **Days to deadline:** 5
 
 **Read `AGENTS.md` first, then this file.** Update this before you stop.
 If it is stale, fix it before doing anything else.
