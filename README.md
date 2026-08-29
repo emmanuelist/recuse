@@ -112,9 +112,10 @@ Every provider has a free tier that needs no credit card. Total cost to run this
 - **Foxit trial accounts watermark envelopes** in TEST mode.
 - **The free Gemini tier allows 20 requests/day** on the preferred model — roughly five
   runs. The fallback chain survives one exhaustion, not five.
-- **Corroboration is term-overlap, not entailment.** It is honest about being weak: it
-  reports `unverified` far more readily than `corroborated`, and never claims
-  `contradicted`, which it cannot actually establish.
+- **Corroboration is term-presence, not entailment.** Every distinctive term in a claim
+  must appear in independent live sources, and the verdict names any term that did not.
+  It never claims `contradicted`, which it cannot establish — absence of support is not
+  evidence of falsehood.
 - **No authentication.** Anyone with the URL can read every record. Triggering runs is not
   yet rate-limited, which matters because Foxit credits are finite. ([ISSUE-017](docs/ISSUES.md))
 - **Not audited, not production.** This was built in under two weeks for a hackathon.

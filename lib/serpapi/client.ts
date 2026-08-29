@@ -47,20 +47,45 @@ export async function corroborate(claim: string): Promise<Corroboration> {
   }
 
   const haystack = sources.map((s) => `${s.title} ${s.snippet}`.toLowerCase());
-  const terms = claim.toLowerCase().match(/[a-z][a-z.&'-]{2,}/g) ?? [];
-  const distinctive = terms.filter(
-    (t) => !["the", "and", "for", "with", "that", "this", "from", "registered", "company"].includes(t),
-  );
-  const hits = distinctive.filter((t) => haystack.some((h: string) => h.includes(t)));
-  const ratio = distinctive.length ? hits.length / distinctive.length : 0;
+
+  // Every distinctive term must appear. The earlier rule accepted a 60% overlap
+  // and produced a false CORROBORATED on "Northwind Trading Ltd, registered in
+  // Delaware": it matched the company name against UK Companies House and
+  // ignored "delaware", which was the entire substance of the claim.
+  //
+  // A verification stage that manufactures confidence is worse than none, so
+  // the failure direction is deliberate — this reports "unverified" readily and
+  // "corroborated" only when nothing in the claim is left unsupported.
+  const STOP = new Set([
+    "the", "and", "for", "with", "that", "this", "from", "registered",
+    "company", "limited", "ltd", "llc", "inc", "corp", "incorporated",
+    "is", "are", "was", "were", "has", "have", "a", "an", "in", "of", "at",
+  ]);
+  const terms = (claim.toLowerCase().match(/[a-z][a-z.&'-]{2,}/g) ?? [])
+    .filter((t) => !STOP.has(t));
+  const distinctive = [...new Set(terms)];
+
+  const missing = distinctive.filter((t) => !haystack.some((h: string) => h.includes(t)));
+  const found = distinctive.filter((t) => !missing.includes(t));
+
+  if (missing.length > 0) {
+    return {
+      claim,
+      verdict: "unverified",
+      reason:
+        `Live results support ${found.length} of ${distinctive.length} terms in this claim, ` +
+        `but nothing found mentions ${missing.map((m) => `"${m}"`).join(", ")}. ` +
+        `The unsupported part may be the part that matters, so this is not corroborated.`,
+      sources,
+    };
+  }
 
   return {
     claim,
-    verdict: ratio >= 0.6 ? "corroborated" : "unverified",
+    verdict: "corroborated",
     reason:
-      ratio >= 0.6
-        ? `Live results support this claim (${hits.length} of ${distinctive.length} key terms found in independent sources).`
-        : `Live results do not support this claim (only ${hits.length} of ${distinctive.length} key terms appear). Treat it as unverified before signing.`,
+      `Every distinctive term in this claim (${distinctive.join(", ")}) appears in ` +
+      `independent live sources.`,
     sources,
   };
 }
