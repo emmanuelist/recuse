@@ -69,7 +69,7 @@ export function AuthorityLedger({ entries }: { entries: LedgerEntry[] }) {
               <div className="rounded-lg border border-rule-soft bg-surface p-6 shadow-[var(--shadow-raised)] sm:p-7">
                 <p className="label mb-3">{label}</p>
                 <p className="max-w-[64ch] text-[14.5px] leading-relaxed text-ink">
-                  {row.outcome?.result ?? "—"}
+                  {row.outcome?.result ?? "No result recorded"}
                 </p>
                 {row.outcome?.detail ? <Provenance detail={row.outcome.detail} /> : null}
               </div>

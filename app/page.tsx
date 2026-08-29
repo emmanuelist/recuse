@@ -30,7 +30,7 @@ export default async function Home() {
             <p className="lede mt-7 max-w-[54ch]">
               Recuse drafts binding documents, establishes what is actually in them, and is
               structurally refused the authority to sign. The refusal is enforced by the tool
-              itself — not by an instruction a model can talk its way around.
+              itself, not by an instruction a model can talk its way around.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link

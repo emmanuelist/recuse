@@ -75,7 +75,7 @@ const allDeclarations: ToolDeclaration[] = [
     name: "corroborate_claim",
     description:
       "Check a factual claim the document makes about the world against live " +
-      "web data — company registration, address, entity status. Returns " +
+      "web data such as company registration, address or entity status. Returns " +
       "corroborated, contradicted or unverified.",
     parameters: {
       type: "object",

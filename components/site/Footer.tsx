@@ -8,7 +8,7 @@ export function Footer() {
           <p className="text-[15px] font-medium tracking-[-0.02em] text-ink">Recuse</p>
           <p className="mt-2 text-[13.5px] leading-relaxed text-faint">
             Built for the DevNetwork API World 2026 hackathon. Everything shown is produced by
-            real API calls — there is no seeded or illustrative data anywhere in this product.
+            real API calls. There is no seeded or illustrative data anywhere in this product.
           </p>
         </div>
         <nav className="flex gap-12">

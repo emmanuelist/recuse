@@ -15,6 +15,17 @@ repository carries build rules, milestones, decisions, and an evidence structure
 **No product code exists yet.** No dependencies installed, no API keys
 provisioned, no deployment. That is M0's remaining work.
 
+## Before recording the demo
+
+Generate a fresh record on the night, using the brief in `.local/DEMO-BRIEF.txt`.
+It avoids em dashes, which render verbatim in the record, and names a real
+Delaware company so the corroboration stage succeeds on screen instead of
+returning unverified.
+
+Existing records keep their original wording. Rewriting what an agent was
+actually told, to make a page read better, is the falsification this product
+exists to prevent.
+
 ## Demo identities — fixed
 
 | Role | Address | Why |

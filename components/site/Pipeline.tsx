@@ -1,5 +1,5 @@
 const STAGES = [
-  { name: "Draft",       by: "Foxit",   text: "A real document is generated from structured data — not prose a model invented and called a contract." },
+  { name: "Draft",       by: "Foxit",   text: "A real document is generated from structured data, not prose a model invented and called a contract." },
   { name: "Establish",   by: "Nutrient", text: "The document is read back deterministically. The model does not get to vouch for its own output." },
   { name: "Corroborate", by: "SerpApi",  text: "Claims the document makes about the world are checked against live web data before anyone commits." },
 ];
@@ -26,12 +26,12 @@ export function Pipeline() {
       <div className="mt-6 rounded-lg border border-seal/25 bg-surface p-7 shadow-[var(--shadow-seal)] sm:p-9">
         <div className="flex items-baseline justify-between gap-3">
           <span className="text-[17px] font-medium tracking-[-0.02em] text-ink">Authorize</span>
-          <span className="mono text-seal">—</span>
+          <span className="mono text-seal">&middot;</span>
         </div>
         <p className="mt-1 text-[12.5px] font-medium tracking-[-0.01em] text-seal">Not available to the agent</p>
         <p className="mt-4 max-w-[64ch] text-[14px] leading-relaxed text-muted">
           The signing tool exists and the agent can call it. It returns a refusal, because this
-          product contains no code that signs anything. A person signs, or nothing is signed —
+          product contains no code that signs anything. A person signs, or nothing is signed,
           and that is enforced by the tool, not by an instruction in a prompt.
         </p>
       </div>
