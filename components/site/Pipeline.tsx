@@ -6,7 +6,7 @@ const STAGES = [
 
 export function Pipeline() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-32">
+    <section className="mx-auto max-w-6xl px-6 pt-16 pb-24 sm:px-8 sm:pt-20 sm:pb-28">
       <h2 className="display-m max-w-[20ch] text-ink">
         Three things the agent may do.
       </h2>

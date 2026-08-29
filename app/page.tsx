@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { desc, eq, asc } from "drizzle-orm";
 import { db } from "@/lib/db";
-import { runs, agentEvents } from "@/lib/db/schema";
+import { runs, agentEvents, authorizations } from "@/lib/db/schema";
 import { RefusalSeal } from "@/components/RefusalSeal";
 import { Pipeline } from "@/components/site/Pipeline";
 
@@ -11,6 +11,9 @@ export default async function Home() {
   const [latest] = await db.select().from(runs).orderBy(desc(runs.createdAt)).limit(1);
   const events = latest
     ? await db.select().from(agentEvents).where(eq(agentEvents.runId, latest.id)).orderBy(asc(agentEvents.seq))
+    : [];
+  const [auth] = latest
+    ? await db.select().from(authorizations).where(eq(authorizations.runId, latest.id))
     : [];
 
   return (
@@ -52,7 +55,7 @@ export default async function Home() {
 
       {/* Product proof — the actual thing, not a mockup of it */}
       {latest && (
-        <section className="mx-auto max-w-6xl px-6 py-24 sm:px-8 sm:py-28">
+        <section className="mx-auto max-w-6xl px-6 pt-24 pb-16 sm:px-8 sm:pt-28 sm:pb-20">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="display-m max-w-[22ch] text-ink">What the agent actually did.</h2>
             <Link href={`/runs/${latest.id}`} className="text-[14px] text-muted transition-colors hover:text-ink">
@@ -84,6 +87,17 @@ export default async function Home() {
                 );
               })}
           </ol>
+          {auth?.status === "signed" && (
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-lg border border-granted/25 bg-granted-deep/30 px-6 py-5">
+              <span className="label text-granted">Then a person authorized it</span>
+              <span className="text-[14.5px] tracking-[-0.01em] text-ink">
+                Signed by {auth.signerEmail}
+                {auth.signedAt
+                  ? ` · ${auth.signedAt.toISOString().slice(0, 19).replace("T", " ")} UTC`
+                  : ""}
+              </span>
+            </div>
+          )}
           <p className="mt-4 provenance">
             record {latest.id} · {latest.createdAt.toISOString().slice(0, 19).replace("T", " ")} UTC
           </p>
@@ -97,6 +111,8 @@ export default async function Home() {
 
 const LABELS: Record<string, string> = {
   draft_document: "Drafted a real document",
+  establish_terms: "Read the terms back out of it",
+  corroborate_claim: "Checked a claim against live sources",
   sign_document: "Reached for the signature",
   request_authorization: "Routed it to a human",
 };
