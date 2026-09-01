@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="evidence/screens/record-signed-1440.png" alt="A Recuse authorization record: the agent drafts, establishes the terms, corroborates a claim, reaches for the signature and is refused, then a person authorizes it." width="880">
+<img src="evidence/screens/record-signed-1440.png" alt="A Recuse authorization record: the agent drafts, establishes the terms, corroborates a claim, reaches for the signature and is refused, then a person authorizes it." width="900">
 
 [![gate](https://github.com/emmanuelist/recuse/actions/workflows/gate.yml/badge.svg)](https://github.com/emmanuelist/recuse/actions/workflows/gate.yml)
 [![live](https://img.shields.io/badge/live-recuse.vercel.app-FF5A45)](https://recuse.vercel.app)
