@@ -10,7 +10,12 @@
     "typecheck": "tsc --noEmit",
     "gate": "npm run lint && npm run build && npm run typecheck",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate"
+    "db:migrate": "drizzle-kit migrate",
+    "film": "tsx scripts/film.ts",
+    "film:cut": "bash scripts/film-cut.sh",
+    "voice": "tsx scripts/voice.ts",
+    "film:music": "bash scripts/film-music.sh",
+    "film:mix": "bash scripts/film-mix.sh"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -36,6 +41,7 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "tsx": "^4.23.12",
     "typescript": "^5"

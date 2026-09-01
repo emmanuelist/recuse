@@ -83,7 +83,7 @@ before they authorize.
 - [ ] README as a proof surface: thesis, live link, video, evidence, honest limits
 - [x] Demo scripted and timed to three minutes — kept out of the repo (see below)
 - [ ] Rehearsed out loud twice, end to end
-- [ ] Video recorded and uploaded — assume you never present live
+- [x] Video built: `film/recuse-demo.mp4`, 2:11, 1440x900. Still to upload.
 - [ ] Devpost submission, same thesis sentence verbatim, all three tracks
 - [ ] Cold-browser check from a phone on cellular data
 

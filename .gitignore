@@ -23,3 +23,6 @@ coverage/
 # Written early because knowing the beat shapes the build; not published,
 # because it is written about the reader and spoils the one moment.
 .local/
+
+# Demo film: large binaries and regenerable from scripts/.
+film/
