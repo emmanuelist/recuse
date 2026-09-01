@@ -13,6 +13,10 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    // Film pipeline: build tooling copied between projects, not shipped code.
+    ignores: ["scripts/**", "film/**"],
+  },
 ]);
 
 export default eslintConfig;

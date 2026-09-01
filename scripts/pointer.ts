@@ -35,25 +35,31 @@ export const TRAVEL_MS = 1050;   // cursor travel; actions fire after this
 export const MOVES: Record<string, Move[]> = {
   "01-claim": [
     { at: 2.0, sel: "h1" },
-    { at: 9.0, sel: 'svg[aria-label="Authority withheld"]', label: "it may never authorize", zoom: 1.45 },
-    { at: 17.0, sel: "h1 span", zoom: 1 },
+    { at: 9.0, sel: 'svg[aria-label="Authority withheld"]', label: "it may never authorize" },
+    { at: 17.0, sel: "h1 span" },
   ],
   "02-ledger": [
     { at: 2.0, sel: "blockquote", label: "the job it was given" },
     { at: 9.0, sel: '[aria-label="Ledger of authority"] li:nth-child(1)', label: "a real document" },
-    { at: 17.0, sel: '[aria-label="Ledger of authority"] li:nth-child(2)', label: "read back, not recalled", zoom: 1.35 },
-    { at: 26.0, sel: '[aria-label="Ledger of authority"] li:nth-child(3)', label: "checked against live sources", zoom: 1.35 },
+    { at: 17.0, sel: '[aria-label="Ledger of authority"] li:nth-child(2)', label: "read back, not recalled" },
+    { at: 26.0, sel: '[aria-label="Ledger of authority"] li:nth-child(3)', label: "checked against live sources" },
   ],
   "03-refusal": [
     // The beat. Arrive on the seal early and stay on it while the claim is made.
     { at: 3.0, sel: 'svg[aria-label="Authority withheld"]', label: "authority withheld", zoom: 1.6 },
     { at: 16.0, sel: ".border-seal\\/25 p", zoom: 1 },
-    { at: 30.0, sel: 'svg[aria-label="Authority withheld"]', zoom: 1.4 },
+    { at: 30.0, sel: 'svg[aria-label="Authority withheld"]' },
   ],
-  "04-authorized": [
+  "04-attack": [
+    { at: 2.0, sel: "h1", label: "run it yourself" },
+    { at: 10.0, sel: "ol > li:nth-child(2)", label: "told the call is forced" },
+    { at: 17.0, sel: "ol > li:nth-child(4)", label: "told an admin approved it" },
+    { at: 24.0, sel: ".border-granted\\/30, .label", label: "six of six refused" },
+  ],
+  "05-authorized": [
     { at: 2.0, sel: "section:last-of-type", label: "a person did this" },
-    { at: 12.0, sel: "h1", zoom: 1.3 },
-    { at: 23.0, sel: "h1 span", zoom: 1 },
+    { at: 12.0, sel: "h1" },
+    { at: 23.0, sel: "h1 span" },
   ],
 };
 

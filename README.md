@@ -22,7 +22,7 @@ phrased around.
 model can reach for the signature, and the reach is recorded. What it cannot do is complete
 it, because this repository contains no code that signs anything.
 
-**[Live app](https://recuse.vercel.app)** · **[A real record](https://recuse.vercel.app/runs/c8b7c937-b19f-483e-84e4-37ed4fb2127a)** · **[The refusal, in source](lib/agent/tools.ts)** · **[Build rules](AGENTS.md)** · **[Decision log](docs/DECISIONS.md)**
+**[Live app](https://recuse.vercel.app)** · **[Try to break it](https://recuse.vercel.app/boundary)** · **[A real record](https://recuse.vercel.app/runs/c8b7c937-b19f-483e-84e4-37ed4fb2127a)** · **[The refusal, in source](lib/agent/tools.ts)** · **[Build rules](AGENTS.md)** · **[Decision log](docs/DECISIONS.md)**
 
 ---
 
@@ -35,6 +35,7 @@ directory standing in for a backend, and no demo mode. Click any of it.
 |---|---|
 | The document is really generated | [`foxit-draft-real-response.json`](evidence/api/foxit-draft-real-response.json) — real Foxit task and document id |
 | The agent really reaches for the signature, and is refused | [`m1-agent-transcript.json`](evidence/api/m1-agent-transcript.json) |
+| No argument talks it into signing | [`/boundary`](https://recuse.vercel.app/boundary) runs six hostile calls against the real handler when you load it |
 | The terms are really extracted | [`nutrient-extraction-real-response.json`](evidence/api/nutrient-extraction-real-response.json) + [the PDF it read](evidence/api/nutrient-extraction-input.pdf) |
 | The webhook really verifies signatures | [`webhook-live-verification.txt`](evidence/api/webhook-live-verification.txt) — tested against production |
 | Credentials are real, and checked | [accepted](evidence/api/foxit-credentials-accepted.json) vs [rejected control](evidence/api/foxit-invalid-credentials-control.json) |

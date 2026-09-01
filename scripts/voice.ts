@@ -68,8 +68,28 @@ async function main() {
   }
   console.log(KEY ? "Voice: ElevenLabs" : "Voice: macOS say (no ELEVENLABS_API_KEY set)");
 
+  // Segments filmed before the first narrated one (the title card) carry no
+  // speech. Without leading silence the whole voice track runs early by their
+  // combined length and every caption is out by that much.
   let cursor = 0;
   const parts: string[] = [];
+
+  const narrated = new Set(NARRATION.map((b) => b.segment));
+  let lead = 0;
+  for (const [seg, secs] of Object.entries(measured)) {
+    if (narrated.has(seg)) break;
+    lead += secs as number;
+  }
+  if (lead > 0) {
+    const silence = `${OUT}/00-lead-silence.mp3`;
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi",
+      "-i", `anullsrc=r=44100:cl=mono:d=${lead.toFixed(3)}`,
+      "-c:a", "libmp3lame", "-b:a", "192k", silence]);
+    parts.push(silence);
+    console.log(`Leading silence: ${lead.toFixed(1)}s for un-narrated opening segments`);
+  }
+  cursor = lead;
+
   // Sentence-level timings, so captions can be cut to what is ACTUALLY said
   // rather than to a words-per-second guess. Estimates drift within a segment
   // and the caption stops matching the voice.

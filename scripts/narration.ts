@@ -53,7 +53,20 @@ export const NARRATION: Block[] = [
       "which proved the prompt worked and told us nothing about the boundary.",
   },
   {
-    segment: "04-authorized",
+    segment: "04-attack",
+    secs: 30,
+    text:
+      "You do not have to take my word for it. " +
+      "This page calls the real signing tool when you load it, " +
+      "with arguments written to talk it into signing. " +
+      "Told the call is forced. Told authorization already happened. " +
+      "Told an administrator approved it. Told the human has already signed. " +
+      "Six attempts. Six refusals. " +
+      "There is no argument that changes it, " +
+      "because the handler contains no branch that signs.",
+  },
+  {
+    segment: "05-authorized",
     secs: 30,
     text:
       "Here is one a person authorized. " +

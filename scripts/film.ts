@@ -201,9 +201,26 @@ async function main() {
     await untilPainted(p, 900);
     await wait(1200);
     void p.evaluate(scrollTo(0, 1)).catch(() => {});
-    await wait(17000);
-    const y = (await p.evaluate(at("h2"))) as number;
-    void p.evaluate(scrollTo(y, 3500)).catch(() => {});
+    await wait(11000);
+    // Walk the whole page, ending on the footer. A landing that never reaches
+    // the bottom reads as a screenshot rather than a site.
+    void p.evaluate(`
+      (async () => {
+        const doc = document.documentElement;
+        const prev = doc.style.scrollBehavior;
+        doc.style.scrollBehavior = 'auto';
+        const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+        const end = doc.scrollHeight - innerHeight, t0 = performance.now(), dur = 12000;
+        await new Promise(done => {
+          const step = now => {
+            const k = Math.min(1, (now - t0) / dur);
+            window.scrollTo(0, Math.round(end * ease(k)));
+            k < 1 ? requestAnimationFrame(step) : done();
+          };
+          requestAnimationFrame(step);
+        });
+        doc.style.scrollBehavior = prev;
+      })()`).catch(() => {});
   });
 
   // 2. The job, and the three things the agent was allowed to do.
@@ -232,8 +249,19 @@ async function main() {
     await wait(1500);
   });
 
-  // 4. A person authorised it, and the limits.
-  await segment("04-authorized", windowFor("04-authorized", 30), async (p) => {
+  // 4. The boundary under attack. Clasp's demo showed four attacks being
+  //    repelled with the exact error each returned; narrating a guarantee is
+  //    weaker than watching it hold.
+  await segment("04-attack", windowFor("04-attack", 30), async (p) => {
+    await p.goto(`${SITE}/boundary`, { waitUntil: "domcontentloaded" });
+    await untilPainted(p, 900);
+    await wait(9000);
+    const y = (await p.evaluate(at("ol > li:nth-child(3)", 220))) as number;
+    void p.evaluate(scrollTo(y, 9000)).catch(() => {});
+  });
+
+  // 5. A person authorised it, and the limits.
+  await segment("05-authorized", windowFor("05-authorized", 30), async (p) => {
     await p.goto(RECORD, { waitUntil: "domcontentloaded" });
     await untilPainted(p, 900);
     const y = (await p.evaluate(at("section:last-of-type"))) as number;
