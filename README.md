@@ -1,6 +1,10 @@
 <div align="center">
 
-<img src="evidence/screens/record-signed-1440.png" alt="A Recuse authorization record: the agent drafts, establishes the terms, corroborates a claim, reaches for the signature and is refused, then a person authorizes it." width="900">
+<a href="https://youtu.be/P2s7pGicMag">
+<img src="evidence/screens/record-signed-1440.png" alt="A Recuse authorization record: the agent drafts, establishes the terms, corroborates a claim, reaches for the signature and is refused, then a person authorizes it. Click to watch the 2 minute 38 second demo." width="900">
+</a>
+
+<sub><b><a href="https://youtu.be/P2s7pGicMag">Watch the demo (2:38)</a></b> &nbsp;·&nbsp; a real record: drafted, proved, refused at the signature, then authorized by a person</sub>
 
 [![gate](https://github.com/emmanuelist/recuse/actions/workflows/gate.yml/badge.svg)](https://github.com/emmanuelist/recuse/actions/workflows/gate.yml)
 [![live](https://img.shields.io/badge/live-recuse.vercel.app-FF5A45)](https://recuse.vercel.app)
@@ -22,7 +26,7 @@ phrased around.
 model can reach for the signature, and the reach is recorded. What it cannot do is complete
 it, because this repository contains no code that signs anything.
 
-**[Demo video (2:38)](REPLACE_WITH_VIDEO_URL)** · **[Live app](https://recuse.vercel.app)** · **[Try to break it](https://recuse.vercel.app/boundary)** · **[A signed record](https://recuse.vercel.app/runs/bdcbdc3d-c4b4-4409-9a8e-4551b8e832e8)** · **[The refusal, in source](lib/agent/tools.ts)** · **[Build rules](AGENTS.md)** · **[Decision log](docs/DECISIONS.md)**
+**[Demo video (2:38)](https://youtu.be/P2s7pGicMag)** · **[Live app](https://recuse.vercel.app)** · **[Try to break it](https://recuse.vercel.app/boundary)** · **[A signed record](https://recuse.vercel.app/runs/bdcbdc3d-c4b4-4409-9a8e-4551b8e832e8)** · **[The refusal, in source](lib/agent/tools.ts)** · **[Build rules](AGENTS.md)** · **[Decision log](docs/DECISIONS.md)**
 
 ---
 
